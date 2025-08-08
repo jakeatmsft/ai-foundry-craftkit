@@ -50,12 +50,13 @@ def main():
 
     # Metrics: total model requests and total output tokens
     metrics = ['ModelRequests', 'GeneratedTokens']
+    # Query metrics at 1-minute granularity over the 30-day period
     try:
         resp = client.query_resource(
             resource_uri=resource_id,
             metric_names=metrics,
             timespan=(start, end),
-            granularity=timedelta(days=1),
+            granularity=timedelta(minutes=1),
             aggregations=['Total'],
         )
     except Exception as ex:
@@ -86,28 +87,25 @@ def main():
         logger.warning("All request counts are zero. Cannot estimate.")
         return
 
-    # Daily per-request completion tokens
-    per_day = np.divide(
+    # Per-request completion tokens at the chosen granularity (1 minute intervals)
+    per_interval = np.divide(
         outs, reqs, out=np.zeros_like(outs, dtype=float), where=reqs!=0)
 
     # Aggregate statistics
     overall = outs.sum() / reqs.sum()
-    df = pd.Series(per_day)
-    daily_p95 = df.quantile(0.95)
-    # To account for outliers and avoid underestimation, use the 95th percentile as the recommended estimate
-    recommended_estimate = daily_p95
+    df = pd.Series(per_interval)
+    p95 = df.quantile(0.95)
     stats = {
-        #'recommended_tokens': recommended_estimate,
         'overall_avg': overall,
-        'daily_avg': df.mean(),
-        'daily_min': df.min(),
-        'daily_max': df.max(),
-        'daily_std': df.std(),
-        'daily_p95': daily_p95,
-        'daily_p99': df.quantile(0.99),
+        'minute_avg': df.mean(),
+        'minute_min': df.min(),
+        'minute_max': df.max(),
+        'minute_std': df.std(),
+        'minute_p95': p95,
+        'minute_p99': df.quantile(0.99),
     }
     # Print results
-    print(f"Estimated completion tokens per request for time period {start.date()} to {end.date()}:")
+    print(f"Estimated completion tokens per request for time period {start.date()} to {end.date()} at 1-minute granularity:")
     for k, v in stats.items():
         print(f"{k:12}: {v:.2f}")
 
