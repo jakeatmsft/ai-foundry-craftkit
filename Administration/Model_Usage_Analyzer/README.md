@@ -40,7 +40,6 @@ python azure_estimate_completion.py --debug
 Sample output:
 ```
 Estimated completion tokens per request:
-recommended_tokens:  290.00
 overall_avg     :  212.34
 daily_avg       :  215.67
 daily_min       :  150.00
@@ -64,8 +63,7 @@ Suppose we have 5 days of data:
 
 - **Overall average** = (20000+24000+16000+45000+22500) / (100+120+80+150+90) = 127500 / 540 ≈ **236.11**
 - **Daily TokensPerRequest** series = [200, 200, 200, 300, 250]
-- **95th percentile (p95)** = 95th percentile of this series ≈ **290**
+- **95th percentile (p95)** = 95th percentile of this series ≈ **300**
 
-The tool recommends **290** tokens per request as a conservative estimate, accounting for outliers.
 
 ---
