@@ -1,30 +1,142 @@
+
 #!/usr/bin/env python3
 """
-Estimate expected completion (output) tokens per OpenAI model request using 30-day historical metrics.
+Estimate expected completion (output) tokens per OpenAI model request using historical Azure Monitor metrics,
+with breakdown by model deployment, response-size safeguards, auto dimension detection, and CSV export.
 """
 import os
 import argparse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 import numpy as np
 import pandas as pd
 from azure.identity import DefaultAzureCredential
 from azure.monitor.query import MetricsQueryClient
 import logging
+from typing import Dict, List, Optional, Tuple
+
+
+def is_payload_too_large_error(ex: Exception) -> bool:
+    s = str(ex) if ex else ''
+    s = s.lower()
+    return ('exceeded maximum limit' in s) or ('response size' in s and 'exceeded' in s) or ('413' in s)
+
+
+def key_from_metadata(ts, preferred_dim: str) -> str:
+    mvs = getattr(ts, 'metadata_values', None) or []
+    if not mvs:
+        return 'all'
+    dim_l = (preferred_dim or '').lower()
+    for mv in mvs:
+        name = str(getattr(mv, 'name', '') or '')
+        value = str(getattr(mv, 'value', '') or '')
+        if name and name.lower() == dim_l:
+            return value or 'unknown'
+    for mv in mvs:
+        name = str(getattr(mv, 'name', '') or '')
+        value = str(getattr(mv, 'value', '') or '')
+        if 'deployment' in name.lower():
+            return value or 'unknown'
+    return 'all'
+
+
+def query_with_backoff(client: MetricsQueryClient, resource_id: str, metric_names: List[str], timespan: Tuple[datetime, datetime], granularity_mins: int, filt: Optional[str], logger: logging.Logger):
+    gran = granularity_mins
+    attempt = 0
+    while True:
+        attempt += 1
+        try:
+            return client.query_resource(
+                resource_uri=resource_id,
+                metric_names=metric_names,
+                timespan=timespan,
+                granularity=timedelta(minutes=gran),
+                aggregations=['Total'],
+                filter=filt,
+            )
+        except Exception as ex:
+            if is_payload_too_large_error(ex) and gran < 1440:
+                new_gran = min(1440, max(gran * 2, gran + 1))
+                logger.warning(f"Payload too large for metrics {metric_names} at granularity {gran}m, increasing to {new_gran}m and retrying (attempt {attempt})")
+                gran = new_gran
+                continue
+            logger.error(f"Failed to query metrics: {ex}")
+            return None
+
+
+def collect_coarse_totals(client: MetricsQueryClient, resource_id: str, start: datetime, end: datetime, dimension_name: str, window_days: int, coarse_gran_mins: int, logger: logging.Logger) -> Tuple[Dict[str, float], Dict[str, set]]:
+    coarse_filter = f"{dimension_name} eq '*'"
+    deployment_totals: Dict[str, float] = {}
+    meta_keys_values: Dict[str, set] = {}
+    cur_start = start
+    while cur_start < end:
+        cur_end = min(cur_start + timedelta(days=window_days), end)
+        resp = query_with_backoff(client, resource_id, ['ModelRequests'], (cur_start, cur_end), coarse_gran_mins, coarse_filter, logger)
+        if resp is None:
+            return {}, {}
+        for m in resp.metrics:
+            if m.name != 'ModelRequests':
+                continue
+            for ts in m.timeseries:
+                # track metadata keys/values seen
+                for mv in getattr(ts, 'metadata_values', []) or []:
+                    name = str(getattr(mv, 'name', '') or '')
+                    value = str(getattr(mv, 'value', '') or '')
+                    if name:
+                        meta_keys_values.setdefault(name, set()).add(value)
+                key = key_from_metadata(ts, dimension_name)
+                total = 0.0
+                for pt in ts.data:
+                    total += float(getattr(pt, 'total', 0) or 0)
+                deployment_totals[key] = deployment_totals.get(key, 0.0) + total
+        cur_start = cur_end
+    return deployment_totals, meta_keys_values
+
+
+def auto_detect_dimension(client: MetricsQueryClient, resource_id: str, start: datetime, end: datetime, preferred: str, logger: logging.Logger) -> Tuple[str, Dict[str, float], Dict[str, set]]:
+    candidates = []
+    if preferred:
+        candidates.append(preferred)
+    candidates += ['ModelDeploymentName', 'DeploymentName', 'ModelDeployment', 'ModelDeploymentId', 'Deployment', 'ModelName']
+    # dedup preserving order
+    seen = set()
+    candidates = [c for c in candidates if not (c in seen or seen.add(c))]
+    best_dim = preferred
+    best_totals = {}
+    best_meta = {}
+    best_count = -1
+    for dim in candidates:
+        totals, meta = collect_coarse_totals(client, resource_id, start, end, dim, window_days=3, coarse_gran_mins=60, logger=logger)
+        count = len([k for k in totals.keys() if k != 'all'])
+        logger.debug(f"Probe dimension '{dim}' found {count} unique keys (excluding 'all')")
+        if count > best_count:
+            best_count = count
+            best_dim = dim
+            best_totals = totals
+            best_meta = meta
+        if count > 1:
+            break
+    return best_dim, best_totals, best_meta
+
 
 def main():
-    # CLI arguments
-    parser = argparse.ArgumentParser(
-        description="Estimate expected completion tokens per model request.")
+    parser = argparse.ArgumentParser(description="Estimate expected completion tokens per model request.")
     parser.add_argument('--debug', action='store_true', help='Enable debug logs')
+    parser.add_argument('--dimension-name', default='ModelDeploymentName', help="Azure Monitor dimension to split by (e.g., ModelDeploymentName)")
+    parser.add_argument('--auto-detect-dimension', action='store_true', help='Probe common dimension names and use the one that yields multiple deployments')
+    parser.add_argument('--days', type=int, default=30, help='Timespan in days to query (default: 30)')
+    parser.add_argument('--granularity-mins', type=int, default=5, help='Granularity in minutes for detailed queries (default: 5)')
+    parser.add_argument('--coarse-granularity-mins', type=int, default=60, help='Granularity in minutes for the coarse pass (default: 60)')
+    parser.add_argument('--top-n', type=int, default=20, help='Top-N deployments to include (default: 20)')
+    parser.add_argument('--window-days', type=int, default=7, help='Chunk size in days for queries (default: 7)')
+    parser.add_argument('--probe-dimensions', action='store_true', help='Print the metadata keys and sample values observed during coarse pass')
+    parser.add_argument('--csv-out', default=None, help='Path to write per-deployment stats CSV')
     args = parser.parse_args()
 
-    # Setup logging
     level = logging.DEBUG if args.debug else logging.INFO
     logging.basicConfig(level=level, format='%(asctime)s %(levelname)s: %(message)s')
     logger = logging.getLogger(__name__)
 
-    # Load environment
     load_dotenv()
     subscription_id = os.getenv('AZURE_SUBSCRIPTION_ID')
     rg = os.getenv('AZURE_RESOURCE_GROUP_NAME')
@@ -32,82 +144,197 @@ def main():
     if not all([subscription_id, rg, resource_name]):
         raise ValueError("AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP_NAME, AZURE_AOAI_RESOURCE_NAME must be set")
 
-    # Build resource URI
     resource_id = (
         f"/subscriptions/{subscription_id}/resourceGroups/{rg}"
         f"/providers/Microsoft.CognitiveServices/accounts/{resource_name}"
     )
-    logger.debug(f"Resource ID: {resource_id}")
 
-    # Authenticate
     credential = DefaultAzureCredential()
     client = MetricsQueryClient(credential)
 
-    # Define timespan: last 30 days
-    end = datetime.utcnow()
-    start = end - timedelta(days=30)
-    logger.info(f"Querying metrics from {start.date()} to {end.date()}")
+    end = datetime.now(timezone.utc)
+    start = end - timedelta(days=args.days)
+    dimension_name = args.dimension_name
+    logger.info(
+        f"Querying metrics from {start.date()} to {end.date()} split by dimension '{dimension_name}', "
+        f"coarse={args.coarse_granularity_mins}m, detail={args.granularity_mins}m, top_n={args.top_n}, window_days={args.window_days}"
+    )
 
-    # Metrics: total model requests and total output tokens
-    metrics = ['ModelRequests', 'GeneratedTokens']
-    # Query metrics at 1-minute granularity over the 30-day period
-    try:
-        resp = client.query_resource(
-            resource_uri=resource_id,
-            metric_names=metrics,
-            timespan=(start, end),
-            granularity=timedelta(minutes=1),
-            aggregations=['Total'],
-        )
-    except Exception as ex:
-        logger.error(f"Failed to query metrics: {ex}")
+    # Coarse collection
+    deployment_totals, meta_kv = collect_coarse_totals(client, resource_id, start, end, dimension_name, args.window_days, args.coarse_granularity_mins, logger)
+
+    # Optional auto-detect
+    non_all_count = len([k for k in deployment_totals.keys() if k != 'all'])
+    if (non_all_count <= 1) and args.auto_detect_dimension:
+        logger.info("Auto-detecting deployment dimension name...")
+        dim2, totals2, meta2 = auto_detect_dimension(client, resource_id, start, end, dimension_name, logger)
+        if dim2 and dim2 != dimension_name:
+            logger.info(f"Using detected dimension: {dim2}")
+            dimension_name = dim2
+            deployment_totals, meta_kv = totals2, meta2
+        else:
+            logger.info("Auto-detection did not find a better dimension; continuing with current setting.")
+
+    if args.probe_dimensions:
+        print("\nObserved dimension keys and sample values from coarse pass:")
+        for k, vals in sorted(meta_kv.items()):
+            vals_list = sorted(list(vals))[:10]
+            print(f"- {k}: {vals_list}{' ...' if len(vals) > 10 else ''}")
+
+    sorted_deployments = [k for k,_ in sorted(((k,v) for k,v in deployment_totals.items() if k != 'all'), key=lambda kv: kv[1], reverse=True)]
+    if args.top_n > 0:
+        sorted_deployments = sorted_deployments[:args.top_n]
+    if not sorted_deployments:
+        logger.warning("No deployment dimensions returned; falling back to all")
+        sorted_deployments = ['all']
+    logger.info(f"Top deployments selected: {sorted_deployments}")
+
+    def fetch_series_for_deployment(dep_key: str):
+        reqs_list: List[float] = []
+        outs_list: List[float] = []
+        cur_start = start
+        detail_gran = args.granularity_mins
+        window_days = args.window_days
+        while cur_start < end:
+            cur_end = min(cur_start + timedelta(days=window_days), end)
+            filt = None if dep_key == 'all' else f"{dimension_name} eq '{str(dep_key).replace("'", "''")}'"
+            try:
+                r = client.query_resource(
+                    resource_uri=resource_id,
+                    metric_names=['ModelRequests', 'GeneratedTokens'],
+                    timespan=(cur_start, cur_end),
+                    granularity=timedelta(minutes=detail_gran),
+                    aggregations=['Total'],
+                    filter=filt,
+                )
+            except Exception as ex:
+                if is_payload_too_large_error(ex):
+                    if detail_gran < 60:
+                        new_gran = min(60, max(detail_gran * 2, detail_gran + 1))
+                        logger.warning(f"Payload too large for {dep_key} at granularity {detail_gran}m; increasing to {new_gran}m and retrying window {cur_start.date()} to {cur_end.date()}")
+                        detail_gran = new_gran
+                        continue
+                    if window_days > 1:
+                        new_window = max(1, window_days // 2)
+                        if new_window != window_days:
+                            logger.warning(f"Payload too large for {dep_key}; reducing window from {window_days}d to {new_window}d and retrying")
+                            window_days = new_window
+                            continue
+                logger.error(f"Failed to query metrics (detail) for {dep_key}: {ex}")
+                return None, None
+            reqs_win: Optional[List[float]] = None
+            outs_win: Optional[List[float]] = None
+            for mm in r.metrics:
+                if mm.name == 'ModelRequests':
+                    for ts in mm.timeseries:
+                        arr = [float(getattr(pt, 'total', 0) or 0) for pt in ts.data]
+                        if reqs_win is None:
+                            reqs_win = arr
+                        else:
+                            n = min(len(reqs_win), len(arr))
+                            reqs_win = [reqs_win[i] + arr[i] for i in range(n)]
+                elif mm.name == 'GeneratedTokens':
+                    for ts in mm.timeseries:
+                        arr = [float(getattr(pt, 'total', 0) or 0) for pt in ts.data]
+                        if outs_win is None:
+                            outs_win = arr
+                        else:
+                            n = min(len(outs_win), len(arr))
+                            outs_win = [outs_win[i] + arr[i] for i in range(n)]
+            reqs_win = reqs_win or []
+            outs_win = outs_win or []
+            n = min(len(reqs_win), len(outs_win))
+            if n:
+                reqs_list.extend(reqs_win[:n])
+                outs_list.extend(outs_win[:n])
+            cur_start = cur_end
+        return reqs_list, outs_list
+
+    per_deployment: Dict[str, Dict[str, np.ndarray]] = {}
+    for dep in sorted_deployments:
+        reqs_list, outs_list = fetch_series_for_deployment(dep)
+        if reqs_list is None:
+            continue
+        per_deployment[dep] = {
+            'reqs': np.array(reqs_list, dtype=float),
+            'outs': np.array(outs_list, dtype=float),
+        }
+
+    overall_reqs_total = 0.0
+    overall_outs_total = 0.0
+    per_interval_all: List[float] = []
+    for key, d in per_deployment.items():
+        r = d['reqs']
+        o = d['outs']
+        if r.size == 0 or o.size == 0:
+            continue
+        n = min(len(r), len(o))
+        r = r[:n]
+        o = o[:n]
+        overall_reqs_total += float(r.sum())
+        overall_outs_total += float(o.sum())
+        per_interval_all.extend((o / np.where(r != 0, r, 1)).tolist())
+
+    if overall_reqs_total == 0:
+        logger.warning('All request counts are zero. Cannot estimate.')
         return
 
-    # Extract time series
-    data = {}
-    for m in resp.metrics:
-        # flatten all time points
-        vals = [pt.total or 0 for ts in m.timeseries for pt in ts.data]
-        data[m.name] = np.array(vals)
-        logger.debug(f"{m.name} values: {data[m.name]}")
-
-    reqs = data.get('ModelRequests', np.array([]))
-    outs = data.get('GeneratedTokens', np.array([]))
-    # Ensure arrays have matching lengths and non-zero data
-    # Truncate to shortest length to align per-day data
-    print("Request counts:", reqs)
-    print("Output tokens:", outs)
-    n = min(len(reqs), len(outs))
-    if n == 0:
-        logger.warning("Insufficient data for requests or output tokens. Cannot estimate.")
-        return
-    reqs = reqs[:n]
-    outs = outs[:n]
-    if reqs.sum() == 0:
-        logger.warning("All request counts are zero. Cannot estimate.")
-        return
-
-    # Per-request completion tokens at the chosen granularity (1 minute intervals)
-    per_interval = np.divide(
-        outs, reqs, out=np.zeros_like(outs, dtype=float), where=reqs!=0)
-
-    # Aggregate statistics
-    overall = outs.sum() / reqs.sum()
-    df = pd.Series(per_interval)
-    p95 = df.quantile(0.95)
-    stats = {
+    overall = overall_outs_total / overall_reqs_total
+    df_all = pd.Series(per_interval_all, dtype=float) if per_interval_all else pd.Series([], dtype=float)
+    stats_all = {
         'overall_avg': overall,
-        'minute_avg': df.mean(),
-        'minute_min': df.min(),
-        'minute_max': df.max(),
-        'minute_std': df.std(),
-        'minute_p95': p95,
-        'minute_p99': df.quantile(0.99),
+        'minute_avg': df_all.mean() if not df_all.empty else 0.0,
+        'minute_min': df_all.min() if not df_all.empty else 0.0,
+        'minute_max': df_all.max() if not df_all.empty else 0.0,
+        'minute_std': df_all.std() if not df_all.empty else 0.0,
+        'minute_p95': df_all.quantile(0.95) if not df_all.empty else 0.0,
+        'minute_p99': df_all.quantile(0.99) if not df_all.empty else 0.0,
     }
-    # Print results
-    print(f"Estimated completion tokens per request for time period {start.date()} to {end.date()} at 1-minute granularity:")
-    for k, v in stats.items():
+
+    print(f"Estimated completion tokens per request for time period {start.date()} to {end.date()} at {args.granularity_mins}-minute granularity:")
+    for k, v in stats_all.items():
         print(f"{k:12}: {v:.2f}")
+
+    rows: List[Dict[str, float]] = []
+    print("\nBreakdown by model deployment (sorted by request count):")
+    sorted_keys = sorted(per_deployment.keys(), key=lambda k: per_deployment[k]['reqs'].sum(), reverse=True)
+    for key in sorted_keys:
+        reqs_arr = per_deployment[key]['reqs']
+        outs_arr = per_deployment[key]['outs']
+        total_reqs = float(reqs_arr.sum())
+        total_outs = float(outs_arr.sum())
+        if total_reqs == 0:
+            continue
+        n = min(len(reqs_arr), len(outs_arr))
+        r = reqs_arr[:n]
+        o = outs_arr[:n]
+        per_int = o / np.where(r != 0, r, 1)
+        s = pd.Series(per_int)
+        stats_dep = {
+            'deployment': key,
+            'total_requests': total_reqs,
+            'total_generated_tokens': total_outs,
+            'overall_avg': float(o.sum()) / total_reqs,
+            'minute_avg': float(s.mean()),
+            'minute_min': float(s.min()),
+            'minute_max': float(s.max()),
+            'minute_std': float(s.std()),
+            'minute_p95': float(s.quantile(0.95)),
+            'minute_p99': float(s.quantile(0.99)),
+        }
+        rows.append(stats_dep)
+        print(f"- Deployment: {key}")
+        for fk in ['overall_avg','minute_avg','minute_min','minute_max','minute_std','minute_p95','minute_p99']:
+            print(f"    {fk:12}: {stats_dep[fk]:.2f}")
+
+    if args.csv_out:
+        try:
+            df_out = pd.DataFrame(rows)
+            df_out.to_csv(args.csv_out, index=False)
+            print(f"Wrote per-deployment stats to: {args.csv_out}")
+        except Exception as ex:
+            logger.error(f"Failed to write CSV to {args.csv_out}: {ex}")
+
 
 if __name__ == '__main__':
     main()

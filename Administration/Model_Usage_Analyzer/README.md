@@ -1,11 +1,11 @@
 # Azure OpenAI Completion Token Estimator
 
-This tool estimates the expected number of completion (output) tokens per Azure OpenAI model request, based on 30 days of historical usage metrics. It uses Azure Monitor metrics to fetch daily totals of model requests and output tokens, computes per-request averages, and recommends an estimate that accounts for outliers.
+This tool estimates the expected number of completion (output) tokens per Azure OpenAI model request, based on 30 days of historical usage metrics. It uses Azure Monitor metrics to fetch totals of model requests and output tokens at 1-minute granularity, computes per-request averages, and recommends an estimate that accounts for outliers. It also provides a breakdown by model deployment.
 
 ## Features
-- Queries **ModelRequests** and **OutputTokens** metrics daily over the last 30 days
-- Calculates per-day output tokens per request safely (avoiding divide-by-zero)
-- Computes overall and daily statistics: average, min, max, standard deviation, 95th and 99th percentiles
+- Queries **ModelRequests** and **GeneratedTokens** metrics over the last 30 days at 1-minute granularity
+- Calculates per-interval output tokens per request safely (avoiding divide-by-zero)
+- Computes overall and per-minute statistics: average, min, max, standard deviation, 95th and 99th percentiles
 - Recommends the 95th percentile as the conservative estimate to avoid underestimation
 - Supports a `--debug` flag for verbose logging
 
@@ -37,16 +37,16 @@ python azure_estimate_completion.py
 python azure_estimate_completion.py --debug
 ```
 
-Sample output:
+Sample output (abbreviated):
 ```
 Estimated completion tokens per request:
 overall_avg     :  212.34
-daily_avg       :  215.67
-daily_min       :  150.00
-daily_max       :  350.00
-daily_std       :   45.12
-daily_p95       :  290.00
-daily_p99       :  340.00
+minute_avg       :  215.67
+minute_min       :  150.00
+minute_max       :  350.00
+minute_std       :   45.12
+minute_p95       :  290.00
+minute_p99       :  340.00
 ```
 
 ## Example Calculation
@@ -67,3 +67,21 @@ Suppose we have 5 days of data:
 
 
 ---
+
+Breakdown by model deployment (sorted by request count):
+- Deployment: gpt-4o-mini
+    overall_avg  : 198.12
+    minute_avg   : 205.01
+    minute_min   : 120.00
+    minute_max   : 320.00
+    minute_std   :  38.22
+    minute_p95   : 275.00
+    minute_p99   : 315.00
+- Deployment: text-embedding-3-large
+    overall_avg  : 17.45
+    minute_avg   :  9.21
+    minute_min   :  0.00
+    minute_max   : 30.00
+    minute_std   :  6.01
+    minute_p95   : 20.00
+    minute_p99   : 28.00
