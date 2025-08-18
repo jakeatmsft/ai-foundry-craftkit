@@ -64,18 +64,18 @@ def query_with_backoff(client: MetricsQueryClient, resource_id: str, metric_name
             return None
 
 
-def collect_coarse_totals(client: MetricsQueryClient, resource_id: str, start: datetime, end: datetime, dimension_name: str, window_days: int, coarse_gran_mins: int, logger: logging.Logger) -> Tuple[Dict[str, float], Dict[str, set]]:
+def collect_coarse_totals(client: MetricsQueryClient, resource_id: str, start: datetime, end: datetime, dimension_name: str, window_days: int, coarse_gran_mins: int, req_metric_name: str, logger: logging.Logger) -> Tuple[Dict[str, float], Dict[str, set]]:
     coarse_filter = f"{dimension_name} eq '*'"
     deployment_totals: Dict[str, float] = {}
     meta_keys_values: Dict[str, set] = {}
     cur_start = start
     while cur_start < end:
         cur_end = min(cur_start + timedelta(days=window_days), end)
-        resp = query_with_backoff(client, resource_id, ['ModelRequests'], (cur_start, cur_end), coarse_gran_mins, coarse_filter, logger)
+        resp = query_with_backoff(client, resource_id, [req_metric_name], (cur_start, cur_end), coarse_gran_mins, coarse_filter, logger)
         if resp is None:
             return {}, {}
         for m in resp.metrics:
-            if m.name != 'ModelRequests':
+            if m.name != req_metric_name:
                 continue
             for ts in m.timeseries:
                 # track metadata keys/values seen
@@ -93,7 +93,7 @@ def collect_coarse_totals(client: MetricsQueryClient, resource_id: str, start: d
     return deployment_totals, meta_keys_values
 
 
-def auto_detect_dimension(client: MetricsQueryClient, resource_id: str, start: datetime, end: datetime, preferred: str, logger: logging.Logger) -> Tuple[str, Dict[str, float], Dict[str, set]]:
+def auto_detect_dimension(client: MetricsQueryClient, resource_id: str, start: datetime, end: datetime, preferred: str, req_metric_name: str, logger: logging.Logger) -> Tuple[str, Dict[str, float], Dict[str, set]]:
     candidates = []
     if preferred:
         candidates.append(preferred)
@@ -106,7 +106,7 @@ def auto_detect_dimension(client: MetricsQueryClient, resource_id: str, start: d
     best_meta = {}
     best_count = -1
     for dim in candidates:
-        totals, meta = collect_coarse_totals(client, resource_id, start, end, dim, window_days=3, coarse_gran_mins=60, logger=logger)
+        totals, meta = collect_coarse_totals(client, resource_id, start, end, dim, window_days=3, coarse_gran_mins=60, req_metric_name=req_metric_name, logger=logger)
         count = len([k for k in totals.keys() if k != 'all'])
         logger.debug(f"Probe dimension '{dim}' found {count} unique keys (excluding 'all')")
         if count > best_count:
@@ -131,6 +131,15 @@ def main():
     parser.add_argument('--window-days', type=int, default=7, help='Chunk size in days for queries (default: 7)')
     parser.add_argument('--probe-dimensions', action='store_true', help='Print the metadata keys and sample values observed during coarse pass')
     parser.add_argument('--csv-out', default=None, help='Path to write per-deployment stats CSV')
+    parser.add_argument('--req-metric', default='AzureOpenAIRequests', help="Metric name for request counts (e.g., ModelRequests or AzureOpenAIRequests)")
+    parser.add_argument('--tok-metric', default='GeneratedTokens', help="Metric name for generated/output tokens (e.g., GeneratedTokens or OutputTokens)")
+    parser.add_argument('--debug-one-call', action='store_true', help='Make a single metrics API call and dump the raw response, then exit')
+    parser.add_argument('--debug-metrics', default='auto', help="Comma-separated metric names for the debug call, or 'auto' to use req/tok metrics")
+    parser.add_argument('--debug-hours', type=int, default=6, help='Hours lookback for the single debug call (default: 6)')
+    parser.add_argument('--debug-interval-mins', type=int, default=5, help='Granularity minutes for the single debug call (default: 5)')
+    parser.add_argument('--debug-filter', default='*', help="Dimension value for the single debug call filter. '*' means split by dimension; empty string '' means no filter")
+    parser.add_argument('--debug-raw-parse', action='store_true', help='In debug-one-call mode, parse and print the raw SDK objects using __dict__ as requested')
+    parser.add_argument('--debug-raw-limit', type=int, default=0, help='In debug-one-call mode, limit number of data points printed per time series (0=no limit)')
     args = parser.parse_args()
 
     level = logging.DEBUG if args.debug else logging.INFO
@@ -160,14 +169,88 @@ def main():
         f"coarse={args.coarse_granularity_mins}m, detail={args.granularity_mins}m, top_n={args.top_n}, window_days={args.window_days}"
     )
 
+    # If requested, make a single API call and dump the raw structure, then exit.
+    if args.debug_one_call:
+        dbg_metrics = [m.strip() for m in (args.debug_metrics.split(',') if args.debug_metrics else []) if m.strip()]
+        if (not dbg_metrics) or (args.debug_metrics.lower() == 'auto'):
+            dbg_metrics = [args.req_metric, args.tok_metric]
+        dbg_end = end
+        dbg_start = end - timedelta(hours=max(1, args.debug_hours))
+        if args.debug_filter == '':
+            dbg_filter = dbg_filter = f"{dimension_name} eq '*'"
+        else:
+            val = (args.debug_filter or '').replace("'", "''")
+            if val == '*':
+                dbg_filter = f"{dimension_name} eq '*'"
+            else:
+                dbg_filter = f"{dimension_name} eq '{val}'"
+        gran = max(1, args.debug_interval_mins)
+        logger.info(f"DEBUG one-call: metrics={dbg_metrics}, timespan={dbg_start.isoformat()} to {dbg_end.isoformat()}, granularity={gran}m, filter={dbg_filter}")
+        try:
+            resp = client.query_resource(
+                resource_uri=resource_id,
+                metric_names=dbg_metrics,
+                timespan=(dbg_start, dbg_end),
+                granularity=timedelta(minutes=gran),
+                aggregations=['Total'],
+                filter=dbg_filter,
+            )
+        except Exception as ex:
+            logger.error(f"DEBUG one-call failed: {ex}")
+            return
+        if args.debug_raw_parse:
+            print("RAW dump of response.metrics:")
+            for metric in getattr(resp, 'metrics', []) or []:
+                try:
+                    print(metric.name)
+                except Exception:
+                    print(metric)
+                for time_series_element in getattr(metric, 'timeseries', []) or []:
+                    print(getattr(time_series_element, 'metadata_values', None))
+                    count = 0
+                    for metric_value in getattr(time_series_element, 'data', []) or []:
+                        d = getattr(metric_value, '__dict__', None)
+                        if d is None:
+                            try:
+                                d = vars(metric_value)
+                            except Exception:
+                                d = str(metric_value)
+                        print(d)
+                        count += 1
+                        if args.debug_raw_limit and count >= args.debug_raw_limit:
+                            print(f"... truncated after {args.debug_raw_limit} points")
+                            break
+        else:
+            for m in resp.metrics:
+                print(f"Metric: {getattr(m, 'name', '?')} | timeseries count: {len(getattr(m, 'timeseries', []) or [])}")
+                for idx, ts in enumerate(getattr(m, 'timeseries', []) or []):
+                    md = []
+                    for mv in getattr(ts, 'metadata_values', []) or []:
+                        n = str(getattr(mv, 'name', '') or '')
+                        v = str(getattr(mv, 'value', '') or '')
+                        if n:
+                            md.append(f"{n}={v}")
+                    print(f"  TS[{idx}] metadata: {', '.join(md) if md else '(none)'}")
+                    data = getattr(ts, 'data', []) or []
+                    print(f"  TS[{idx}] points: {len(data)}")
+                    if data:
+                        sample = data if len(data) <= 6 else (data[:3] + data[-3:])
+                        for j, pt in enumerate(sample):
+                            t = getattr(pt, 'timestamp', None) or getattr(pt, 'time_stamp', None)
+                            tot = getattr(pt, 'total', None)
+                            print(f"    [{j}] t={t} total={tot}")
+                        if len(data) > 6:
+                            print("    ... (middle points omitted)")
+        return
+
     # Coarse collection
-    deployment_totals, meta_kv = collect_coarse_totals(client, resource_id, start, end, dimension_name, args.window_days, args.coarse_granularity_mins, logger)
+    deployment_totals, meta_kv = collect_coarse_totals(client, resource_id, start, end, dimension_name, args.window_days, args.coarse_granularity_mins, args.req_metric, logger)
 
     # Optional auto-detect
     non_all_count = len([k for k in deployment_totals.keys() if k != 'all'])
     if (non_all_count <= 1) and args.auto_detect_dimension:
         logger.info("Auto-detecting deployment dimension name...")
-        dim2, totals2, meta2 = auto_detect_dimension(client, resource_id, start, end, dimension_name, logger)
+        dim2, totals2, meta2 = auto_detect_dimension(client, resource_id, start, end, dimension_name, args.req_metric, logger)
         if dim2 and dim2 != dimension_name:
             logger.info(f"Using detected dimension: {dim2}")
             dimension_name = dim2
@@ -201,7 +284,7 @@ def main():
             try:
                 r = client.query_resource(
                     resource_uri=resource_id,
-                    metric_names=['ModelRequests', 'GeneratedTokens'],
+                    metric_names=[args.req_metric, args.tok_metric],
                     timespan=(cur_start, cur_end),
                     granularity=timedelta(minutes=detail_gran),
                     aggregations=['Total'],
@@ -225,7 +308,7 @@ def main():
             reqs_win: Optional[List[float]] = None
             outs_win: Optional[List[float]] = None
             for mm in r.metrics:
-                if mm.name == 'ModelRequests':
+                if mm.name == args.req_metric:
                     for ts in mm.timeseries:
                         arr = [float(getattr(pt, 'total', 0) or 0) for pt in ts.data]
                         if reqs_win is None:
@@ -233,7 +316,7 @@ def main():
                         else:
                             n = min(len(reqs_win), len(arr))
                             reqs_win = [reqs_win[i] + arr[i] for i in range(n)]
-                elif mm.name == 'GeneratedTokens':
+                elif mm.name == args.tok_metric:
                     for ts in mm.timeseries:
                         arr = [float(getattr(pt, 'total', 0) or 0) for pt in ts.data]
                         if outs_win is None:
