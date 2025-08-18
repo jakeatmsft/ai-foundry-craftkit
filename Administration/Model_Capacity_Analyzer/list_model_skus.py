@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-List available Azure OpenAI models and their SKU capacity (min, max, default) for a given account.
+List available capacity for each Azure OpenAI model SKU across all regions using the usages API.
 """
 import os
 import argparse
 import logging
 import requests
-from datetime import datetime
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential, DeviceCodeCredential, ChainedTokenCredential
 from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+import re
 
 def main():
     parser = argparse.ArgumentParser(description="List model SKUs and capacities.")
@@ -35,55 +35,65 @@ def main():
     device_cred = DeviceCodeCredential(tenant_id=os.getenv('AZURE_TENANT_ID', None))
     credential = ChainedTokenCredential(base_cred, device_cred)
 
-    # Management client for account info
-    mgmt = CognitiveServicesManagementClient(credential, sub_id)
-    account = mgmt.accounts.get(rg, account_name)
-    region = account.location
-    logger.debug(f'Account region: {region}')
-
+    # Management client (not needed for region list)
+    api_ver = '2023-05-01'
     # Acquire token for ARM
+
     try:
         token = credential.get_token('https://management.azure.com/.default').token
     except Exception:
         token = device_cred.get_token('https://management.azure.com/.default').token
+    headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
+    # list all Azure Cognitive Services accounts and filter OpenAI
+    mgmt = CognitiveServicesManagementClient(credential, sub_id)
+    try:
+        accounts = list(mgmt.accounts.list())
+    except Exception as e:
+        logger.error(f'Failed to list Cognitive Services accounts: {e}')
+        return
+    openai_accounts = [a for a in accounts if getattr(a, 'kind', '') and 'OpenAI' in a.kind]
+    if not openai_accounts:
+        logger.error('No Azure OpenAI accounts found in subscription')
+        return
+    regions = set(a.location for a in openai_accounts)
+    logger.debug(f'Found OpenAI accounts in regions: {regions}')
 
-    # Build List Models endpoint
-    url = (
-        f'https://management.azure.com/subscriptions/{sub_id}'
-        f'/providers/Microsoft.CognitiveServices/locations/{region}/models'
-        f'?api-version=2024-10-01'
-    )
-    logger.info(f'Listing models via: {url}')
-
-    headers = {
-        'Authorization': f'Bearer {token}',
-        'Content-Type': 'application/json'
-    }
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    models = response.json().get('value', [])
-
-    # Extract SKU capacities
+    # Gather usage capacities per SKU for each region
     rows = []
-    for m in models:
-        mdl = m.get('model', {})
-        name = mdl.get('name')
-        version = mdl.get('version')
-        skus = mdl.get('skus', [])
-        for sku in skus:
-            cap = sku.get('capacity', {})
+    for region in regions:
+        usage_url = (
+            f'https://management.azure.com/subscriptions/{sub_id}'
+            f'/providers/Microsoft.CognitiveServices/locations/{region}'
+            f'/usages?api-version={api_ver}'
+        )
+        logger.debug(f'Fetching usage for region: {region}')
+        resp = requests.get(usage_url, headers=headers)
+        if not resp.ok:
+            logger.warning(f'Could not fetch usages for region {region}: {resp.status_code}')
+            continue
+        usages = resp.json().get('value', [])
+        for u in usages:
+            nm = u.get('name', {})
+            sku_val = nm.get('value') or ''
+            # parse SKUs of form <namespace>.<tier>.<ModelName> via regex
+            m = re.match(r'^[^.]+\.[^.]+\.(.+)$', sku_val)
+            model = m.group(1) if m else sku_val
+            limit = u.get('limit')
+            used = u.get('currentValue')
+            available = (limit - used) if (limit is not None and used is not None) else None
             rows.append({
-                'model': name,
-                'version': version,
-                'sku': sku.get('name'),
-                'min': cap.get('minimum'),
-                'max': cap.get('maximum'),
-                'default': cap.get('default'),
+                'region': region,
+                'model': model,
+                'sku': sku_val,
+                'limit': limit,
+                'used': used,
+                'available': available,
+                'unit': u.get('unit')
             })
 
-    # Print table
+    # Print table of available capacities
     if not rows:
-        logger.warning('No models or SKUs found.')
+        logger.warning('No model SKU usages found.')
         return
     try:
         import pandas as pd
@@ -91,10 +101,17 @@ def main():
         print(df.to_string(index=False))
     except ImportError:
         # Fallback to manual printing
-        header = ['Model', 'Version', 'SKU', 'Min', 'Max', 'Default']
+        header = ['Region', 'Model', 'SKU', 'Limit', 'Used', 'Available', 'Unit']
         print('  '.join(header))
         for r in rows:
-            print(f"{r['model']:10}  {r['version']:8}  {r['sku']:10}  {r['min']:>5}  {r['max']:>5}  {r['default']:>7}")
+            region = r.get('region', '')
+            lm = r.get('limit') if r.get('limit') is not None else ''
+            used = r.get('used') if r.get('used') is not None else ''
+            avail = r.get('available') if r.get('available') is not None else ''
+            unit = r.get('unit', '')
+            print(
+                f"{region:15}  {r['model']:20}  {r['sku']:30}  {lm:6}  {used:6}  {avail:9}  {unit}"
+            )
 
 if __name__ == '__main__':
     main()

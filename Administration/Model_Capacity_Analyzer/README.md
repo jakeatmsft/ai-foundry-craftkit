@@ -45,16 +45,18 @@ python compare_deployments_to_quota.py [--debug]
 By default, this script writes results to a CSV file named `quota_comparison_<YYYYMMDD_HHMMSS>.csv` in the current directory, in addition to printing the table.
 
 Output columns:
-- **subscription**: Azure subscription ID
-- **region**: Azure region
-- **model**: Model name (e.g., ada)
-- **version**: Model version
-- **sku**: SKU name (e.g., Standard)
-- **deployed**: Total deployed capacity for the SKU
-- **quota_max**: Maximum allowed capacity (quota)
-- **remaining**: Remaining quota available to deploy (quota_max minus deployed)
-- **status**: One of:
-  - `OK`: deployed ≤ quota
-  - `EXCEEDS_QUOTA`: deployed > quota
-  - `NO_QUOTA_INFO`: no quota info available for this SKU
-  - `NO_DEPLOYMENTS`: no deployments exist for this SKU
+- subscription: Azure subscription ID
+- region: Azure region
+- resource: Name(s) of Azure OpenAI account(s) hosting the deployment(s)
+- deployment: Deployment name(s)
+- model: Model name (e.g., ada)
+- version: Model version
+- sku: SKU name (e.g., Standard)
+- deployed: Total deployed capacity for the SKU
+- limit: Total quota limit as reported by the Azure usages API
+- used: Current usage from the Azure usages API
+- available: Remaining quota (limit minus used)
+- status: One of:
+  - `OK`: available ≥ 0
+  - `NO_QUOTA_INFO`: no usage info available for this SKU/region
+  - `MAX_DEPLOYED`: available <= 0

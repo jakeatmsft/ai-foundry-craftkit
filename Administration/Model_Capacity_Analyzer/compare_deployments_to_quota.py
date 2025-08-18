@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential, DeviceCodeCredential, ChainedTokenCredential
 from datetime import datetime
 from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+import re
 
 def main():
     parser = argparse.ArgumentParser(description="Compare deployed capacities against model quotas.")
@@ -52,90 +53,80 @@ def main():
 
     headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
 
-    # fetch model quotas per region
+    # fetch model quotas per region using usages API ({provider}.{tier}.{model})
     quota_map = {}
+    api_ver = '2023-05-01'
     for region in regions:
-        model_url = (
+        usage_url = (
             f'https://management.azure.com/subscriptions/{sub_id}'
-            f'/providers/Microsoft.CognitiveServices/locations/{region}/models'
-            f'?api-version=2024-10-01'
+            f'/providers/Microsoft.CognitiveServices/locations/{region}'
+            f'/usages?api-version={api_ver}'
         )
-        logger.info(f'Fetching model quotas for region {region}: {model_url}')
-        resp = requests.get(model_url, headers=headers)
+        logger.info(f'Fetching quota usages for region {region}: {usage_url}')
+        resp = requests.get(usage_url, headers=headers)
         resp.raise_for_status()
-        for m in resp.json().get('value', []):
-            md = m.get('model', {})
-            name = md.get('name')
-            version = md.get('version')
-            for sku in md.get('skus', []):
-                sku_name = sku.get('name')
-                cap = sku.get('capacity', {})
-                key = (sub_id, region, name, version, sku_name)
-                quota_map[key] = cap.get('maximum')
+        for u in resp.json().get('value', []):
+            nm = u.get('name', {})
+            raw = nm.get('value', '')
+            m = re.match(r'^([^.]+)\.([^.]+)\.(.+)$', raw)
+            if m:
+                provider, tier, model_name = m.groups()
+            else:
+                provider, tier, model_name = None, None, raw
+            limit = u.get('limit')
+            used = u.get('currentValue')
+            available = limit - used if limit is not None and used is not None else None
+            key = (sub_id, region, provider, tier, model_name)
+            quota_map[key] = {'limit': limit, 'used': used, 'available': available}
 
-    # fetch deployments across all OpenAI accounts
-    deployed = {}
+    # list each deployment with its capacity and corresponding available quota
+    rows = []
     for acct in openai_accounts:
-        # parse resource group and account name
-        rg = acct.id.split('/resourceGroups/')[1].split('/')[0]
+        acct_id = acct.id
         account_name = acct.name
         region = acct.location
-        dep_url = (
-            f'https://management.azure.com/subscriptions/{sub_id}'
-            f'/resourceGroups/{rg}/providers/Microsoft.CognitiveServices/accounts/{account_name}/deployments'
-            f'?api-version=2024-10-01'
-        )
+        dep_url = f'https://management.azure.com{acct_id}/deployments?api-version=2024-10-01'
         logger.info(f'Fetching deployments for account {account_name} in region {region}: {dep_url}')
         r2 = requests.get(dep_url, headers=headers)
         r2.raise_for_status()
         for d in r2.json().get('value', []):
             props = d.get('properties', {})
             mdl = props.get('model', {})
-            name = mdl.get('name')
+            model = mdl.get('name')
             version = mdl.get('version')
             sku = d.get('sku', {})
             sku_name = sku.get('name')
-            cap = sku.get('capacity', 0) or 0
-            key = (sub_id, region, name, version, sku_name)
-            deployed[key] = deployed.get(key, 0) + cap
-
-
-    # prepare comparison rows
-    rows = []
-    # check deployments against quotas
-    for key, dep_sum in deployed.items():
-        quota = quota_map.get(key)
-        status = 'OK'
-        if quota is None:
-            status = 'NO_QUOTA_INFO'
-        elif dep_sum > quota:
-            status = 'EXCEEDS_QUOTA'
-        remaining = quota - dep_sum if quota is not None else None
-        rows.append({
-            'subscription': key[0],
-            'region': key[1],
-            'model': key[2],
-            'version': key[3],
-            'sku': key[4],
-            'deployed': dep_sum,
-            'quota_max': quota,
-            'remaining': remaining,
-            'status': status,
-        })
-    # also list quotas with zero deployments
-    for key, quota in quota_map.items():
-        if key not in deployed:
-            remaining = quota if quota is not None else None
+            deployed_cap = sku.get('capacity', 0) or 0
+            dep_name = d.get('name')
+            # match usage by provider, tier (sku_name), and model
+            provider = acct.kind.split('.')[0] if acct.kind else None
+            key = (sub_id, region, provider, sku_name, model)
+            quota = quota_map.get(key, {})
+            limit = quota.get('limit')
+            used = quota.get('used')
+            raw_avail = quota.get('available')  # total available from usages API
+            # determine status: cannot exceed quota; mark when at or over total available
+            if raw_avail is None:
+                status = 'NO_QUOTA_INFO'
+            elif deployed_cap >= raw_avail:
+                status = 'MAX_DEPLOYED'
+            else:
+                status = 'OK'
+            # compute remaining available capacity after this deployment
+            available = raw_avail - deployed_cap if raw_avail is not None else None
             rows.append({
-                'subscription': key[0],
-                'region': key[1],
-                'model': key[2],
-                'version': key[3],
-                'sku': key[4],
-                'deployed': 0,
-                'quota_max': quota,
-                'remaining': remaining,
-                'status': 'NO_DEPLOYMENTS',
+                'subscription': sub_id,
+                'region': region,
+                'resource': account_name,
+                'deployment': dep_name,
+                'model': model,
+                'version': version,
+                'sku': sku_name,
+                'deployed': deployed_cap,
+                'capacity': limit,
+                'used': used,
+                'available': available,
+                'status': status,
             })
 
     if not rows:
@@ -149,12 +140,16 @@ def main():
         df = pd.DataFrame(rows)
         print(df.to_string(index=False))
     except ImportError:
-        header = ['Subscription', 'Region', 'Model', 'Version', 'SKU', 'Deployed', 'QuotaMax', 'Remaining', 'Status']
+        header = ['Subscription', 'Region', 'Resource', 'Deployment', 'Model', 'Version', 'SKU', 'Deployed', 'Capacity', 'Used', 'Available', 'Status']
         print('  '.join(header))
         for r in rows:
-            qm = r['quota_max'] if r['quota_max'] is not None else ''
-            rem = r['remaining'] if r['remaining'] is not None else ''
-            print(f"{r['subscription']:12}  {r['region']:10}  {r['model']:10}  {r['version']:8}  {r['sku']:10}  {r['deployed']:8}  {qm:8}  {rem:8}  {r['status']}")
+            cap = r.get('capacity') if r.get('capacity') is not None else ''
+            used = r.get('used') if r.get('used') is not None else ''
+            avail = r.get('available') if r.get('available') is not None else ''
+            print(
+                f"{r['subscription']:12}  {r['region']:10}  {r.get('resource',''):15}  {r.get('deployment',''):15}  "
+                f"{r['model']:10}  {r['version']:8}  {r['sku']:10}  {r['deployed']:8}  {cap:8}  {used:8}  {avail:8}  {r['status']}"
+            )
 
     # save to timestamped CSV
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -164,7 +159,7 @@ def main():
             df.to_csv(csv_name, index=False)
         else:
             import csv
-            keys = ['subscription', 'region', 'model', 'version', 'sku', 'deployed', 'quota_max', 'remaining', 'status']
+            keys = ['subscription', 'region', 'resource', 'deployment', 'model', 'version', 'sku', 'deployed', 'capacity', 'used', 'available', 'status']
             with open(csv_name, 'w', newline='') as f:
                 writer = csv.DictWriter(f, fieldnames=keys)
                 writer.writeheader()
