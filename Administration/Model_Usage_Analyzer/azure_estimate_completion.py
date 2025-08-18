@@ -24,20 +24,8 @@ def is_payload_too_large_error(ex: Exception) -> bool:
 
 def key_from_metadata(ts, preferred_dim: str) -> str:
     mvs = getattr(ts, 'metadata_values', None) or []
-    if not mvs:
-        return 'all'
-    dim_l = (preferred_dim or '').lower()
-    for mv in mvs:
-        name = str(getattr(mv, 'name', '') or '')
-        value = str(getattr(mv, 'value', '') or '')
-        if name and name.lower() == dim_l:
-            return value or 'unknown'
-    for mv in mvs:
-        name = str(getattr(mv, 'name', '') or '')
-        value = str(getattr(mv, 'value', '') or '')
-        if 'deployment' in name.lower():
-            return value or 'unknown'
-    return 'all'
+    print(f"Metadata values: {mvs}")
+    return mvs.get(str.lower(preferred_dim), '') if mvs else 'all'
 
 
 def query_with_backoff(client: MetricsQueryClient, resource_id: str, metric_names: List[str], timespan: Tuple[datetime, datetime], granularity_mins: int, filt: Optional[str], logger: logging.Logger):
@@ -80,8 +68,10 @@ def collect_coarse_totals(client: MetricsQueryClient, resource_id: str, start: d
             for ts in m.timeseries:
                 # track metadata keys/values seen
                 for mv in getattr(ts, 'metadata_values', []) or []:
-                    name = str(getattr(mv, 'name', '') or '')
-                    value = str(getattr(mv, 'value', '') or '')
+                    name_obj = getattr(mv, 'name', None)
+                    name_val = getattr(name_obj, 'value', None) if name_obj is not None else None
+                    name = (name_val if name_val is not None else (str(name_obj) if name_obj is not None else '')).strip()
+                    value = str(getattr(mv, 'value', '') or '').strip()
                     if name:
                         meta_keys_values.setdefault(name, set()).add(value)
                 key = key_from_metadata(ts, dimension_name)
@@ -177,7 +167,7 @@ def main():
         dbg_end = end
         dbg_start = end - timedelta(hours=max(1, args.debug_hours))
         if args.debug_filter == '':
-            dbg_filter = dbg_filter = f"{dimension_name} eq '*'"
+            dbg_filter = f"{dimension_name} eq '*'"
         else:
             val = (args.debug_filter or '').replace("'", "''")
             if val == '*':
@@ -264,6 +254,7 @@ def main():
             vals_list = sorted(list(vals))[:10]
             print(f"- {k}: {vals_list}{' ...' if len(vals) > 10 else ''}")
 
+    print("deployments:", deployment_totals)
     sorted_deployments = [k for k,_ in sorted(((k,v) for k,v in deployment_totals.items() if k != 'all'), key=lambda kv: kv[1], reverse=True)]
     if args.top_n > 0:
         sorted_deployments = sorted_deployments[:args.top_n]
@@ -280,7 +271,7 @@ def main():
         window_days = args.window_days
         while cur_start < end:
             cur_end = min(cur_start + timedelta(days=window_days), end)
-            filt = None if dep_key == 'all' else f"{dimension_name} eq '{str(dep_key).replace("'", "''")}'"
+            filt = f"{dimension_name} eq '{str(dep_key).replace("'", "''")}'"
             try:
                 r = client.query_resource(
                     resource_uri=resource_id,
