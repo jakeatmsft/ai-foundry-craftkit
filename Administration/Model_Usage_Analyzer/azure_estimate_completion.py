@@ -115,7 +115,7 @@ def main():
     parser.add_argument('--dimension-name', default='ModelDeploymentName', help="Azure Monitor dimension to split by (e.g., ModelDeploymentName)")
     parser.add_argument('--auto-detect-dimension', action='store_true', help='Probe common dimension names and use the one that yields multiple deployments')
     parser.add_argument('--days', type=int, default=30, help='Timespan in days to query (default: 30)')
-    parser.add_argument('--granularity-mins', type=int, default=5, help='Granularity in minutes for detailed queries (default: 5)')
+    parser.add_argument('--granularity-mins', type=int, default=1, help='Granularity in minutes for detailed queries (default: 5)')
     parser.add_argument('--coarse-granularity-mins', type=int, default=60, help='Granularity in minutes for the coarse pass (default: 60)')
     parser.add_argument('--top-n', type=int, default=20, help='Top-N deployments to include (default: 20)')
     parser.add_argument('--window-days', type=int, default=7, help='Chunk size in days for queries (default: 7)')
