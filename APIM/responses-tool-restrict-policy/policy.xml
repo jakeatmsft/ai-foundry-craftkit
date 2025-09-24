@@ -1,0 +1,99 @@
+<policies>
+  <inbound>
+    <base />
+    <using namespace="System" />
+    <using namespace="System.Linq" />
+    <using namespace="Newtonsoft.Json.Linq" />
+
+    <set-variable name="restrictionMessage" value="@{
+        var body = context.Request.Body.As<JObject>(preserveContent: true);
+        if (body == null)
+        {
+            return null;
+        }
+
+        var inputArray = body[&quot;input&quot;] as JArray;
+        var hasInputFile = false;
+        if (inputArray != null)
+        {
+            foreach (var inputItem in inputArray.OfType&lt;JObject&gt;())
+            {
+                var contentArray = inputItem[&quot;content&quot;] as JArray;
+                if (contentArray == null)
+                {
+                    continue;
+                }
+
+                if (contentArray
+                    .OfType&lt;JObject&gt;()
+                    .Any(content => string.Equals((string)content[&quot;type&quot;],
+                                                  &quot;input_file&quot;,
+                                                  StringComparison.OrdinalIgnoreCase)))
+                {
+                    hasInputFile = true;
+                    break;
+                }
+            }
+        }
+
+        var hasBackgroundTrue = false;
+        var backgroundToken = body[&quot;background&quot;];
+        if (backgroundToken != null)
+        {
+            if (backgroundToken.Type == JTokenType.Boolean)
+            {
+                hasBackgroundTrue = backgroundToken.Value&lt;bool&gt;();
+            }
+            else if (backgroundToken.Type == JTokenType.String)
+            {
+                bool parsed;
+                if (bool.TryParse((string)backgroundToken, out parsed))
+                {
+                    hasBackgroundTrue = parsed;
+                }
+            }
+        }
+
+        if (!hasInputFile && !hasBackgroundTrue)
+        {
+            return null;
+        }
+
+        string message = null;
+        if (hasInputFile)
+        {
+            message = &quot;Tool input 'input_file' is not permitted.&quot;;
+        }
+
+        if (hasBackgroundTrue)
+        {
+            message = message == null
+                ? &quot;Background requests are not permitted.&quot;
+                : message + &quot; Background requests are not permitted.&quot;;
+        }
+
+        return message;
+    }" />
+
+    <choose>
+      <when condition="@(!string.IsNullOrEmpty((string)context.Variables[&quot;restrictionMessage&quot;]))">
+        <return-response>
+          <set-status code="400" reason="Request not allowed" />
+          <set-body>@((string)context.Variables[&quot;restrictionMessage&quot;])</set-body>
+        </return-response>
+      </when>
+    </choose>
+  </inbound>
+
+  <backend>
+    <base />
+  </backend>
+
+  <outbound>
+    <base />
+  </outbound>
+
+  <on-error>
+    <base />
+  </on-error>
+</policies>
