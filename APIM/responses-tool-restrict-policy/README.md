@@ -36,3 +36,26 @@ Content-Type: application/json
 ```
 
 The request above is rejected (HTTP 400) because it contains `input_file`. A request without `input_file` and with `"background": false` is forwarded to the backend normally.
+
+
+To confirm the background guard, send a request with `"background": true`; the policy returns HTTP 400 with the message `Background requests are not permitted.`.
+
+An example request that passes validation looks like this:
+
+```http
+POST /your-operation HTTP/1.1
+Content-Type: application/json
+
+{
+  "input": [
+    {
+      "content": [
+        { "type": "input_text", "text": "hello" }
+      ]
+    }
+  ],
+  "background": false
+}
+```
+
+This request is forwarded to the backend because it omits `input_file` and sets `background` to `false`.
