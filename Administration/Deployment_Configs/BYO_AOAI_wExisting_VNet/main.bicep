@@ -6,6 +6,7 @@
   - Creates a project with a connection to an existing Azure OpenAI resource.
   - Configures account and project capability hosts bound to the connection.
   - Deploys a sample GPT-4o model deployment in the AI Foundry account.
+  - Reuses an existing virtual network and private endpoint subnet for private connectivity.
 */
 param azureDeployName string = utcNow()
 
@@ -13,7 +14,7 @@ param azureDeployName string = utcNow()
 @description('Base name for the AI Foundry account. A random suffix is appended to ensure uniqueness.')
 param accountBaseName string = 'foundry'
 
-var aiFoundryName  = '${accountBaseName}${substring(uniqueString(azureDeployName), 0, 4)}'
+var aiFoundryName string = '${accountBaseName}${substring(uniqueString(azureDeployName), 0, 4)}'
 
 @allowed([
   'australiaeast'
@@ -47,23 +48,26 @@ param projectDisplayName string = 'Project Display Name'
 @description('Description for the project to create within the AI Foundry account.')
 param projectDescription string = 'Sample project provisioned by Bicep.'
 
-@description('Name of the virtual network that will host the private endpoint.')
-param vnetName string = 'private-vnet'
+@description('Resource ID of the existing virtual network that will host the private endpoint.')
+param existingVnetResourceId string
 
-@description('Name of the subnet dedicated to private endpoints.')
-param peSubnetName string = 'pe-subnet'
-
-@description('Address space for the virtual network.')
-param vnetAddressPrefix string = '192.168.0.0/16'
-
-@description('Address prefix for the private endpoint subnet.')
-param peSubnetPrefix string = '192.168.0.0/24'
+@description('Resource ID of the existing subnet dedicated to private endpoints.')
+param existingPeSubnetResourceId string
 
 @description('Resource ID of the existing Azure OpenAI resource to connect to the project.')
 param existingAoaiResourceId string
 
 var byoAoaiConnectionName string = 'aoaiConnection'
 var accountCapabilityHostName string = '${aiFoundryName}-capHost'
+
+// Break down existing virtual network and subnet resource IDs for reuse scopes.
+var existingVnetResourceIdParts = split(existingVnetResourceId, '/')
+var existingVnetSubscriptionId = existingVnetResourceIdParts[2]
+var existingVnetResourceGroupName = existingVnetResourceIdParts[4]
+var existingVnetName = existingVnetResourceIdParts[8]
+
+var existingPeSubnetResourceIdParts = split(existingPeSubnetResourceId, '/')
+var existingPeSubnetName = existingPeSubnetResourceIdParts[10]
 
 // Break down the Azure OpenAI resource ID to extract subscription, resource group, and resource name.
 var existingAoaiResourceIdParts = split(existingAoaiResourceId, '/')
@@ -96,26 +100,15 @@ resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' = {
   }
 }
 
-// Create a virtual network and subnet that will host private endpoints for the account.
-resource virtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' = {
-  name: vnetName
-  location: location
-  properties: {
-    addressSpace: {
-      addressPrefixes: [
-        vnetAddressPrefix
-      ]
-    }
-  }
+// Reference existing virtual network components that will host private endpoints for the account.
+resource existingVirtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' existing = {
+  scope: resourceGroup(existingVnetSubscriptionId, existingVnetResourceGroupName)
+  name: existingVnetName
 }
 
-resource subnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' = {
-  parent: virtualNetwork
-  name: peSubnetName
-  properties: {
-    addressPrefix: peSubnetPrefix
-    privateEndpointNetworkPolicies: 'Disabled'
-  }
+resource existingPeSubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' existing = {
+  parent: existingVirtualNetwork
+  name: existingPeSubnetName
 }
 
 // Private endpoint configuration for the AI Foundry account.
@@ -124,7 +117,7 @@ resource aiAccountPrivateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01
   location: location
   properties: {
     subnet: {
-      id: subnet.id
+      id: existingPeSubnet.id
     }
     privateLinkServiceConnections: [
       {
@@ -156,14 +149,14 @@ resource cognitiveServicesPrivateDnsZone 'Microsoft.Network/privateDnsZones@2020
   location: 'global'
 }
 
-// Link each private DNS zone to the new virtual network.
+// Link each private DNS zone to the existing virtual network.
 resource aiServicesLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2024-06-01' = {
   parent: aiServicesPrivateDnsZone
   location: 'global'
   name: 'aiServices-link'
   properties: {
     virtualNetwork: {
-      id: virtualNetwork.id
+      id: existingVirtualNetwork.id
     }
     registrationEnabled: false
   }
@@ -175,7 +168,7 @@ resource aiOpenAILink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@202
   name: 'aiServicesOpenAI-link'
   properties: {
     virtualNetwork: {
-      id: virtualNetwork.id
+      id: existingVirtualNetwork.id
     }
     registrationEnabled: false
   }
@@ -187,7 +180,7 @@ resource cognitiveServicesLink 'Microsoft.Network/privateDnsZones/virtualNetwork
   name: 'aiServicesCognitiveServices-link'
   properties: {
     virtualNetwork: {
-      id: virtualNetwork.id
+      id: existingVirtualNetwork.id
     }
     registrationEnabled: false
   }
@@ -225,7 +218,6 @@ resource aiServicesDnsGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGr
     aiOpenAILink
   ]
 }
-
 
 // Create a project within the AI Foundry account and configure the BYO Azure OpenAI connection.
 resource project 'Microsoft.CognitiveServices/accounts/projects@2025-04-01-preview' = {
