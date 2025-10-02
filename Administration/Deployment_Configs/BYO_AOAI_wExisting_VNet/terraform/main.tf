@@ -4,7 +4,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.114.0"
+      version = "~> 3.114.0"
     }
     azapi = {
       source  = "azure/azapi"
@@ -47,11 +47,11 @@ locals {
 
 data "azapi_resource" "existing_aoai" {
   type = "Microsoft.CognitiveServices/accounts@2023-05-01"
-  id   = var.existing_aoai_resource_id
+  resource_id = var.existing_aoai_resource_id
 }
 
 locals {
-  existing_aoai = jsondecode(data.azapi_resource.existing_aoai.response)
+  existing_aoai = jsondecode(data.azapi_resource.existing_aoai.output)
 }
 
 resource "azapi_resource" "account" {
@@ -79,11 +79,11 @@ resource "azapi_resource" "account" {
 
 data "azapi_resource" "account_read" {
   type = "Microsoft.CognitiveServices/accounts@2025-04-01-preview"
-  id   = azapi_resource.account.id
+  resource_id = azapi_resource.account.id
 }
 
 locals {
-  account_read = jsondecode(data.azapi_resource.account_read.response)
+  account_read = jsondecode(data.azapi_resource.account_read.output)
 }
 
 resource "azurerm_private_dns_zone" "ai_services" {

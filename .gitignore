@@ -180,3 +180,10 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 *.csv
+Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/.terraform/*
+Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/.terraform.lock.hcl
+Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/terraform.tfvars
+Administration/Deployment_Configs/BYO_AOAI_wExisting_VNet/terraform/terraform.tfvars
+Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/.terraform.tfstate.lock.info
+Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/terraform.tfstate
+Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/terraform.tfstate.backup

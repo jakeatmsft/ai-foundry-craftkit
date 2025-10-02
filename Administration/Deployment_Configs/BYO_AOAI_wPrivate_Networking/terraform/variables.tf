@@ -1,11 +1,11 @@
 variable "resource_group_name" {
-  type        = string
   description = "Name of the resource group where all resources will be deployed."
+  type        = string
 }
 
 variable "account_base_name" {
-  type        = string
   description = "Base name for the AI Foundry account; a 4-character suffix is appended for uniqueness."
+  type        = string
   default     = "foundry"
 
   validation {
@@ -15,8 +15,8 @@ variable "account_base_name" {
 }
 
 variable "location" {
-  type        = string
   description = "Azure region where the AI Foundry account and networking resources will be created."
+  type        = string
   default     = "eastus"
 
   validation {
@@ -45,48 +45,48 @@ variable "location" {
 }
 
 variable "project_name" {
-  type        = string
   description = "Optional project resource name. Leave blank to default to <account-name>-proj."
+  type        = string
   default     = null
 }
 
 variable "project_display_name" {
-  type        = string
   description = "Display name applied to the AI Foundry project."
+  type        = string
   default     = "Project Display Name"
 }
 
 variable "project_description" {
-  type        = string
   description = "Description stored on the AI Foundry project."
+  type        = string
   default     = "Sample project provisioned by Terraform."
 }
 
 variable "vnet_name" {
-  type        = string
   description = "Name of the virtual network that will host the AI Foundry private endpoint."
+  type        = string
   default     = "private-vnet"
 }
 
 variable "pe_subnet_name" {
-  type        = string
   description = "Name of the subnet dedicated to private endpoints within the virtual network."
+  type        = string
   default     = "pe-subnet"
 }
 
 variable "vnet_address_prefix" {
-  type        = string
   description = "CIDR address prefix for the virtual network."
+  type        = string
   default     = "192.168.0.0/16"
 }
 
 variable "pe_subnet_prefix" {
-  type        = string
   description = "CIDR address prefix for the private endpoint subnet."
+  type        = string
   default     = "192.168.0.0/24"
 }
 
 variable "existing_aoai_resource_id" {
-  type        = string
   description = "Resource ID of the existing Azure OpenAI account that the project will connect to."
+  type        = string
 }
