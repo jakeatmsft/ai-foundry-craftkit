@@ -1,6 +1,6 @@
 # BYO Azure OpenAI AI Foundry Deployment (Existing VNet)
 
-This directory contains a Bicep template (`main.bicep`) that deploys an Azure AI Foundry account with private networking while reusing an existing virtual network and private endpoint subnet. The template links the account to an existing Azure OpenAI resource through a project connection and configures capability hosts so the project can use that connection.
+This directory contains a Bicep template (`main.bicep`) as well as an equivalent Terraform configuration (`terraform/`) that deploys an Azure AI Foundry account with private networking while reusing an existing virtual network and private endpoint subnet. The deployment links the account to an existing Azure OpenAI resource through a project connection and configures capability hosts so the project can use that connection.
 
 ## What the template deploys
 - **AI Foundry account** (`Microsoft.CognitiveServices/accounts`) with `AIServices` kind, system-assigned identity, and public network access disabled.
@@ -32,6 +32,28 @@ Ensure the subnet has private endpoint network policies disabled before deployme
        existingPeSubnetResourceId="/subscriptions/<...>/subnets/<...>" \
        existingAoaiResourceId="/subscriptions/<...>/accounts/<...>"
    ```
+
+## Terraform
+The Terraform project under `terraform/` provisions the same resources using the `azurerm` and `azapi` providers.
+
+1. Copy `terraform/terraform.tfvars.example` to `terraform.tfvars` (or provide variables inline). Required variables mirror the Bicep parameters:
+   ```hcl
+   resource_group_name          = "<rg-name>"
+   account_base_name            = "foundry"
+   location                     = "eastus"
+   project_display_name         = "Foundry Project"
+   project_description          = "Sample AI Foundry project deployment."
+   existing_vnet_resource_id    = "/subscriptions/<...>/virtualNetworks/<...>"
+   existing_pe_subnet_resource_id = "/subscriptions/<...>/subnets/<...>"
+   existing_aoai_resource_id    = "/subscriptions/<...>/accounts/<...>"
+   ```
+2. Initialize and apply:
+   ```bash
+   cd terraform
+   terraform init
+   terraform apply
+   ```
+3. Review the outputs for the account ID, name, endpoint, project name, and BYO connection resource ID.
 
 ## Outputs
 The deployment emits the Foundry account ID, name, endpoint, project name, and the fully qualified resource ID of the project connection (`projectConnectionName`).
