@@ -90,3 +90,8 @@ variable "existing_aoai_resource_id" {
   description = "Resource ID of the existing Azure OpenAI account that the project will connect to."
   type        = string
 }
+
+variable "existing_aoai_resource_location" {
+  description = "Resource location of the existing Azure OpenAI account that the project will connect to."
+  type        = string
+}
