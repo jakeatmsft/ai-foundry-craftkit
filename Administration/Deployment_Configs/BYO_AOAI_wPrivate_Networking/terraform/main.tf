@@ -31,6 +31,11 @@ resource "azapi_resource" "account" {
   }
 }
 
+resource "time_sleep" "after_account" {
+  depends_on      = [azapi_resource.account]
+  create_duration = "30s"
+}
+
 resource "azurerm_virtual_network" "main" {
   name                = var.vnet_name
   location            = var.location
@@ -109,6 +114,7 @@ resource "azurerm_private_endpoint" "account" {
   }
 
   depends_on = [
+    time_sleep.after_account,
     azurerm_private_dns_zone_virtual_network_link.ai_services,
     azurerm_private_dns_zone_virtual_network_link.openai,
     azurerm_private_dns_zone_virtual_network_link.cognitive_services
@@ -121,6 +127,10 @@ resource "azapi_resource" "project" {
   location  = var.location
   parent_id = azapi_resource.account.id
 
+  depends_on = [
+    time_sleep.after_account
+  ]
+
   body = {
     identity = {
       type = "SystemAssigned"
@@ -130,6 +140,11 @@ resource "azapi_resource" "project" {
       displayName = var.project_display_name
     }
   }
+}
+
+resource "time_sleep" "after_project" {
+  depends_on      = [azapi_resource.project]
+  create_duration = "30s"
 }
 
 resource "azapi_resource" "byo_aoai_connection" {
@@ -152,19 +167,24 @@ resource "azapi_resource" "byo_aoai_connection" {
 }
 
 resource "azapi_resource" "account_capability_host" {
- type      = "Microsoft.CognitiveServices/accounts/capabilityHosts@2025-04-01-preview"
- name      = local.account_capability_host
- parent_id = azapi_resource.account.id
- body = {
-   properties = {
-     capabilityHostKind = "Agents"
-   }
- }
- depends_on = [
-   azapi_resource.byo_aoai_connection
- ]
+  type      = "Microsoft.CognitiveServices/accounts/capabilityHosts@2025-04-01-preview"
+  name      = local.account_capability_host
+  parent_id = azapi_resource.account.id
+  body = {
+    properties = {
+      capabilityHostKind = "Agents"
+    }
+  }
+  depends_on = [
+    azapi_resource.byo_aoai_connection,
+    time_sleep.after_project
+  ]
 }
 
+resource "time_sleep" "after_account_capability_host" {
+  depends_on      = [azapi_resource.account_capability_host]
+  create_duration = "30s"
+}
 
 resource "azapi_resource" "project_capability_host" {
   type      = "Microsoft.CognitiveServices/accounts/projects/capabilityHosts@2025-04-01-preview"
@@ -179,6 +199,12 @@ resource "azapi_resource" "project_capability_host" {
   }
 
   depends_on = [
-    azapi_resource.byo_aoai_connection
+    azapi_resource.byo_aoai_connection,
+    time_sleep.after_account_capability_host
   ]
+}
+
+resource "time_sleep" "after_project_capability_host" {
+  depends_on      = [azapi_resource.project_capability_host]
+  create_duration = "30s"
 }
