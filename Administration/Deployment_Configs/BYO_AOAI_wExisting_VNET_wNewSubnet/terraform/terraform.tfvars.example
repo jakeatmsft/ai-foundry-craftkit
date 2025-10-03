@@ -1,0 +1,11 @@
+# Sample variable definitions for the BYO Azure OpenAI AI Foundry deployment using an existing virtual network with a newly-created subnet.
+resource_group_name             = "<resource-group-name>"
+account_base_name               = "foundry"
+location                        = "eastus"
+project_name                    = "foundry-proj"
+project_display_name            = "Foundry Project"
+project_description             = "Sample AI Foundry project deployment."
+existing_vnet_resource_id       = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Network/virtualNetworks/<vnet-name>"
+new_pe_subnet_name              = "foundry-pe-subnet"
+new_pe_subnet_prefix            = "192.168.10.0/24"
+existing_aoai_resource_id       = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<aoai-account>"
