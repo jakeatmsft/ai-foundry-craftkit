@@ -1,32 +1,3 @@
-terraform {
-  required_version = ">= 1.6.0"
-
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.114.0"
-    }
-    azapi = {
-      source  = "azure/azapi"
-      version = ">= 1.12.0"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = ">= 3.5.0"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-}
-
-provider "azapi" {}
-
-data "azurerm_resource_group" "target" {
-  name = var.resource_group_name
-}
-
 resource "random_string" "account_suffix" {
   length  = 4
   upper   = false
@@ -37,30 +8,13 @@ resource "random_string" "account_suffix" {
   }
 }
 
-locals {
-  ai_foundry_name            = "${var.account_base_name}${random_string.account_suffix.result}"
-  project_name               = var.project_name != null && var.project_name != "" ? var.project_name : "${local.ai_foundry_name}-proj"
-  byo_aoai_connection_name   = "aoaiConnection"
-  account_capability_host    = "${local.ai_foundry_name}-capHost"
-  project_capability_host    = "${local.project_name}-capHost"
-}
-
-data "azapi_resource" "existing_aoai" {
-  type = "Microsoft.CognitiveServices/accounts@2023-05-01"
-  resource_id = var.existing_aoai_resource_id
-}
-
-locals {
-  existing_aoai = jsondecode(data.azapi_resource.existing_aoai.output)
-}
-
 resource "azapi_resource" "account" {
   type      = "Microsoft.CognitiveServices/accounts@2025-04-01-preview"
   name      = local.ai_foundry_name
   location  = var.location
   parent_id = data.azurerm_resource_group.target.id
 
-  body = jsonencode({
+  body = {
     identity = {
       type = "SystemAssigned"
     }
@@ -74,16 +28,12 @@ resource "azapi_resource" "account" {
       disableLocalAuth       = false
       publicNetworkAccess    = "Disabled"
     }
-  })
+  }
 }
 
-data "azapi_resource" "account_read" {
-  type = "Microsoft.CognitiveServices/accounts@2025-04-01-preview"
-  resource_id = azapi_resource.account.id
-}
-
-locals {
-  account_read = jsondecode(data.azapi_resource.account_read.output)
+resource "time_sleep" "after_account" {
+  depends_on      = [azapi_resource.account]
+  create_duration = "30s"
 }
 
 resource "azurerm_private_dns_zone" "ai_services" {
@@ -148,6 +98,7 @@ resource "azurerm_private_endpoint" "account" {
   }
 
   depends_on = [
+    time_sleep.after_account,
     azurerm_private_dns_zone_virtual_network_link.ai_services,
     azurerm_private_dns_zone_virtual_network_link.openai,
     azurerm_private_dns_zone_virtual_network_link.cognitive_services
@@ -160,7 +111,11 @@ resource "azapi_resource" "project" {
   location  = var.location
   parent_id = azapi_resource.account.id
 
-  body = jsonencode({
+  depends_on = [
+    time_sleep.after_account
+  ]
+
+  body = {
     identity = {
       type = "SystemAssigned"
     }
@@ -168,7 +123,12 @@ resource "azapi_resource" "project" {
       description = var.project_description
       displayName = var.project_display_name
     }
-  })
+  }
+}
+
+resource "time_sleep" "after_project" {
+  depends_on      = [azapi_resource.project]
+  create_duration = "30s"
 }
 
 resource "azapi_resource" "byo_aoai_connection" {
@@ -176,7 +136,7 @@ resource "azapi_resource" "byo_aoai_connection" {
   name      = local.byo_aoai_connection_name
   parent_id = azapi_resource.project.id
 
-  body = jsonencode({
+  body = {
     properties = {
       category = "AzureOpenAI"
       target   = local.existing_aoai.properties.endpoint
@@ -184,10 +144,10 @@ resource "azapi_resource" "byo_aoai_connection" {
       metadata = {
         ApiType    = "Azure"
         ResourceId = var.existing_aoai_resource_id
-        location   = local.existing_aoai.location
+        location   = local.existing_aoai_location
       }
     }
-  })
+  }
 }
 
 resource "azapi_resource" "account_capability_host" {
@@ -195,15 +155,21 @@ resource "azapi_resource" "account_capability_host" {
   name      = local.account_capability_host
   parent_id = azapi_resource.account.id
 
-  body = jsonencode({
+  body = {
     properties = {
       capabilityHostKind = "Agents"
     }
-  })
+  }
 
   depends_on = [
-    azapi_resource.byo_aoai_connection
+    azapi_resource.byo_aoai_connection,
+    time_sleep.after_project
   ]
+}
+
+resource "time_sleep" "after_account_capability_host" {
+  depends_on      = [azapi_resource.account_capability_host]
+  create_duration = "30s"
 }
 
 resource "azapi_resource" "project_capability_host" {
@@ -211,15 +177,20 @@ resource "azapi_resource" "project_capability_host" {
   name      = local.project_capability_host
   parent_id = azapi_resource.project.id
 
-  body = jsonencode({
+  body = {
     properties = {
       capabilityHostKind    = "Agents"
       aiServicesConnections = [local.byo_aoai_connection_name]
     }
-  })
+  }
 
   depends_on = [
-    azapi_resource.account_capability_host,
-    azapi_resource.byo_aoai_connection
+    azapi_resource.byo_aoai_connection,
+    time_sleep.after_account_capability_host
   ]
+}
+
+resource "time_sleep" "after_project_capability_host" {
+  depends_on      = [azapi_resource.project_capability_host]
+  create_duration = "30s"
 }
