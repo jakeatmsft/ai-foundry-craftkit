@@ -60,15 +60,6 @@ param existingAoaiResourceId string
 var byoAoaiConnectionName string = 'aoaiConnection'
 var accountCapabilityHostName string = '${aiFoundryName}-capHost'
 
-// Break down existing virtual network and subnet resource IDs for reuse scopes.
-var existingVnetResourceIdParts = split(existingVnetResourceId, '/')
-var existingVnetSubscriptionId = existingVnetResourceIdParts[2]
-var existingVnetResourceGroupName = existingVnetResourceIdParts[4]
-var existingVnetName = existingVnetResourceIdParts[8]
-
-var existingPeSubnetResourceIdParts = split(existingPeSubnetResourceId, '/')
-var existingPeSubnetName = existingPeSubnetResourceIdParts[10]
-
 // Break down the Azure OpenAI resource ID to extract subscription, resource group, and resource name.
 var existingAoaiResourceIdParts = split(existingAoaiResourceId, '/')
 var existingAoaiResourceSubscriptionId = existingAoaiResourceIdParts[2]
@@ -100,24 +91,13 @@ resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' = {
   }
 }
 
-// Reference existing virtual network components that will host private endpoints for the account.
-resource existingVirtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' existing = {
-  scope: resourceGroup(existingVnetSubscriptionId, existingVnetResourceGroupName)
-  name: existingVnetName
-}
-
-resource existingPeSubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' existing = {
-  parent: existingVirtualNetwork
-  name: existingPeSubnetName
-}
-
 // Private endpoint configuration for the AI Foundry account.
 resource aiAccountPrivateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01' = {
   name: '${aiFoundryName}-private-endpoint'
   location: location
   properties: {
     subnet: {
-      id: existingPeSubnet.id
+      id: existingPeSubnetResourceId
     }
     privateLinkServiceConnections: [
       {
@@ -156,7 +136,7 @@ resource aiServicesLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2
   name: 'aiServices-link'
   properties: {
     virtualNetwork: {
-      id: existingVirtualNetwork.id
+      id: existingVnetResourceId
     }
     registrationEnabled: false
   }
@@ -168,7 +148,7 @@ resource aiOpenAILink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@202
   name: 'aiServicesOpenAI-link'
   properties: {
     virtualNetwork: {
-      id: existingVirtualNetwork.id
+      id: existingVnetResourceId
     }
     registrationEnabled: false
   }
@@ -180,7 +160,7 @@ resource cognitiveServicesLink 'Microsoft.Network/privateDnsZones/virtualNetwork
   name: 'aiServicesCognitiveServices-link'
   properties: {
     virtualNetwork: {
-      id: existingVirtualNetwork.id
+      id: existingVnetResourceId
     }
     registrationEnabled: false
   }
