@@ -1,0 +1,43 @@
+<policies>
+    <inbound>
+        <base />
+        <set-variable name="statelessPayload" value="@{
+            var original = context.Request.Body.As<Newtonsoft.Json.Linq.JObject>(preserveContent: true);
+            if (original == null)
+            {
+                return null;
+            }
+
+            var sanitized = original.DeepClone() as Newtonsoft.Json.Linq.JObject;
+            if (sanitized == null)
+            {
+                return null;
+            }
+
+            sanitized.Remove("previous_response_id");
+            sanitized["store"] = false;
+
+            return sanitized.ToString(Newtonsoft.Json.Formatting.None);
+        }" />
+
+        <choose>
+            <when condition="@(!string.IsNullOrEmpty((string)context.Variables[&quot;statelessPayload&quot;]))">
+                <set-body>@((string)context.Variables[&quot;statelessPayload&quot;])</set-body>
+                <set-header name="Content-Type" exists-action="override">
+                    <value>application/json</value>
+                </set-header>
+            </when>
+        </choose>
+
+        <set-backend-service backend-id="{backend-id}" />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
