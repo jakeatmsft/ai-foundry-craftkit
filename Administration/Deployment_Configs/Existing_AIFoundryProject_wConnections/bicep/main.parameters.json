@@ -1,0 +1,80 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "existingAiFoundryAccountResourceId": {
+      "value": "/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/Microsoft.CognitiveServices/accounts/<foundry-account>"
+    },
+    "projectName": {
+      "value": "my-project"
+    },
+    "projectDisplayName": {
+      "value": "My Project"
+    },
+    "projectDescription": {
+      "value": "Project provisioned for AI Agents"
+    },
+    "azureOpenAiResourceId": {
+      "value": "/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/Microsoft.CognitiveServices/accounts/<openai-account>"
+    },
+    "azureOpenAiConnectionName": {
+      "value": "aoaiConnection"
+    },
+    "azureOpenAiAdditionalMetadata": {
+      "value": {
+        "DeploymentName": "gpt-4o-mini"
+      }
+    },
+    "azureAiSearchResourceId": {
+      "value": "/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/Microsoft.Search/searchServices/<search-service>"
+    },
+    "azureAiSearchIndexName": {
+      "value": "my-index"
+    },
+    "azureAiSearchSemanticConfigurationName": {
+      "value": "my-semantic-config"
+    },
+    "azureAiSearchAdditionalMetadata": {
+      "value": {
+        "DataSourceName": "my-data-source"
+      }
+    },
+    "cosmosAccountResourceId": {
+      "value": "/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/Microsoft.DocumentDB/databaseAccounts/<cosmos-account>"
+    },
+    "cosmosDatabaseName": {
+      "value": "my-database"
+    },
+    "cosmosContainerName": {
+      "value": "my-container"
+    },
+    "cosmosConnectionName": {
+      "value": "cosmosConnection"
+    },
+    "cosmosAdditionalMetadata": {
+      "value": {
+        "PreferredRegion": "East US"
+      }
+    },
+    "storageAccountResourceId": {
+      "value": "/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/Microsoft.Storage/storageAccounts/<storage-account>"
+    },
+    "storageContainerName": {
+      "value": "my-storage-container"
+    },
+    "storageService": {
+      "value": "Blob"
+    },
+    "storageConnectionName": {
+      "value": "storageConnection"
+    },
+    "storageAdditionalMetadata": {
+      "value": {
+        "Path": "datasets/"
+      }
+    },
+    "projectCapabilityHostName": {
+      "value": "my-project-capHost"
+    }
+  }
+}

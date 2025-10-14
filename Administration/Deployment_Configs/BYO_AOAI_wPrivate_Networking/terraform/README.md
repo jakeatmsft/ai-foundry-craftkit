@@ -38,6 +38,47 @@ terraform apply -var-file="terraform.tfvars"
 - Private endpoint targeting the AI Foundry account with a DNS zone group referencing the three zones.
 - AI Foundry project with a managed identity plus BYO Azure OpenAI connection and matching capability hosts at the account and project scope.
 
+## Resource & Permission Diagram
+
+```mermaid
+graph TD
+    TerraformCaller["Terraform Caller\n(Contributor on RG)"]
+    ExistingAOAI["Existing Azure OpenAI Account\n(data.azapi_resource.existing_aoai)"]
+
+    subgraph RG["Resource Group (var.resource_group_name)"]
+        VNet["Virtual Network\n(azurerm_virtual_network.main)"]
+        Subnet["Private Endpoint Subnet\n(azurerm_subnet.private_endpoint)"]
+        PE["Private Endpoint\n(azurerm_private_endpoint.account)"]
+        DNSAIServices["Private DNS Zone\nservices.ai.azure.com"]
+        DNSOpenAI["Private DNS Zone\nopenai.azure.com"]
+        DNSCog["Private DNS Zone\ncognitiveservices.azure.com"]
+        Account["AI Foundry Account\n(azapi_resource.account)"]
+        Project["AI Foundry Project\n(azapi_resource.project)"]
+        Connection["BYO Azure OpenAI Connection\n(azapi_resource.byo_aoai_connection)"]
+        AccountHost["Account Capability Host\n(azapi_resource.account_capability_host)"]
+        ProjectHost["Project Capability Host\n(azapi_resource.project_capability_host)"]
+    end
+
+    TerraformCaller -->|"provisions"| RG
+    VNet --> Subnet
+    Subnet --> PE
+    PE -->|"private link"| Account
+    DNSAIServices -. "vNet link" .-> VNet
+    DNSOpenAI -. "vNet link" .-> VNet
+    DNSCog -. "vNet link" .-> VNet
+    PE -->|"DNS zone group"| DNSAIServices
+    PE -->|"DNS zone group"| DNSOpenAI
+    PE -->|"DNS zone group"| DNSCog
+    Account --> Project
+    Project --> Connection
+    Account --> AccountHost
+    Project --> ProjectHost
+    Connection -->|"AAD connection"| ExistingAOAI
+
+    AccountMI["AI Foundry Account Managed Identity"] -->|"Cognitive Services OpenAI User"| ExistingAOAI
+    ProjectMI["Project Managed Identity"] -->|"Cognitive Services OpenAI User (recommended)"| ExistingAOAI
+```
+
 ## Outputs
 
 After `terraform apply`, Terraform emits:
