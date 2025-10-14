@@ -21,11 +21,13 @@ resource "time_sleep" "after_project" {
 }
 
 resource "azapi_resource" "azure_openai_connection" {
-  type      = "Microsoft.CognitiveServices/accounts/projects/connections@2025-04-01-preview"
-  name      = local.azure_openai_connection_name
-  parent_id = azapi_resource.project.id
+  type                      = "Microsoft.CognitiveServices/accounts/projects/connections@2025-06-01"
+  name                      = local.azure_openai_name
+  parent_id                 = azapi_resource.project.id
+  schema_validation_enabled = false
 
   body = {
+    name = local.azure_openai_name
     properties = {
       category = "AzureOpenAI"
       target   = local.azure_openai_endpoint
@@ -45,13 +47,15 @@ resource "azapi_resource" "azure_openai_connection" {
 }
 
 resource "azapi_resource" "azure_ai_search_connection" {
-  type      = "Microsoft.CognitiveServices/accounts/projects/connections@2025-04-01-preview"
-  name      = local.azure_ai_search_connection_name
-  parent_id = azapi_resource.project.id
+  type                      = "Microsoft.CognitiveServices/accounts/projects/connections@2025-06-01"
+  name                      = local.azure_ai_search_name
+  parent_id                 = azapi_resource.project.id
+  schema_validation_enabled = false
 
   body = {
+    name = local.azure_ai_search_name
     properties = {
-      category = "AzureAISearch"
+      category = "CognitiveSearch"
       target   = local.azure_ai_search_endpoint
       authType = "AAD"
       metadata = local.azure_ai_search_metadata
@@ -66,16 +70,22 @@ resource "azapi_resource" "azure_ai_search_connection" {
       error_message = "Resolved Azure AI Search endpoint is empty; verify the azure_ai_search_resource_id input."
     }
   }
+
+  response_export_values = [
+    "identity.principalId"
+  ]
 }
 
 resource "azapi_resource" "cosmosdb_connection" {
-  type      = "Microsoft.CognitiveServices/accounts/projects/connections@2025-04-01-preview"
-  name      = local.cosmosdb_connection_name
-  parent_id = azapi_resource.project.id
+  type                      = "Microsoft.CognitiveServices/accounts/projects/connections@2025-06-01"
+  name                      = local.cosmosdb_name
+  parent_id                 = azapi_resource.project.id
+  schema_validation_enabled = false
 
   body = {
+    name = local.cosmosdb_name
     properties = {
-      category = "AzureCosmosDB"
+      category = "CosmosDb"
       target   = local.cosmosdb_endpoint
       authType = "AAD"
       metadata = local.cosmosdb_metadata
@@ -93,14 +103,16 @@ resource "azapi_resource" "cosmosdb_connection" {
 }
 
 resource "azapi_resource" "storage_connection" {
-  type      = "Microsoft.CognitiveServices/accounts/projects/connections@2025-04-01-preview"
-  name      = local.storage_connection_name
-  parent_id = azapi_resource.project.id
+  type                      = "Microsoft.CognitiveServices/accounts/projects/connections@2025-06-01"
+  name                      = local.storage_name
+  parent_id                 = azapi_resource.project.id
+  schema_validation_enabled = false
 
   body = {
+    name = local.storage_name
     properties = {
-      category = "AzureStorage"
-      target   = local.storage_endpoint
+      category = "AzureStorageAccount"
+      target   = local.storage_blob_endpoint
       authType = "AAD"
       metadata = local.storage_metadata
     }
@@ -110,10 +122,14 @@ resource "azapi_resource" "storage_connection" {
 
   lifecycle {
     precondition {
-      condition     = local.storage_endpoint != null && trimspace(local.storage_endpoint) != ""
-      error_message = "Resolved storage endpoint is empty; verify storage_service and storage_account_resource_id inputs."
+      condition     = local.storage_blob_endpoint != null && trimspace(local.storage_blob_endpoint) != ""
+      error_message = "Resolved storage endpoint is empty; verify the storage_account_resource_id input."
     }
   }
+
+  response_export_values = [
+    "identity.principalId"
+  ]
 }
 
 resource "time_sleep" "after_connections" {

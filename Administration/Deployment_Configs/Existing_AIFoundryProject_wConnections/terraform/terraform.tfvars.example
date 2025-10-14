@@ -1,34 +1,12 @@
 # Required inputs
-existing_ai_foundry_account_resource_id = "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>"
+existing_ai_foundry_account_resource_id = "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<foundry-account>"
 azure_openai_resource_id                = "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<openai-account>"
 azure_ai_search_resource_id             = "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.Search/searchServices/<search-service>"
-azure_ai_search_index_name              = "my-index"
 cosmosdb_account_resource_id            = "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.DocumentDB/databaseAccounts/<cosmos-account>"
-cosmosdb_database_name                  = "my-database"
-cosmosdb_container_name                 = "my-container"
 storage_account_resource_id             = "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.Storage/storageAccounts/<storage-account>"
-storage_container_name                  = "my-container"
 
 # Optional inputs (examples shown below)
 project_name                = "my-project"
 project_display_name        = "My Project"
 project_description         = "Project for agent workloads"
-azure_ai_search_semantic_configuration_name = "my-semantic-config"
-storage_service             = "Blob"
-
-# Additional metadata examples (remove keys you do not need)
-azure_openai_additional_metadata = {
-  DeploymentName = "gpt-4o-mini"
-}
-
-azure_ai_search_additional_metadata = {
-  DataSourceName = "my-data-source"
-}
-
-cosmosdb_additional_metadata = {
-  PreferredRegion = "East US"
-}
-
-storage_additional_metadata = {
-  Path = "datasets/"
-}
+project_capability_host_name = "my-project-capHost"

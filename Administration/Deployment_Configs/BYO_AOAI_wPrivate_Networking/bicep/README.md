@@ -31,6 +31,47 @@ You may optionally override defaults such as the base account name, project meta
      --parameters existingAoaiResourceId="/subscriptions/<...>/accounts/<...>"
    ```
 
+## Resource & Permission Diagram
+
+```mermaid
+graph TD
+    Deployer["Deployment Principal\n(Contributor on RG)"]
+    ExistingAOAI["Existing Azure OpenAI Account\n(existingAoaiResource)"]
+
+    subgraph RG["Resource Group"]
+        VNet["Virtual Network\n(virtualNetwork)"]
+        Subnet["Private Endpoint Subnet\n(subnet)"]
+        DNSAIServices["Private DNS Zone\n(aiServicesPrivateDnsZone)"]
+        DNSOpenAI["Private DNS Zone\n(openAiPrivateDnsZone)"]
+        DNSCog["Private DNS Zone\n(cognitiveServicesPrivateDnsZone)"]
+        PE["Private Endpoint\naiAccountPrivateEndpoint"]
+        Account["AI Foundry Account\n(account)"]
+        Project["AI Foundry Project\n(project)"]
+        Connection["BYO Azure OpenAI Connection\n(project::byoAoaiConnection)"]
+        AccountHost["Account Capability Host\n(accountCapabilityHost)"]
+        ProjectHost["Project Capability Host\n(projectCapabilityHost)"]
+    end
+
+    Deployer -->|"creates"| RG
+    VNet --> Subnet
+    Subnet --> PE
+    PE -->|"private link"| Account
+    DNSAIServices -. "vNet link" .-> VNet
+    DNSOpenAI -. "vNet link" .-> VNet
+    DNSCog -. "vNet link" .-> VNet
+    PE -->|"DNS zone group"| DNSAIServices
+    PE -->|"DNS zone group"| DNSOpenAI
+    PE -->|"DNS zone group"| DNSCog
+    Account --> Project
+    Project --> Connection
+    Account --> AccountHost
+    Project --> ProjectHost
+    Connection -->|"AAD connection"| ExistingAOAI
+
+    AccountMI["Account Managed Identity"] -->|"Cognitive Services OpenAI User"| ExistingAOAI
+    ProjectMI["Project Managed Identity"] -->|"Cognitive Services OpenAI User (recommended)"| ExistingAOAI
+```
+
 ## Outputs
 The deployment surfaces the Foundry account ID, name, endpoint, project name, and the fully qualified resource ID of the project connection (`projectConnectionName`).
 

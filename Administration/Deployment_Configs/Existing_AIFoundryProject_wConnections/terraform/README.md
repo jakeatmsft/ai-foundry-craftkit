@@ -23,7 +23,7 @@ This configuration adds a new Azure AI Foundry project to an **existing** accoun
 3. Run `terraform plan` to validate the configuration.
 4. Run `terraform apply` to create the project, connections, and capability host.
 
-> **Note:** Some connection metadata fields (for example, Cosmos DB consistency configuration or Azure Storage container-level options) may vary between environments. Optional `*_additional_metadata` variables are exposed to let you append extra key/value pairs required by your scenario.
+The module derives connection metadata directly from the referenced Azure resources, so only the resource IDs are required.
 
 ## Key input variables
 
@@ -32,14 +32,13 @@ This configuration adds a new Azure AI Foundry project to an **existing** accoun
 | `existing_ai_foundry_account_resource_id` | Resource ID of the existing AI Foundry account that will host the project. |
 | `azure_openai_resource_id` | Resource ID of the Azure OpenAI account that will be referenced by the project connection. |
 | `azure_ai_search_resource_id` | Resource ID of the Azure AI Search service to connect. |
-| `azure_ai_search_index_name` | Azure AI Search index to expose. |
 | `cosmosdb_account_resource_id` | Resource ID of the Cosmos DB account to connect. |
-| `cosmosdb_database_name` / `cosmosdb_container_name` | Cosmos DB database and container names surfaced through the connection. |
 | `storage_account_resource_id` | Resource ID of the Storage account to connect. |
-| `storage_container_name` | Name of the container (or queue/table/file share) exposed via the storage connection. |
-| `storage_service` | Storage service type (`Blob`, `Queue`, `Table`, or `File`). |
+| `project_name` | Optional project resource name (defaults to `<account-name>-proj`). |
+| `project_display_name` / `project_description` | Optional display metadata applied to the project. |
+| `project_capability_host_name` | Optional override for the capability host name (defaults to `<project-name>-capHost`). |
 
-Refer to `variables.tf` for the complete list of optional overrides (connection names, semantic configuration, metadata extensions, etc.).
+Refer to `variables.tf` for the complete list of optional overrides (project naming only).
 
 ## Outputs
 
