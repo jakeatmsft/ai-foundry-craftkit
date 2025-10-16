@@ -1,11 +1,11 @@
 output "account_id" {
   description = "Resource ID of the deployed AI Foundry account."
-  value       = azapi_resource.account.id
+  value       = azapi_resource.ai_foundry.id
 }
 
 output "account_name" {
   description = "Name of the AI Foundry account."
-  value       = azapi_resource.account.name
+  value       = azapi_resource.ai_foundry.name
 }
 
 output "account_endpoint" {

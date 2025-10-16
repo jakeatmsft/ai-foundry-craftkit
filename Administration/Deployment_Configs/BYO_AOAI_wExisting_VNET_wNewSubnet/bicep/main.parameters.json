@@ -26,6 +26,12 @@
     "newPeSubnetPrefix": {
       "value": "192.168.10.0/24"
     },
+    "newAgentSubnetName": {
+      "value": "foundry-agent-subnet"
+    },
+    "newAgentSubnetPrefix": {
+      "value": "192.168.11.0/24"
+    },
     "existingAoaiResourceId": {
       "value": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<aoai-account>"
     }

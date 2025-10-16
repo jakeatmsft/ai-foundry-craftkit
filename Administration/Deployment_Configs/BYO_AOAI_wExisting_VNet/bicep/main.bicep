@@ -54,6 +54,9 @@ param existingVnetResourceId string
 @description('Resource ID of the existing subnet dedicated to private endpoints.')
 param existingPeSubnetResourceId string
 
+@description('Resource ID of the existing subnet that will be injected into AI Foundry for agent workloads.')
+param existingAgentSubnetResourceId string
+
 @description('Resource ID of the existing Azure OpenAI resource to connect to the project.')
 param existingAoaiResourceId string
 
@@ -73,7 +76,7 @@ resource existingAoaiResource 'Microsoft.CognitiveServices/accounts@2023-05-01' 
 }
 
 // Create the AI Foundry account with private network access only.
-resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' = {
+resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
   name: aiFoundryName
   location: location
   kind: 'AIServices'
@@ -88,6 +91,16 @@ resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' = {
     customSubDomainName: aiFoundryName
     disableLocalAuth: false
     publicNetworkAccess: 'Disabled'
+    networkAcls: {
+      defaultAction: 'Allow'
+    }
+    networkInjections: [
+      {
+        scenario: 'agent'
+        subnetArmId: existingAgentSubnetResourceId
+        useMicrosoftManagedNetwork: false
+      }
+    ]
   }
 }
 
@@ -103,7 +116,7 @@ resource aiAccountPrivateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01
       {
         name: '${aiFoundryName}-private-link-service-connection'
         properties: {
-          privateLinkServiceId: account.id
+          privateLinkServiceId: aiFoundry.id
           groupIds: [
             'account'
           ]
@@ -201,7 +214,7 @@ resource aiServicesDnsGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGr
 
 // Create a project within the AI Foundry account and configure the BYO Azure OpenAI connection.
 resource project 'Microsoft.CognitiveServices/accounts/projects@2025-04-01-preview' = {
-  parent: account
+  parent: aiFoundry
   name: projectName
   location: location
   identity: {
@@ -230,7 +243,7 @@ resource project 'Microsoft.CognitiveServices/accounts/projects@2025-04-01-previ
 // Configure capability hosts so the project can leverage the Azure OpenAI connection.
 resource accountCapabilityHost 'Microsoft.CognitiveServices/accounts/capabilityHosts@2025-04-01-preview' = {
   name: accountCapabilityHostName
-  parent: account
+  parent: aiFoundry
   properties: {
     capabilityHostKind: 'Agents'
   }
@@ -255,8 +268,8 @@ resource projectCapabilityHost 'Microsoft.CognitiveServices/accounts/projects/ca
   ]
 }
 
-output accountId string = account.id
-output accountName string = account.name
-output accountEndpoint string = account.properties.endpoint
+output accountId string = aiFoundry.id
+output accountName string = aiFoundry.name
+output accountEndpoint string = aiFoundry.properties.endpoint
 output projectName string = project.name
-output projectConnectionName string = resourceId('Microsoft.CognitiveServices/accounts/projects/connections', account.name, project.name, byoAoaiConnectionName)
+output projectConnectionName string = resourceId('Microsoft.CognitiveServices/accounts/projects/connections', aiFoundry.name, project.name, byoAoaiConnectionName)

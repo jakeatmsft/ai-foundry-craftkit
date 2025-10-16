@@ -59,6 +59,12 @@ param vnetAddressPrefix string = '192.168.0.0/16'
 @description('Address prefix for the private endpoint subnet.')
 param peSubnetPrefix string = '192.168.0.0/24'
 
+@description('Name of the subnet that will host AI Foundry agent workloads for network injection.')
+param agentSubnetName string = 'agent-subnet'
+
+@description('Address prefix for the agent subnet used by AI Foundry network injection.')
+param agentSubnetPrefix string = '192.168.1.0/24'
+
 @description('Resource ID of the existing Azure OpenAI resource to connect to the project.')
 param existingAoaiResourceId string
 
@@ -78,7 +84,7 @@ resource existingAoaiResource 'Microsoft.CognitiveServices/accounts@2023-05-01' 
 }
 
 // Create the AI Foundry account with private network access only.
-resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' = {
+resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
   name: aiFoundryName
   location: location
   kind: 'AIServices'
@@ -93,6 +99,16 @@ resource account 'Microsoft.CognitiveServices/accounts@2025-04-01-preview' = {
     customSubDomainName: aiFoundryName
     disableLocalAuth: false
     publicNetworkAccess: 'Disabled'
+    networkAcls: {
+      defaultAction: 'Allow'
+    }
+    networkInjections: [
+      {
+        scenario: 'agent'
+        subnetArmId: agentSubnet.id
+        useMicrosoftManagedNetwork: false
+      }
+    ]
   }
 }
 
@@ -118,6 +134,14 @@ resource subnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' = {
   }
 }
 
+resource agentSubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' = {
+  parent: virtualNetwork
+  name: agentSubnetName
+  properties: {
+    addressPrefix: agentSubnetPrefix
+  }
+}
+
 // Private endpoint configuration for the AI Foundry account.
 resource aiAccountPrivateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01' = {
   name: '${aiFoundryName}-private-endpoint'
@@ -130,7 +154,7 @@ resource aiAccountPrivateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01
       {
         name: '${aiFoundryName}-private-link-service-connection'
         properties: {
-          privateLinkServiceId: account.id
+          privateLinkServiceId: aiFoundry.id
           groupIds: [
             'account'
           ]
@@ -229,7 +253,7 @@ resource aiServicesDnsGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGr
 
 // Create a project within the AI Foundry account and configure the BYO Azure OpenAI connection.
 resource project 'Microsoft.CognitiveServices/accounts/projects@2025-04-01-preview' = {
-  parent: account
+  parent: aiFoundry
   name: projectName
   location: location
   identity: {
@@ -258,7 +282,7 @@ resource project 'Microsoft.CognitiveServices/accounts/projects@2025-04-01-previ
 // Configure capability hosts so the project can leverage the Azure OpenAI connection.
 resource accountCapabilityHost 'Microsoft.CognitiveServices/accounts/capabilityHosts@2025-04-01-preview' = {
   name: accountCapabilityHostName
-  parent: account
+  parent: aiFoundry
   properties: {
     capabilityHostKind: 'Agents'
   }
@@ -283,8 +307,8 @@ resource projectCapabilityHost 'Microsoft.CognitiveServices/accounts/projects/ca
   ]
 }
 
-output accountId string = account.id
-output accountName string = account.name
-output accountEndpoint string = account.properties.endpoint
+output accountId string = aiFoundry.id
+output accountName string = aiFoundry.name
+output accountEndpoint string = aiFoundry.properties.endpoint
 output projectName string = project.name
-output projectConnectionName string = resourceId('Microsoft.CognitiveServices/accounts/projects/connections', account.name, project.name, byoAoaiConnectionName)
+output projectConnectionName string = resourceId('Microsoft.CognitiveServices/accounts/projects/connections', aiFoundry.name, project.name, byoAoaiConnectionName)

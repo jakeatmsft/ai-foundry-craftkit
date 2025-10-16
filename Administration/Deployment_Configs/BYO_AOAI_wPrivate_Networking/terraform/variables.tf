@@ -86,6 +86,23 @@ variable "pe_subnet_prefix" {
   default     = "192.168.0.0/24"
 }
 
+variable "agent_subnet_name" {
+  description = "Name of the subnet dedicated to AI Foundry agent workloads within the virtual network."
+  type        = string
+  default     = "agent-subnet"
+}
+
+variable "agent_subnet_prefix" {
+  description = "CIDR address prefix for the agent subnet that will be injected into the AI Foundry account."
+  type        = string
+  default     = "192.168.1.0/24"
+
+  validation {
+    condition     = can(cidrnetmask(var.agent_subnet_prefix))
+    error_message = "agent_subnet_prefix must be a valid CIDR block."
+  }
+}
+
 variable "existing_aoai_resource_id" {
   description = "Resource ID of the existing Azure OpenAI account that the project will connect to."
   type        = string

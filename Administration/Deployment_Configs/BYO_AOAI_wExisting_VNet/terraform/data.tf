@@ -8,7 +8,7 @@ data "azapi_resource" "existing_aoai" {
 }
 
 data "azapi_resource" "account_read" {
-  type        = "Microsoft.CognitiveServices/accounts@2025-04-01-preview"
-  resource_id = azapi_resource.account.id
+  type        = "Microsoft.CognitiveServices/accounts@2025-06-01"
+  resource_id = azapi_resource.ai_foundry.id
   depends_on  = [time_sleep.after_account]
 }

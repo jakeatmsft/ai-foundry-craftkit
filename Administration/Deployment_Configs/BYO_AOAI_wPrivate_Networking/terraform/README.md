@@ -48,11 +48,12 @@ graph TD
     subgraph RG["Resource Group (var.resource_group_name)"]
         VNet["Virtual Network\n(azurerm_virtual_network.main)"]
         Subnet["Private Endpoint Subnet\n(azurerm_subnet.private_endpoint)"]
+        AgentSubnet["Agent Subnet\n(azurerm_subnet.subnet_agent)"]
         PE["Private Endpoint\n(azurerm_private_endpoint.account)"]
         DNSAIServices["Private DNS Zone\nservices.ai.azure.com"]
         DNSOpenAI["Private DNS Zone\nopenai.azure.com"]
         DNSCog["Private DNS Zone\ncognitiveservices.azure.com"]
-        Account["AI Foundry Account\n(azapi_resource.account)"]
+        Account["AI Foundry Account\n(azapi_resource.ai_foundry)"]
         Project["AI Foundry Project\n(azapi_resource.project)"]
         Connection["BYO Azure OpenAI Connection\n(azapi_resource.byo_aoai_connection)"]
         AccountHost["Account Capability Host\n(azapi_resource.account_capability_host)"]
@@ -61,8 +62,10 @@ graph TD
 
     TerraformCaller -->|"provisions"| RG
     VNet --> Subnet
+    VNet --> AgentSubnet
     Subnet --> PE
     PE -->|"private link"| Account
+    AgentSubnet -->|"network injection"| Account
     DNSAIServices -. "vNet link" .-> VNet
     DNSOpenAI -. "vNet link" .-> VNet
     DNSCog -. "vNet link" .-> VNet

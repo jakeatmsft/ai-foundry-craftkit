@@ -29,6 +29,12 @@
     "peSubnetPrefix": {
       "value": "192.168.0.0/24"
     },
+    "agentSubnetName": {
+      "value": "agent-subnet"
+    },
+    "agentSubnetPrefix": {
+      "value": "192.168.1.0/24"
+    },
     "existingAoaiResourceId": {
       "value": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<aoai-account>"
     }

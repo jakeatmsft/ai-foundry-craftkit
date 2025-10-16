@@ -8,31 +8,43 @@ resource "random_string" "account_suffix" {
   }
 }
 
-resource "azapi_resource" "account" {
-  type      = "Microsoft.CognitiveServices/accounts@2025-04-01-preview"
-  name      = local.ai_foundry_name
-  location  = var.location
-  parent_id = data.azurerm_resource_group.target.id
+resource "azapi_resource" "ai_foundry" {
+  type                      = "Microsoft.CognitiveServices/accounts@2025-06-01"
+  name                      = local.ai_foundry_name
+  location                  = var.location
+  parent_id                 = data.azurerm_resource_group.target.id
+  schema_validation_enabled = false
 
   body = {
-    identity = {
-      type = "SystemAssigned"
-    }
     kind = "AIServices"
     sku = {
       name = "S0"
     }
+    identity = {
+      type = "SystemAssigned"
+    }
+
     properties = {
+      disableLocalAuth       = false
       allowProjectManagement = true
       customSubDomainName    = local.ai_foundry_name
-      disableLocalAuth       = false
       publicNetworkAccess    = "Disabled"
+      networkAcls = {
+        defaultAction = "Allow"
+      }
+      networkInjections = [
+        {
+          scenario                   = "agent"
+          subnetArmId                = var.existing_agent_subnet_resource_id
+          useMicrosoftManagedNetwork = false
+        }
+      ]
     }
   }
 }
 
 resource "time_sleep" "after_account" {
-  depends_on      = [azapi_resource.account]
+  depends_on      = [azapi_resource.ai_foundry]
   create_duration = "30s"
 }
 
@@ -84,7 +96,7 @@ resource "azurerm_private_endpoint" "account" {
   private_service_connection {
     name                           = "${local.ai_foundry_name}-private-link-service-connection"
     is_manual_connection           = false
-    private_connection_resource_id = azapi_resource.account.id
+    private_connection_resource_id = azapi_resource.ai_foundry.id
     subresource_names              = ["account"]
   }
 
@@ -109,7 +121,7 @@ resource "azapi_resource" "project" {
   type      = "Microsoft.CognitiveServices/accounts/projects@2025-04-01-preview"
   name      = local.project_name
   location  = var.location
-  parent_id = azapi_resource.account.id
+  parent_id = azapi_resource.ai_foundry.id
 
   depends_on = [
     time_sleep.after_account
@@ -153,7 +165,7 @@ resource "azapi_resource" "byo_aoai_connection" {
 resource "azapi_resource" "account_capability_host" {
   type      = "Microsoft.CognitiveServices/accounts/capabilityHosts@2025-04-01-preview"
   name      = local.account_capability_host
-  parent_id = azapi_resource.account.id
+  parent_id = azapi_resource.ai_foundry.id
 
   body = {
     properties = {

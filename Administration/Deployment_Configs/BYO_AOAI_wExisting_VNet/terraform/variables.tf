@@ -72,6 +72,11 @@ variable "existing_pe_subnet_resource_id" {
   type        = string
 }
 
+variable "existing_agent_subnet_resource_id" {
+  description = "Resource ID of the existing subnet that will be used for AI Foundry agent network injection."
+  type        = string
+}
+
 variable "existing_aoai_resource_id" {
   description = "Resource ID of the existing Azure OpenAI account that the project will connect to."
   type        = string

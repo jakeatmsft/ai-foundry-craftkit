@@ -7,7 +7,7 @@ This Terraform configuration mirrors the structure of the private networking tem
 - Terraform 1.6.0 or later.
 - Azure CLI authenticated to the target subscription (`az login`) or another supported `azurerm` authentication flow.
 - A resource group where the AI Foundry resources will be created.
-- An existing virtual network in which Terraform can create a new subnet for the private endpoint.
+- An existing virtual network in which Terraform can create new subnets for the private endpoint and agent traffic.
 - The resource ID for an existing Azure OpenAI account that will back the BYO connection.
 
 ## Configuration
@@ -21,7 +21,9 @@ Copy `terraform.tfvars.example` to `terraform.tfvars` (or provide another `-var-
 - `project_display_name`, `project_description`: Metadata stored on the project resource.
 - `existing_vnet_resource_id`: Resource ID of the virtual network that will be linked to the AI Foundry private DNS zones and receive the new subnet.
 - `new_pe_subnet_name`: Name given to the subnet that Terraform creates for the private endpoint.
-- `new_pe_subnet_prefix`: CIDR block for the new subnet. Ensure it fits within the VNet address space and does not overlap existing subnets.
+- `new_pe_subnet_prefix`: CIDR block for the new private endpoint subnet. Ensure it fits within the VNet address space and does not overlap existing subnets.
+- `new_agent_subnet_name`: Name assigned to the subnet that Terraform creates for agent network injection.
+- `new_agent_subnet_prefix`: CIDR block for the agent subnet. Select a range that fits inside the VNet without conflicts.
 - `existing_aoai_resource_id`: Resource ID of the Azure OpenAI account that powers the BYO connection.
 
 ## Deploy
@@ -37,6 +39,7 @@ terraform apply -var-file="terraform.tfvars"
 - Azure AI Foundry account (`AIServices`) with a system-assigned managed identity and public network access disabled.
 - Private DNS zones for AI Foundry, Azure OpenAI, and Cognitive Services linked to the existing virtual network.
 - Subnet created inside the existing virtual network with network policies disabled for private endpoints.
+- Agent subnet created in the existing virtual network and referenced by the AI Foundry network injection.
 - Private endpoint deployed into the new subnet and associated DNS zone group.
 - AI Foundry project with managed identity, BYO Azure OpenAI connection, and the required capability hosts.
 
@@ -49,6 +52,7 @@ graph TD
 
     subgraph ExistingVNet["Existing Virtual Network\n(var.existing_vnet_resource_id)"]
         NewSubnet["New Private Endpoint Subnet\n(azapi_resource.pe_subnet)"]
+        AgentSubnet["New Agent Subnet\n(azapi_resource.agent_subnet)"]
     end
 
     subgraph RG["Resource Group (var.resource_group_name)"]
@@ -56,7 +60,7 @@ graph TD
         DNSOpenAI["Private DNS Zone\nopenai.azure.com"]
         DNSCog["Private DNS Zone\ncognitiveservices.azure.com"]
         PE["Private Endpoint\n(azurerm_private_endpoint.account)"]
-        Account["AI Foundry Account\n(azapi_resource.account)"]
+        Account["AI Foundry Account\n(azapi_resource.ai_foundry)"]
         Project["AI Foundry Project\n(azapi_resource.project)"]
         Connection["BYO Azure OpenAI Connection\n(azapi_resource.byo_aoai_connection)"]
         AccountHost["Account Capability Host\n(azapi_resource.account_capability_host)"]
@@ -65,6 +69,7 @@ graph TD
 
     TerraformCaller -->|"provisions"| RG
     NewSubnet --> PE
+    AgentSubnet -->|"network injection"| Account
     PE -->|"private link"| Account
     DNSAIServices -. "vNet link" .-> ExistingVNet
     DNSOpenAI -. "vNet link" .-> ExistingVNet
