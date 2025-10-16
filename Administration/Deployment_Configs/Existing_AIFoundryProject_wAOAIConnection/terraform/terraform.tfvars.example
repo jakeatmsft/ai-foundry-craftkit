@@ -1,0 +1,9 @@
+# Required inputs
+existing_ai_foundry_account_resource_id = "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<foundry-account>"
+azure_openai_resource_id                = "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<openai-account>"
+
+# Optional inputs
+project_name                 = "my-project"
+project_display_name         = "My Project"
+project_description          = "Project for agent workloads"
+project_capability_host_name = "my-project-capHost"

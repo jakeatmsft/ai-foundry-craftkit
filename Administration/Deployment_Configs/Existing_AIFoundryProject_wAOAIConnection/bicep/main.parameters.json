@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "existingAiFoundryAccountResourceId": {
+      "value": "/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/Microsoft.CognitiveServices/accounts/<foundry-account>"
+    },
+    "azureOpenAiResourceId": {
+      "value": "/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/Microsoft.CognitiveServices/accounts/<openai-account>"
+    },
+    "projectName": {
+      "value": "my-project"
+    },
+    "projectDisplayName": {
+      "value": "My Project"
+    },
+    "projectDescription": {
+      "value": "Project for agent workloads"
+    },
+    "projectCapabilityHostName": {
+      "value": "my-project-capHost"
+    }
+  }
+}
