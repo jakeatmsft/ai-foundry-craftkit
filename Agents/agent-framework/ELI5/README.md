@@ -1,9 +1,10 @@
 # Agent Framework ELI5 Notebooks
 
-This directory contains “explain like I’m five” (ELI5) notebooks that walk through the Agent Framework getting-started samples. Each notebook rebuilds a Python sample from `python/samples/getting_started/workflows/` with extra commentary so you can explore the workflow step by step without jumping between the notebook and the source file.
+This directory contains “explain like I’m five” (ELI5) notebooks that walk through the Agent Framework getting-started samples. Each notebook rebuilds a Python sample from `agent-framework/python/samples/getting_started/workflows/` with extra commentary so you can explore the workflow step by step without jumping between the notebook and the source file.
 
 ## Getting Started
-- Set up the same Python environment used for the Agent Framework samples (follow the repository’s setup instructions for `python/samples/getting_started`).
+- `agent-framework== 1.0.0b251001`
+
 - Launch Jupyter Lab, VS Code, or your preferred notebook environment inside that environment.
 - Open any of the notebooks below and execute the cells from top to bottom. They expect the same configuration (API keys, endpoints, etc.) that the corresponding sample script requires.
 
