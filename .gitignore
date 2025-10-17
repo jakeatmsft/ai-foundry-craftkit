@@ -187,3 +187,4 @@ Administration/Deployment_Configs/BYO_AOAI_wExisting_VNet/terraform/terraform.tf
 Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/.terraform.tfstate.lock.info
 Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/terraform.tfstate
 Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/terraform.tfstate.backup
+/Agents/agent-framework/ELI5/checkpoint/eli5_tmp
