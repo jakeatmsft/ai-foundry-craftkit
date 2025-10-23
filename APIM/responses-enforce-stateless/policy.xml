@@ -16,7 +16,7 @@
 
             sanitized.Remove("previous_response_id");
             sanitized["store"] = false;
-            sanitized["background"] = false;
+            sanitized.Remove("background");
 
             return sanitized.ToString(Newtonsoft.Json.Formatting.None);
         }" />
