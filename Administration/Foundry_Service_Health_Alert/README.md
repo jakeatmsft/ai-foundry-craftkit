@@ -42,5 +42,6 @@ terraform destroy \
 ```
 
 ## Additional Notes
+- Alert criteria monitors every Service Health incident type (ActionRequired, Informational, Incident, Maintenance, Security) by default.
 - If you already have an action group, adjust the configuration to reference it instead of creating a new one.
 - Keep `subscriptions_list` aligned with the subscriptions your AI Foundry workloads rely on so alerts are scoped appropriately.
