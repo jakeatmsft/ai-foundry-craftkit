@@ -43,6 +43,24 @@ Key arguments:
 - `--message-template`: text for the user message; `{index}` is replaced per thread.
 - `--poll-interval`: seconds between run status checks (default `1.0`).
 
+## Find Agents by Creation Date
+Use `agent_find_before_date.py` to list agents created before a given ISO-8601 date or datetime:
+
+```bash
+python agent_find_before_date.py 2024-05-01
+```
+
+The cutoff is interpreted in UTC when no timezone is provided. The script prints matching agent names, IDs, and timestamps sorted by creation time, along with a total count.
+
+## Find Agents by Name
+Use `agent_find_by_name.py` to locate agents that share an exact name, with the newest creation date first:
+
+```bash
+python agent_find_by_name.py "cleanup-test-agent"
+```
+
+Results are ordered by `created_at` descending; the first entry is marked as the latest instance.
+
 ## Cleanup Agents
 Run `agent_cleanup.py` to delete agents plus their threads and messages:
 
