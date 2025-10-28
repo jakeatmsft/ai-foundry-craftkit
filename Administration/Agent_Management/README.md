@@ -61,6 +61,15 @@ python agent_find_by_name.py "cleanup-test-agent"
 
 Results are ordered by `created_at` descending; the first entry is marked as the latest instance.
 
+## Find Agents by Last Completion Date
+Use `agent_last_completion_before_date.py` to list agents whose most recent completed run finished before an ISO-8601 date or datetime:
+
+```bash
+python agent_last_completion_before_date.py 2024-05-01T00:00:00Z
+```
+
+The script inspects every thread and run to determine the latest successful completion per agent. Results include the agent identifiers, the run timestamp, and the associated thread and run IDs to help trace the activity.
+
 ## Cleanup Agents
 Run `agent_cleanup.py` to delete agents plus their threads and messages:
 
