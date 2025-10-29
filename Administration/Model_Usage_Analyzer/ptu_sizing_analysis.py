@@ -177,7 +177,7 @@ def compute_ptu_stats(tokens_by_timestamp: Dict[datetime, float], burst_percenti
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Calculate PTU sizing recommendations from Azure Monitor metrics.")
-    parser.add_argument("--days", type=int, default=7, help="Lookback window in days to query (default: 7)")
+    parser.add_argument("--days", type=int, default=30, help="Lookback window in days to query (default: 7)")
     parser.add_argument("--granularity-mins", type=int, default=1, help="Time grain in minutes for burst detection (default: 1)")
     parser.add_argument("--percentile", type=float, default=99.0, help="Burst percentile to calculate (default: 99)")
     parser.add_argument("--dimension-filter", default=None, help="Optional Azure Monitor filter expression (e.g., ModelDeploymentName eq 'foo')")
