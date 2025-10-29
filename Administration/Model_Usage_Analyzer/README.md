@@ -12,11 +12,11 @@ This tool estimates the expected number of completion (output) tokens per Azure 
 ## Requirements
 - Python 3.7+
 - Azure credentials with **Monitor Reader** role on the Azure OpenAI resource
-- Libraries: `azure-monitor-query`, `azure-identity`, `python-dotenv`, `pandas`, `numpy`
+- Libraries: `azure-monitor-query`, `azure-mgmt-monitor`, `azure-identity`, `python-dotenv`, `pandas`, `numpy`
 
 Install dependencies:
 ```bash
-pip install azure-monitor-query azure-identity python-dotenv pandas numpy
+pip install azure-monitor-query azure-mgmt-monitor azure-identity python-dotenv pandas numpy
 ```
 
 ## Setup
@@ -85,3 +85,36 @@ Breakdown by model deployment (sorted by request count):
     minute_std   :  6.01
     minute_p95   : 20.00
     minute_p99   : 28.00
+
+## PTU Sizing Analysis
+
+The `ptu_sizing_analysis.py` script queries `ProcessedPromptTokens` plus the first available completion-token metric (falling back from `ProcessedCompletionTokens` to `GeneratedTokens` then `OutputTokens`) using the `azure-mgmt-monitor` SDK, mirrors the burst-aware KQL in Azure Monitor, and reports token-per-minute statistics along with PTU recommendations. You can pass `--model-deployment <name>` to zero in on a single deployment without crafting a full OData filter.
+
+```bash
+python ptu_sizing_analysis.py \
+  --days 7 \
+  --granularity-mins 1 \
+  --percentile 99
+```
+
+Optional flags:
+- `--dimension-filter` — pass an Azure Monitor filter such as `ModelDeploymentName eq '*'` to aggregate across deployments.
+- `--model-deployment` — shorthand for `ModelDeploymentName eq '<value>'` when you want a single deployment's metrics.
+- `--completion-metric` — override the completion metric. Defaults to `auto` which tries `ProcessedCompletionTokens`, `GeneratedTokens`, then `OutputTokens`.
+- `--debug` — enable verbose logging to inspect API responses.
+
+Sample output:
+```
+Burst-Aware Azure OpenAI PTU Sizing Analysis
+Lookback: 7d | Granularity: 1m | Percentile: P99
+
+AvgTPM: 42,100.12
+P99TPM: 57,348.44
+MaxTPM: 61,992.00
+
+AvgPTU: 2
+P99PTU: 2
+MaxPTU: 2
+
+RecommendedPTU: 2
+```
