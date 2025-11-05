@@ -99,7 +99,15 @@ def _thread_has_agent_run(agents_client, thread_id: str, agent_id: str) -> bool:
 
 
 def _delete_messages(agents_client, thread_id: str, dry_run: bool) -> None:
-    messages = list(agents_client.messages.list(thread_id=thread_id, order=ListSortOrder.ASCENDING))
+    try:
+        messages = list(agents_client.messages.list(thread_id=thread_id, order=ListSortOrder.ASCENDING))
+    except HttpResponseError as exc:
+        status_code = getattr(exc, "status_code", None)
+        if status_code == 404 or "No enterprise message found" in str(exc):
+            print(f"  Unable to enumerate messages for thread {thread_id}; skipping ({exc})")
+            return
+        raise
+
     if not messages:
         print(f"  No messages found for thread {thread_id}")
         return
