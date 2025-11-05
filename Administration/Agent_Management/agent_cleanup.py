@@ -109,7 +109,15 @@ def _delete_messages(agents_client, thread_id: str, dry_run: bool) -> None:
         if dry_run:
             continue
 
-        deletion_result = agents_client.messages.delete(thread_id=thread_id, message_id=message.id)
+        try:
+            deletion_result = agents_client.messages.delete(thread_id=thread_id, message_id=message.id)
+        except HttpResponseError as exc:
+            status_code = getattr(exc, "status_code", None)
+            if status_code == 404 or "No enterprise message found" in str(exc):
+                print(f"    Message {message.id} already deleted or missing; skipping ({exc})")
+                continue
+            raise
+
         print(f"    delete() returned: {deletion_result}")
 
 
