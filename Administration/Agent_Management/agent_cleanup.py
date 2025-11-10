@@ -3,10 +3,10 @@
 # Licensed under the MIT License.
 # ------------------------------------
 
-"""Utilities for deleting Azure AI agents together with their threads and messages.
+"""Utilities for deleting Azure AI agents together with their threads.
 
 Usage:
-    python agent_cleanup.py [--agent-id <id>] [--dry-run]
+    python agent_cleanup.py [--agent-id <id>] [--dry-run] [--silent]
 
     The script connects to the Azure AI Project identified by the environment
     variables `PROJECT_ENDPOINT` and `MODEL_DEPLOYMENT_NAME`. When no `--agent-id`
@@ -31,7 +31,6 @@ from azure.core.exceptions import HttpResponseError
 from azure.identity import DefaultAzureCredential
 
 from azure.ai.projects import AIProjectClient
-from azure.ai.agents.models import ListSortOrder
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -98,37 +97,6 @@ def _thread_has_agent_run(agents_client, thread_id: str, agent_id: str) -> bool:
     return False
 
 
-def _delete_messages(agents_client, thread_id: str, dry_run: bool) -> None:
-    try:
-        messages = list(agents_client.messages.list(thread_id=thread_id, order=ListSortOrder.ASCENDING))
-    except HttpResponseError as exc:
-        status_code = getattr(exc, "status_code", None)
-        if status_code == 404 or "No enterprise message found" in str(exc):
-            print(f"  Unable to enumerate messages for thread {thread_id}; skipping ({exc})")
-            return
-        raise
-
-    if not messages:
-        print(f"  No messages found for thread {thread_id}")
-        return
-
-    for message in messages:
-        print(f"  Deleting message {message.id} from thread {thread_id} ({message.role})")
-        if dry_run:
-            continue
-
-        try:
-            deletion_result = agents_client.messages.delete(thread_id=thread_id, message_id=message.id)
-        except HttpResponseError as exc:
-            status_code = getattr(exc, "status_code", None)
-            if status_code == 404 or "No enterprise message found" in str(exc):
-                print(f"    Message {message.id} already deleted or missing; skipping ({exc})")
-                continue
-            raise
-
-        print(f"    delete() returned: {deletion_result}")
-
-
 def _delete_threads(agents_client, agent_id: str, dry_run: bool) -> None:
     thread_ids = _collect_thread_ids(agents_client, agent_id=agent_id)
     if not thread_ids:
@@ -137,9 +105,8 @@ def _delete_threads(agents_client, agent_id: str, dry_run: bool) -> None:
 
     for thread_id in thread_ids:
         print(f"Processing thread {thread_id} for agent {agent_id}")
-        _delete_messages(agents_client, thread_id, dry_run=dry_run)
-
         if dry_run:
+            print(f"  Dry run: thread {thread_id} would be deleted")
             continue
 
         deletion_result = agents_client.threads.delete(thread_id=thread_id)
@@ -160,7 +127,7 @@ def delete_agent_hierarchy(agents_client, agent_id: str, dry_run: bool) -> None:
 
 
 def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Delete Azure AI agents with associated threads and messages.")
+    parser = argparse.ArgumentParser(description="Delete Azure AI agents with associated threads.")
     parser.add_argument(
         "--agent-id",
         dest="agent_id",
@@ -171,6 +138,12 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
         dest="dry_run",
         action="store_true",
         help="Enumerate resources but do not call delete().",
+    )
+    parser.add_argument(
+        "--silent",
+        dest="silent",
+        action="store_true",
+        help="Suppress confirmation prompts when deleting all agents.",
     )
     return parser.parse_args(argv)
 
@@ -186,6 +159,19 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         if not agent_ids:
             print("No agents found to delete.")
             return 0
+
+        if not args.agent_id and agent_ids:
+            resource = os.environ.get("PROJECT_ENDPOINT", "configured project endpoint")
+            print(
+                f"WARNING: No --agent-id provided. All agents will be deleted for resource '{resource}'."
+            )
+            if args.dry_run:
+                print("Dry run enabled: delete() calls will be skipped.")
+            if not args.silent:
+                confirm = input("Proceed with deleting all agents? [y/N]: ").strip().lower()
+                if confirm not in {"y", "yes"}:
+                    print("Operation cancelled by user.")
+                    return 0
 
         for agent_id in agent_ids:
             try:

@@ -4,13 +4,13 @@ Utilities for creating and cleaning up Azure AI Foundry agents during testing.
 
 ## Prerequisites
 - Python 3.9+
-- Packages: `azure-ai-projects`, `azure-ai-agents`, `azure-identity`
+- Packages: `azure-ai-projects`, `azure-ai-agents`, `azure-identity`, `python-dotenv`
 - Azure credentials supported by `DefaultAzureCredential`
 
 Install dependencies:
 
 ```bash
-pip install azure-ai-projects azure-ai-agents azure-identity
+pip install azure-ai-projects azure-ai-agents azure-identity python-dotenv
 ```
 
 ## Configuration
@@ -71,21 +71,40 @@ python agent_last_completion_before_date.py 2024-05-01T00:00:00Z
 The script inspects every thread and run to determine the latest successful completion per agent. Results include the agent identifiers, the run timestamp, and the associated thread and run IDs to help trace the activity.
 
 ## Cleanup Agents
-Run `agent_cleanup.py` to delete agents plus their threads and messages:
+Run `agent_cleanup.py` to delete agents plus their threads:
 
 ```bash
 # Preview without deleting
 python agent_cleanup.py --dry-run
 
-# Delete everything
+# Delete everything (prompts when no --agent-id is provided)
 python agent_cleanup.py
 
 # Target a single agent
 python agent_cleanup.py --agent-id <agent_id>
+
+# Skip the confirmation prompt when deleting all agents (use carefully)
+python agent_cleanup.py --silent
 ```
 
-The cleanup script lists every message and thread before calling the respective `delete()` APIs. Use the dry run mode to confirm what would be removed.
+The cleanup script reports each thread selected for removal and issues `delete()` calls on the thread and agent unless `--dry-run` is supplied. A confirmation prompt guards accidental project-wide deletions unless `--silent` is used.
+
+## Cleanup Threads by Last Activity
+Run `thread_cleanup.py` to delete threads whose most recent message predates a cutoff:
+
+```bash
+# Preview threads whose latest message is older than 30 days (default)
+python thread_cleanup.py --dry-run
+
+# Provide an explicit cutoff timestamp (UTC is recommended)
+python thread_cleanup.py --before-date 2024-05-01T00:00:00Z
+
+# Use a custom rolling window in days
+python thread_cleanup.py --days 45
+```
+
+Threads without any timestamped messages are skipped automatically. When not in dry-run mode the script deletes each matching thread and reports the outcome.
 
 ## Notes
-- Both scripts rely on `DefaultAzureCredential`; ensure your environment or developer workstation is authenticated.
-- The cleanup process enumerates all threads and filters them to the specified agent. This is a workaround for current SDK limitations around agent-scoped thread pagination.
+- All utilities rely on `DefaultAzureCredential`; ensure your environment or developer workstation is authenticated.
+- Thread enumeration currently requires scanning the full project due to SDK limitations around agent-scoped queries. Expect additional API calls when running cleanup scripts.
