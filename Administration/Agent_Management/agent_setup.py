@@ -72,20 +72,46 @@ def _poll_run(agents_client, run, poll_interval: float) -> None:
         raise RuntimeError(f"Run {run.id} failed: {run.last_error}")
 
 
-def _populate_thread(agents_client, agent_id: str, user_message: str, poll_interval: float) -> str:
-    print(f" Creating thread with user message: {user_message!r}")
+def _populate_thread(
+    agents_client,
+    agent_id: str,
+    thread_index: int,
+    turn_count: int,
+    message_template: str,
+    poll_interval: float,
+) -> str:
+    turn_count = max(1, turn_count)
+    first_message = message_template.format(index=thread_index, turn=1)
+    print(f" Creating thread with user message: {first_message!r}")
 
     run = agents_client.create_thread_and_run(
         agent_id=agent_id,
         thread=AgentThreadCreationOptions(
-            messages=[ThreadMessageOptions(role="user", content=user_message)]
+            messages=[ThreadMessageOptions(role="user", content=first_message)]
         ),
     )
 
     _poll_run(agents_client, run, poll_interval=poll_interval)
 
-    print(f"  Created thread {run.thread_id}")
-    return run.thread_id
+    thread_id = run.thread_id
+    print(f"  Created thread {thread_id}")
+
+    for turn in range(2, turn_count + 1):
+        user_message = message_template.format(index=thread_index, turn=turn)
+        print(f"  Adding turn {turn}: {user_message!r}")
+        agents_client.messages.create(
+            thread_id=thread_id,
+            role="user",
+            content=user_message,
+        )
+
+        followup_run = agents_client.runs.create(
+            thread_id=thread_id,
+            agent_id=agent_id,
+        )
+        _poll_run(agents_client, followup_run, poll_interval=poll_interval)
+
+    return thread_id
 
 
 def _show_messages(agents_client, thread_id: str) -> None:
@@ -124,8 +150,14 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--message-template",
-        default="Hello from test thread {index}!",
-        help="Template for the user message; supports {index} placeholder.",
+        default="Hello from test thread {index}, turn {turn}!",
+        help="Template for user messages; supports {index} and {turn} placeholders.",
+    )
+    parser.add_argument(
+        "--turn-count",
+        type=int,
+        default=5,
+        help="Number of user/assistant turns to create for each thread (minimum 1).",
     )
     parser.add_argument(
         "--poll-interval",
@@ -150,12 +182,13 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
             return 1
 
         for index in range(1, args.thread_count + 1):
-            user_message = args.message_template.format(index=index)
             try:
                 thread_id = _populate_thread(
                     agents_client,
                     agent_id=agent_id,
-                    user_message=user_message,
+                    thread_index=index,
+                    turn_count=args.turn_count,
+                    message_template=args.message_template,
                     poll_interval=args.poll_interval,
                 )
             except Exception as exc:  # pylint: disable=broad-except

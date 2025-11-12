@@ -207,6 +207,8 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     with client:
         agents_client = client.agents
 
+        threads_to_delete = []
+
         for thread in _iter_threads(agents_client):
             thread_id = getattr(thread, "id", None)
             if not thread_id:
@@ -214,16 +216,17 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
 
             latest_timestamp = _latest_message_timestamp(agents_client, thread_id=thread_id)
 
+            if latest_timestamp is None or latest_timestamp < cutoff:
+                threads_to_delete.append((thread_id, latest_timestamp))
+
+        for thread_id, latest_timestamp in threads_to_delete:
             if latest_timestamp is None:
                 print(f"Deleting thread {thread_id}: no messages or timestamp available")
-            else:   
-                if latest_timestamp >= cutoff:
-                    continue
-                    
+            else:
                 print(
                     f"Deleting thread {thread_id}: latest message at {latest_timestamp.isoformat()} is before cutoff"
                 )
-                
+
             try:
                 _delete_thread(agents_client, thread_id=thread_id, dry_run=args.dry_run)
             except HttpResponseError as exc:
