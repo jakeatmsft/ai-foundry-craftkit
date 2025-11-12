@@ -117,7 +117,19 @@ def _latest_message_timestamp(agents_client, thread_id: str) -> Optional[datetim
         print(f"  Unable to enumerate messages for thread {thread_id}: {exc}")
         return None
 
-    for message in messages:
+    iterator = iter(messages)
+    while True:
+        try:
+            message = next(iterator)
+        except StopIteration:
+            break
+        except ResourceNotFoundError as exc:
+            print(f"  Skipping message in thread {thread_id}: {exc}")
+            continue
+        except HttpResponseError as exc:
+            print(f"  Failed to fetch next message for thread {thread_id}: {exc}")
+            break
+
         for attr in (
             "created_at",
             "created_on",
