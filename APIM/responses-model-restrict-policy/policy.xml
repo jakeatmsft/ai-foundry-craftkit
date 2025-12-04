@@ -1,0 +1,59 @@
+<policies>
+    <inbound>
+        <base />
+
+        <set-variable name="modelRestrictionError" value="@{
+            var restrictedModels = new [] { "computer-use-preview" };
+            var restrictedList = string.Join(", ", restrictedModels);
+
+            var body = context.Request.Body.As<Newtonsoft.Json.Linq.JObject>(preserveContent: true);
+            if (body == null)
+            {
+                return "Request body must be valid JSON.";
+            }
+
+            var modelValue = (string)body["model"];
+            if (string.IsNullOrWhiteSpace(modelValue))
+            {
+                return "Model property is required. Restricted models: " + restrictedList + ".";
+            }
+
+            bool isRestricted = false;
+            foreach (var restricted in restrictedModels)
+            {
+                if (string.Equals(restricted, modelValue, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    isRestricted = true;
+                    break;
+                }
+            }
+
+            if (isRestricted)
+            {
+                return "Model '" + modelValue + "' is restricted. Restricted models: " + restrictedList + ".";
+            }
+
+            return null;
+        }" />
+
+        <choose>
+            <when condition="@(!string.IsNullOrEmpty((string)context.Variables[&quot;modelRestrictionError&quot;]))">
+                <return-response>
+                    <set-status code="400" reason="Request not allowed" />
+                    <set-body>@((string)context.Variables[&quot;modelRestrictionError&quot;])</set-body>
+                </return-response>
+            </when>
+        </choose>
+
+        <set-backend-service backend-id="{backend-id}" />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
