@@ -135,19 +135,77 @@ def unique_providers(models: Iterable[Dict[str, Any]]) -> List[str]:
     return kinds
 
 
+def flatten_model(m: Dict[str, Any]) -> Dict[str, Any]:
+    """Flatten a model entry to include all nested fields with prefixes."""
+    flat: Dict[str, Any] = {}
+    
+    # Top-level fields
+    for key, val in m.items():
+        if key == "model" and isinstance(val, dict):
+            # Flatten nested model dict with 'model.' prefix
+            for mk, mv in val.items():
+                if mk == "capabilities" and isinstance(mv, dict):
+                    # Flatten capabilities with 'capabilities.' prefix
+                    for ck, cv in mv.items():
+                        flat[f"capabilities.{ck}"] = cv
+                elif mk == "deprecation" and isinstance(mv, dict):
+                    # Flatten deprecation with 'deprecation.' prefix
+                    for dk, dv in mv.items():
+                        flat[f"deprecation.{dk}"] = dv
+                elif mk == "skus" and isinstance(mv, list):
+                    # Join SKU info
+                    flat["model.skus"] = ", ".join(
+                        f"{s.get('name', '')}(cap:{s.get('capacity', {}).get('maximum', '')})" 
+                        for s in mv if isinstance(s, dict)
+                    )
+                elif mk == "finetune" and isinstance(mv, dict):
+                    # Flatten finetune with 'finetune.' prefix
+                    for fk, fv in mv.items():
+                        flat[f"finetune.{fk}"] = fv
+                elif mk == "systemData" and isinstance(mv, dict):
+                    # Flatten systemData
+                    for sk, sv in mv.items():
+                        flat[f"systemData.{sk}"] = sv
+                elif mk == "lifecycleStatus" and isinstance(mv, dict):
+                    # Flatten lifecycleStatus
+                    for lk, lv in mv.items():
+                        flat[f"lifecycleStatus.{lk}"] = lv
+                else:
+                    flat[f"model.{mk}"] = mv
+        elif isinstance(val, dict):
+            # Flatten other nested dicts
+            for nk, nv in val.items():
+                flat[f"{key}.{nk}"] = nv
+        elif isinstance(val, list):
+            flat[key] = json.dumps(val) if val else ""
+        else:
+            flat[key] = val
+    
+    return flat
+
+
+def get_catalog_url(model_name: str) -> str:
+    """Construct the Azure AI catalog URL for a model."""
+    if not model_name:
+        return ""
+    return f"https://ai.azure.com/explore/models/{model_name}"
+
+
 def format_table(models: List[Dict[str, Any]]) -> str:
     rows: List[List[str]] = []
-    headers = ["Provider", "Model Name", "Version", "SKU", "Format", "MaxCapacity"]
+    headers = ["Provider", "Model Name", "Version", "SKU", "Format", "MaxCapacity", "Catalog URL"]
     rows.append(headers)
     for m in models:
         model = m.get("model", {}) or {}
+        model_name = str(model.get("name", ""))
         rows.append([
             str(m.get("kind", "")),
-            str(model.get("name", "")),
+            model_name,
             str(model.get("version", "")),
             str(m.get("skuName", "")),
             str(model.get("format", "")),
             str(model.get("maxCapacity", "")),
+            get_catalog_url(model_name),
         ])
 
     widths = [max(len(row[i]) for row in rows) for i in range(len(rows[0]))]
@@ -160,12 +218,85 @@ def format_table(models: List[Dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
+def format_full_table(models: List[Dict[str, Any]]) -> str:
+    """Format a table with all available fields from the API response."""
+    if not models:
+        return ""
+    
+    # Flatten all models and collect all unique keys
+    flat_models = [flatten_model(m) for m in models]
+    all_keys: List[str] = []
+    seen_keys: set = set()
+    
+    # Add catalog URL to each flattened model
+    for fm in flat_models:
+        model_name = fm.get("model.name", "")
+        fm["catalogUrl"] = get_catalog_url(model_name) if model_name else ""
+    
+    # Define preferred column order for readability
+    priority_keys = [
+        "kind", "skuName", "model.name", "model.version", "model.format", 
+        "model.maxCapacity", "catalogUrl", "model.source", "model.isDefaultVersion",
+        "capabilities.completion", "capabilities.chatCompletion", "capabilities.embeddings",
+        "capabilities.imageGeneration", "capabilities.fineTune", "capabilities.inference",
+        "deprecation.fineTune", "deprecation.inference",
+        "lifecycleStatus.status",
+        "model.skus"
+    ]
+    
+    # Add priority keys first if they exist
+    for k in priority_keys:
+        for fm in flat_models:
+            if k in fm and k not in seen_keys:
+                all_keys.append(k)
+                seen_keys.add(k)
+                break
+    
+    # Add remaining keys
+    for fm in flat_models:
+        for k in fm.keys():
+            if k not in seen_keys:
+                all_keys.append(k)
+                seen_keys.add(k)
+    
+    # Build rows
+    rows: List[List[str]] = []
+    rows.append(all_keys)
+    
+    for fm in flat_models:
+        row = []
+        for k in all_keys:
+            val = fm.get(k, "")
+            if val is None:
+                val = ""
+            elif isinstance(val, bool):
+                val = "true" if val else "false"
+            else:
+                val = str(val)
+            row.append(val)
+        rows.append(row)
+    
+    # Calculate column widths
+    widths = [max(len(str(row[i])) for row in rows) for i in range(len(all_keys))]
+    
+    # Build output
+    lines = []
+    for ridx, row in enumerate(rows):
+        line = "  ".join(str(val).ljust(widths[i]) for i, val in enumerate(row))
+        lines.append(line)
+        if ridx == 0:
+            lines.append("  ".join("-" * widths[i] for i in range(len(widths))))
+    
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="List AI Foundry Models and Providers (Azure Management API)")
     parser.add_argument("--subscription-id", "-s", default=get_env("AZURE_SUBSCRIPTION_ID", get_env("AZURE_SUBSCRIPTION_ID")), help="Azure subscription ID (env: AZURE_SUBSCRIPTION_ID)")
     parser.add_argument("--location", "-l", required=False, default=get_env("AZURE_LOCATION", get_env("LOCATION")), help="Azure location, e.g. westus, eastus, WestUS")
     parser.add_argument("--api-version", default="2025-06-01", help="API version for the request (default: 2025-06-01)")
     parser.add_argument("--output", "-o", choices=["table", "json"], default="table", help="Output format")
+    parser.add_argument("--full", "-f", action="store_true", help="Show all available fields from the API response")
     parser.add_argument("--providers-only", action="store_true", help="Only print unique providers")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose logging")
     args = parser.parse_args()
@@ -213,7 +344,10 @@ def main() -> int:
     print()
     if models:
         print(f"Models in {args.location} ({len(models)}):")
-        print(format_table(models))
+        if args.full:
+            print(format_full_table(models))
+        else:
+            print(format_table(models))
     else:
         print(f"No models found in {args.location}.")
     return 0

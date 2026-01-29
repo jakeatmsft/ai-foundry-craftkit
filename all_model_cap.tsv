@@ -1,0 +1,881 @@
+ region                                  model                                                              sku   limit   used  available  unit
+ swedencentral              OpenAI.ProvisionedManaged                                        OpenAI.ProvisionedManaged       0      0          0 Count
+ swedencentral        OpenAI.GlobalProvisionedManaged                                  OpenAI.GlobalProvisionedManaged       0      0          0 Count
+ swedencentral                                  Dalle                                            OpenAI.Standard.Dalle       2      1          1 Count
+ swedencentral                            Deployments                                     OpenAI.FineTuned.Deployments      10      0         10 Count
+ swedencentral                           AccountCount                                           OpenAI.S0.AccountCount      30      1         29 Count
+ swedencentral                                whisper                                          OpenAI.Standard.whisper       3      0          3 Count
+ swedencentral                                    tts                                              OpenAI.Standard.tts       3      0          3 Count
+ swedencentral                                 tts-hd                                           OpenAI.Standard.tts-hd       3      3          0 Count
+ swedencentral      OpenAI.DataZoneProvisionedManaged                                OpenAI.DataZoneProvisionedManaged       0      0          0 Count
+ swedencentral                                  gpt-4                                            OpenAI.Standard.gpt-4       0      0          0 Count
+ swedencentral                            gpt-4-turbo                                      OpenAI.Standard.gpt-4-turbo       0      0          0 Count
+ swedencentral                  gpt-4-turbo-2024-0409                      OpenAI.GlobalStandard.gpt-4-turbo-2024-0409     450      0        450 Count
+ swedencentral                         gpt-4-finetune                                   OpenAI.Standard.gpt-4-finetune     100      0        100 Count
+ swedencentral                        gpt-4o-finetune                                  OpenAI.Standard.gpt-4o-finetune     250      0        250 Count
+ swedencentral                        gpt-4o-finetune                            OpenAI.GlobalStandard.gpt-4o-finetune     250      0        250 Count
+ swedencentral                   gpt-4o-mini-finetune                             OpenAI.Standard.gpt-4o-mini-finetune     500      0        500 Count
+ swedencentral                   gpt-4o-mini-finetune                       OpenAI.GlobalStandard.gpt-4o-mini-finetune     500      0        500 Count
+ swedencentral                              gpt-4-32k                                        OpenAI.Standard.gpt-4-32k      80      0         80 Count
+ swedencentral                                   gptv                                             OpenAI.Standard.gptv      30      0         30 Count
+ swedencentral                                  gpt-4                                         OpenAI.GlobalBatch.gpt-4   30000      0      30000 Count
+ swedencentral                            gpt-4-turbo                                   OpenAI.GlobalBatch.gpt-4-turbo   80000      0      80000 Count
+ swedencentral                                 gpt-4o                                        OpenAI.GlobalBatch.gpt-4o  200000      0     200000 Count
+ swedencentral                            gpt-4o-mini                                   OpenAI.GlobalBatch.gpt-4o-mini 1000000      0    1000000 Count
+ swedencentral                                    CUA                                        OpenAI.GlobalStandard.CUA     450      0        450 Count
+ swedencentral                   gpt-4o-audio-preview                          OpenAI.Provisioned.gpt-4o-audio-preview       0      0          0 Count
+ swedencentral                                 gpt-4o                                           OpenAI.Standard.gpt-4o     261    111        150 Count
+ swedencentral                            gpt-4o-mini                                      OpenAI.Standard.gpt-4o-mini     450      0        450 Count
+ swedencentral                                 gpt-4o                                     OpenAI.GlobalStandard.gpt-4o     450      0        450 Count
+ swedencentral                            gpt-4o-mini                                OpenAI.GlobalStandard.gpt-4o-mini    2000   2000          0 Count
+ swedencentral                gpt-4o-realtime-preview                    OpenAI.GlobalStandard.gpt-4o-realtime-preview       6      0          6 Count
+ swedencentral           gpt-4o-mini-realtime-preview               OpenAI.GlobalStandard.gpt-4o-mini-realtime-preview       6      6          0 Count
+ swedencentral                   gpt-4o-audio-preview                       OpenAI.GlobalStandard.gpt-4o-audio-preview   30000      0      30000 Count
+ swedencentral                                 gpt-4o                                   OpenAI.DataZoneStandard.gpt-4o     300      0        300 Count
+ swedencentral                            gpt-4o-mini                              OpenAI.DataZoneStandard.gpt-4o-mini    1000      0       1000 Count
+ swedencentral                                 gpt-4o                                      OpenAI.DataZoneBatch.gpt-4o   30000      0      30000 Count
+ swedencentral                            gpt-4o-mini                                 OpenAI.DataZoneBatch.gpt-4o-mini  100000      0     100000 Count
+ swedencentral                      gpt-4o-transcribe                          OpenAI.GlobalStandard.gpt-4o-transcribe     400      0        400 Count
+ swedencentral                 gpt-4o-mini-transcribe                     OpenAI.GlobalStandard.gpt-4o-mini-transcribe     600      0        600 Count
+ swedencentral                           gpt-35-turbo                                     OpenAI.Standard.gpt-35-turbo     180      0        180 Count
+ swedencentral                  gpt-35-turbo-finetune                            OpenAI.Standard.gpt-35-turbo-finetune     500      0        500 Count
+ swedencentral                  gpt-35-turbo-instruct                            OpenAI.Standard.gpt-35-turbo-instruct     240      0        240 Count
+ swedencentral             gpt-35-turbo-1106-finetune                       OpenAI.Standard.gpt-35-turbo-1106-finetune     500      0        500 Count
+ swedencentral             gpt-35-turbo-0125-finetune                       OpenAI.Standard.gpt-35-turbo-0125-finetune     500      0        500 Count
+ swedencentral                           gpt-35-turbo                                  OpenAI.GlobalBatch.gpt-35-turbo 1000000      0    1000000 Count
+ swedencentral                            babbage-002                                      OpenAI.Standard.babbage-002     240      0        240 Count
+ swedencentral                   babbage-002-finetune                             OpenAI.Standard.babbage-002-finetune     250      0        250 Count
+ swedencentral                            davinci-002                                      OpenAI.Standard.davinci-002     240      0        240 Count
+ swedencentral                   davinci-002-finetune                             OpenAI.Standard.davinci-002-finetune     250      0        250 Count
+ swedencentral                 text-embedding-ada-002                           OpenAI.Standard.text-embedding-ada-002     350     51        299 Count
+ swedencentral                 text-embedding-ada-002                     OpenAI.GlobalStandard.text-embedding-ada-002    1000      0       1000 Count
+ swedencentral                 text-embedding-3-large                           OpenAI.Standard.text-embedding-3-large     350      0        350 Count
+ swedencentral                 text-embedding-3-small                     OpenAI.GlobalStandard.text-embedding-3-small    1000      0       1000 Count
+ swedencentral                 text-embedding-3-large                     OpenAI.GlobalStandard.text-embedding-3-large    1000      0       1000 Count
+ swedencentral                                     o1                                               OpenAI.Standard.o1      50      0         50 Count
+ swedencentral                                     o1                                         OpenAI.GlobalStandard.o1     500      0        500 Count
+ swedencentral                                o1-mini                                    OpenAI.GlobalStandard.o1-mini     500      0        500 Count
+ swedencentral                                     o1                                       OpenAI.DataZoneStandard.o1     100      0        100 Count
+ swedencentral                                o3-mini                                    OpenAI.GlobalStandard.o3-mini     500      0        500 Count
+ swedencentral                                     o3                                         OpenAI.GlobalStandard.o3    1000    150        850 Count
+ swedencentral                                     o3                                            OpenAI.GlobalBatch.o3  100000      0     100000 Count
+ swedencentral                                     o3                                          OpenAI.DataZoneBatch.o3  100000      0     100000 Count
+ swedencentral                                o3-mini                                       OpenAI.GlobalBatch.o3-mini 1000000      0    1000000 Count
+ swedencentral                                 o3-pro                                     OpenAI.GlobalStandard.o3-pro     160    100         60 Count
+ swedencentral                                     o3                                       OpenAI.DataZoneStandard.o3     300      0        300 Count
+ swedencentral                                o3-mini                                  OpenAI.DataZoneStandard.o3-mini     200      0        200 Count
+ swedencentral                            ModelRouter                                OpenAI.GlobalStandard.ModelRouter     250    250          0 Count
+ swedencentral                            ModelRouter                              OpenAI.DataZoneStandard.ModelRouter     150      0        150 Count
+ swedencentral                             codex-mini                                 OpenAI.GlobalStandard.codex-mini    1000      0       1000 Count
+ swedencentral                                   sora                                       OpenAI.GlobalStandard.sora      60      0         60 Count
+ swedencentral                                 sora-2                                     OpenAI.GlobalStandard.sora-2      60      0         60 Count
+ swedencentral                                o4-mini                                    OpenAI.GlobalStandard.o4-mini    1000      0       1000 Count
+ swedencentral                                o4-mini                                          OpenAI.Standard.o4-mini    1000      0       1000 Count
+ swedencentral                       o4-mini-finetune                           OpenAI.GlobalStandard.o4-mini-finetune     500      0        500 Count
+ swedencentral                       o4-mini-finetune                            OpenAI.DeveloperTier.o4-mini-finetune     250      0        250 Count
+ swedencentral                       o4-mini-finetune                                 OpenAI.Standard.o4-mini-finetune     500      0        500 Count
+ swedencentral                                o4-mini                                       OpenAI.GlobalBatch.o4-mini  200000      0     200000 Count
+ swedencentral                                o4-mini                                     OpenAI.DataZoneBatch.o4-mini   30000      0      30000 Count
+ swedencentral                                o4-mini                                  OpenAI.DataZoneStandard.o4-mini     300      0        300 Count
+ swedencentral                                 gpt4.1                                     OpenAI.GlobalStandard.gpt4.1    1000      0       1000 Count
+ swedencentral                                 gpt4.1                                           OpenAI.Standard.gpt4.1    1079     79       1000 Count
+ swedencentral                                 gpt4.1                                   OpenAI.DataZoneStandard.gpt4.1     300      0        300 Count
+ swedencentral                        gpt4.1-finetune                            OpenAI.GlobalStandard.gpt4.1-finetune     250      0        250 Count
+ swedencentral                        gpt4.1-finetune                                  OpenAI.Standard.gpt4.1-finetune     250      0        250 Count
+ swedencentral                        gpt4.1-finetune                             OpenAI.DeveloperTier.gpt4.1-finetune     250      0        250 Count
+ swedencentral                   gpt4.1-mini-finetune                       OpenAI.GlobalStandard.gpt4.1-mini-finetune     500      0        500 Count
+ swedencentral                   gpt4.1-mini-finetune                             OpenAI.Standard.gpt4.1-mini-finetune     500      0        500 Count
+ swedencentral                   gpt4.1-mini-finetune                        OpenAI.DeveloperTier.gpt4.1-mini-finetune     500      0        500 Count
+ swedencentral                   gpt4.1-nano-finetune                       OpenAI.GlobalStandard.gpt4.1-nano-finetune     500      0        500 Count
+ swedencentral                   gpt4.1-nano-finetune                             OpenAI.Standard.gpt4.1-nano-finetune     500      0        500 Count
+ swedencentral                   gpt4.1-nano-finetune                        OpenAI.DeveloperTier.gpt4.1-nano-finetune     500      0        500 Count
+ swedencentral                            gpt4.1-mini                                OpenAI.GlobalStandard.gpt4.1-mini    5000      0       5000 Count
+ swedencentral                            gpt4.1-mini                                      OpenAI.Standard.gpt4.1-mini    5120    120       5000 Count
+ swedencentral                           gpt-4.1-mini                                  OpenAI.GlobalBatch.gpt-4.1-mini 1000000      0    1000000 Count
+ swedencentral                            gpt4.1-mini                              OpenAI.DataZoneStandard.gpt4.1-mini    2000      0       2000 Count
+ swedencentral                            gpt4.1-nano                                OpenAI.GlobalStandard.gpt4.1-nano    5000      0       5000 Count
+ swedencentral                            gpt4.1-nano                              OpenAI.DataZoneStandard.gpt4.1-nano    2000      0       2000 Count
+ swedencentral                                gpt-4.1                                       OpenAI.GlobalBatch.gpt-4.1  200000      0     200000 Count
+ swedencentral                                gpt-4.1                                     OpenAI.DataZoneBatch.gpt-4.1   30000      0      30000 Count
+ swedencentral                           gpt-4.1-nano                                  OpenAI.GlobalBatch.gpt-4.1-nano  200000      0     200000 Count
+ swedencentral                           gpt-4.1-mini                                OpenAI.DataZoneBatch.gpt-4.1-mini  100000      0     100000 Count
+ swedencentral                           gpt-4.1-nano                                OpenAI.DataZoneBatch.gpt-4.1-nano   30000      0      30000 Count
+ swedencentral                            gpt-image-1                                OpenAI.GlobalStandard.gpt-image-1       3      0          3 Count
+ swedencentral                       gpt-image-1-mini                           OpenAI.GlobalStandard.gpt-image-1-mini       4      0          4 Count
+ swedencentral                                  gpt-5                                      OpenAI.GlobalStandard.gpt-5    1000    504        496 Count
+ swedencentral                             gpt-5-chat                                 OpenAI.GlobalStandard.gpt-5-chat    1000      0       1000 Count
+ swedencentral                             gpt-5-mini                                 OpenAI.GlobalStandard.gpt-5-mini    1000      0       1000 Count
+ swedencentral                             gpt-5-nano                                 OpenAI.GlobalStandard.gpt-5-nano    5000      0       5000 Count
+ swedencentral                                  gpt-5                                    OpenAI.DataZoneStandard.gpt-5     300      0        300 Count
+ swedencentral                             gpt-5-mini                               OpenAI.DataZoneStandard.gpt-5-mini     300    300          0 Count
+ swedencentral                             gpt-5-nano                               OpenAI.DataZoneStandard.gpt-5-nano    2000      0       2000 Count
+ swedencentral                              gpt-5-pro                                  OpenAI.GlobalStandard.gpt-5-pro     160      0        160 Count
+ swedencentral                                  gpt-5                                         OpenAI.GlobalBatch.gpt-5  200000      0     200000 Count
+ swedencentral                              gpt-audio                                  OpenAI.GlobalStandard.gpt-audio   30000      0      30000 Count
+ swedencentral                           gpt-realtime                               OpenAI.GlobalStandard.gpt-realtime      10      0         10 Count
+ swedencentral                            gpt-5-codex                                OpenAI.GlobalStandard.gpt-5-codex    1000      0       1000 Count
+ swedencentral                         gpt-audio-mini                             OpenAI.GlobalStandard.gpt-audio-mini      20      0         20 Count
+ swedencentral                      gpt-realtime-mini                          OpenAI.GlobalStandard.gpt-realtime-mini      20      0         20 Count
+ swedencentral              gpt-4o-transcribe-diarize                  OpenAI.GlobalStandard.gpt-4o-transcribe-diarize     400      0        400 Count
+ swedencentral                           gpt-5.1-chat                               OpenAI.GlobalStandard.gpt-5.1-chat    1000      0       1000 Count
+ swedencentral                                gpt-5.1                                    OpenAI.GlobalStandard.gpt-5.1    1000      0       1000 Count
+ swedencentral                                gpt-5.1                                  OpenAI.DataZoneStandard.gpt-5.1     300      0        300 Count
+ swedencentral                     gpt-5.1-codex-mini                         OpenAI.GlobalStandard.gpt-5.1-codex-mini    1000      0       1000 Count
+ swedencentral                          gpt-5.1-codex                              OpenAI.GlobalStandard.gpt-5.1-codex    1000      0       1000 Count
+ swedencentral                           AccountCount                                       AIServices.S0.AccountCount     100      1         99 Count
+ swedencentral                                   MaaS                                   AIServices.GlobalStandard.MaaS     600      0        600 Count
+ swedencentral                  Ministral-3B-finetune                  AIServices.GlobalStandard.Ministral-3B-finetune    1000      0       1000 Count
+ swedencentral                            DeepSeek-R1                            AIServices.GlobalStandard.DeepSeek-R1    1000      0       1000 Count
+ swedencentral                       DeepSeek-R1-0528                       AIServices.GlobalStandard.DeepSeek-R1-0528    1000      0       1000 Count
+ swedencentral                       DeepSeek-V3-0324                       AIServices.GlobalStandard.DeepSeek-V3-0324    1000      0       1000 Count
+ swedencentral                          DeepSeek-V3.1                          AIServices.GlobalStandard.DeepSeek-V3.1    1000      0       1000 Count
+ swedencentral Llama-4-Maverick-17B-128E-Instruct-FP8 AIServices.GlobalStandard.Llama-4-Maverick-17B-128E-Instruct-FP8     250      0        250 Count
+ swedencentral                 Llama-3.3-70B-Instruct                 AIServices.GlobalStandard.Llama-3.3-70B-Instruct     250      0        250 Count
+ swedencentral                       Cohere-Command-A                       AIServices.GlobalStandard.Cohere-Command-A     100      0        100 Count
+ swedencentral                            Embed-V-4-0                            AIServices.GlobalStandard.Embed-V-4-0     100      0        100 Count
+ swedencentral                           gpt-oss-120b                           AIServices.GlobalStandard.gpt-oss-120b    5000      0       5000 Count
+ swedencentral                              MAI-DS-R1                              AIServices.GlobalStandard.MAI-DS-R1    1000      0       1000 Count
+ swedencentral                           FLUX-1.1-pro                           AIServices.GlobalStandard.FLUX-1.1-pro      30      0         30 Count
+ swedencentral                           FLUX-1.1-pro                         AIServices.DataZoneStandard.FLUX-1.1-pro      30      0         30 Count
+ swedencentral                     FLUX.1-Kontext-pro                     AIServices.GlobalStandard.FLUX.1-Kontext-pro      30      0         30 Count
+ swedencentral                     FLUX.1-Kontext-pro                   AIServices.DataZoneStandard.FLUX.1-Kontext-pro      30      0         30 Count
+ swedencentral               mistral-document-ai-2505               AIServices.GlobalStandard.mistral-document-ai-2505      60      0         60 Count
+ swedencentral               mistral-document-ai-2505             AIServices.DataZoneStandard.mistral-document-ai-2505      60      0         60 Count
+ swedencentral                                 grok-3                                 AIServices.GlobalStandard.grok-3    1000      0       1000 Count
+ swedencentral                            grok-3-mini                            AIServices.GlobalStandard.grok-3-mini    1000      0       1000 Count
+ swedencentral                  grok-4-fast-reasoning                  AIServices.GlobalStandard.grok-4-fast-reasoning    1000      0       1000 Count
+ swedencentral              grok-4-fast-non-reasoning              AIServices.GlobalStandard.grok-4-fast-non-reasoning    1000      0       1000 Count
+ swedencentral                      claude-sonnet-4-5                      AIServices.GlobalStandard.claude-sonnet-4-5    1000      0       1000 Count
+ swedencentral                       claude-haiku-4-5                       AIServices.GlobalStandard.claude-haiku-4-5    1000      0       1000 Count
+ swedencentral                        claude-opus-4-1                        AIServices.GlobalStandard.claude-opus-4-1    1000      0       1000 Count
+ swedencentral                           AccountCount                                                     AccountCount     200      3        197 Count
+northcentralus              OpenAI.ProvisionedManaged                                        OpenAI.ProvisionedManaged       0      0          0 Count
+northcentralus        OpenAI.GlobalProvisionedManaged                                  OpenAI.GlobalProvisionedManaged       0      0          0 Count
+northcentralus                            Deployments                                     OpenAI.FineTuned.Deployments      10      0         10 Count
+northcentralus                           AccountCount                                           OpenAI.S0.AccountCount      30      2         28 Count
+northcentralus                                whisper                                          OpenAI.Standard.whisper       3      0          3 Count
+northcentralus                                    tts                                              OpenAI.Standard.tts       3      0          3 Count
+northcentralus                                 tts-hd                                           OpenAI.Standard.tts-hd       3      0          3 Count
+northcentralus      OpenAI.DataZoneProvisionedManaged                                OpenAI.DataZoneProvisionedManaged       0      0          0 Count
+northcentralus                           gpt-35-turbo                                     OpenAI.Standard.gpt-35-turbo      60      0         60 Count
+northcentralus                  gpt-35-turbo-finetune                            OpenAI.Standard.gpt-35-turbo-finetune     500      0        500 Count
+northcentralus             gpt-35-turbo-1106-finetune                       OpenAI.Standard.gpt-35-turbo-1106-finetune     500      0        500 Count
+northcentralus             gpt-35-turbo-0125-finetune                       OpenAI.Standard.gpt-35-turbo-0125-finetune     500      0        500 Count
+northcentralus                           gpt-35-turbo                                  OpenAI.GlobalBatch.gpt-35-turbo 1000000      0    1000000 Count
+northcentralus                                  gpt-4                                            OpenAI.Standard.gpt-4      40      0         40 Count
+northcentralus                            gpt-4-turbo                                      OpenAI.Standard.gpt-4-turbo      80      0         80 Count
+northcentralus                  gpt-4-turbo-2024-0409                      OpenAI.GlobalStandard.gpt-4-turbo-2024-0409     450      0        450 Count
+northcentralus                         gpt-4-finetune                                   OpenAI.Standard.gpt-4-finetune     100      0        100 Count
+northcentralus                        gpt-4o-finetune                                  OpenAI.Standard.gpt-4o-finetune     250      0        250 Count
+northcentralus                        gpt-4o-finetune                            OpenAI.GlobalStandard.gpt-4o-finetune     250      0        250 Count
+northcentralus                   gpt-4o-mini-finetune                             OpenAI.Standard.gpt-4o-mini-finetune     500      0        500 Count
+northcentralus                   gpt-4o-mini-finetune                       OpenAI.GlobalStandard.gpt-4o-mini-finetune     500      0        500 Count
+northcentralus                                  gpt-4                                         OpenAI.GlobalBatch.gpt-4   30000      0      30000 Count
+northcentralus                            gpt-4-turbo                                   OpenAI.GlobalBatch.gpt-4-turbo   80000      0      80000 Count
+northcentralus                                 gpt-4o                                        OpenAI.GlobalBatch.gpt-4o  200000      0     200000 Count
+northcentralus                            gpt-4o-mini                                   OpenAI.GlobalBatch.gpt-4o-mini 1000000      0    1000000 Count
+northcentralus                   gpt-4o-audio-preview                          OpenAI.Provisioned.gpt-4o-audio-preview       0      0          0 Count
+northcentralus                                 gpt-4o                                           OpenAI.Standard.gpt-4o     150      0        150 Count
+northcentralus                            gpt-4o-mini                                      OpenAI.Standard.gpt-4o-mini     450      0        450 Count
+northcentralus                                 gpt-4o                                     OpenAI.GlobalStandard.gpt-4o     450    450          0 Count
+northcentralus                            gpt-4o-mini                                OpenAI.GlobalStandard.gpt-4o-mini    2000      0       2000 Count
+northcentralus                                 gpt-4o                                   OpenAI.DataZoneStandard.gpt-4o     300      0        300 Count
+northcentralus                            gpt-4o-mini                              OpenAI.DataZoneStandard.gpt-4o-mini    1000      0       1000 Count
+northcentralus                                 gpt-4o                                      OpenAI.DataZoneBatch.gpt-4o   30000      0      30000 Count
+northcentralus                            gpt-4o-mini                                 OpenAI.DataZoneBatch.gpt-4o-mini  100000      0     100000 Count
+northcentralus                            babbage-002                                      OpenAI.Standard.babbage-002     240      0        240 Count
+northcentralus                   babbage-002-finetune                             OpenAI.Standard.babbage-002-finetune     250      0        250 Count
+northcentralus                 text-embedding-ada-002                           OpenAI.Standard.text-embedding-ada-002     350    350          0 Count
+northcentralus                 text-embedding-ada-002                     OpenAI.GlobalStandard.text-embedding-ada-002    1000      0       1000 Count
+northcentralus                            davinci-002                                      OpenAI.Standard.davinci-002     240      0        240 Count
+northcentralus                   davinci-002-finetune                             OpenAI.Standard.davinci-002-finetune     250      0        250 Count
+northcentralus                 text-embedding-3-small                     OpenAI.GlobalStandard.text-embedding-3-small    1000      0       1000 Count
+northcentralus                 text-embedding-3-large                     OpenAI.GlobalStandard.text-embedding-3-large    1000      0       1000 Count
+northcentralus                                     o1                                               OpenAI.Standard.o1      50      0         50 Count
+northcentralus                                     o1                                         OpenAI.GlobalStandard.o1     500      0        500 Count
+northcentralus                                o1-mini                                    OpenAI.GlobalStandard.o1-mini     500      0        500 Count
+northcentralus                                     o1                                       OpenAI.DataZoneStandard.o1     100      0        100 Count
+northcentralus                                o3-mini                                    OpenAI.GlobalStandard.o3-mini     500      0        500 Count
+northcentralus                                     o3                                         OpenAI.GlobalStandard.o3    1000      0       1000 Count
+northcentralus                                     o3                                            OpenAI.GlobalBatch.o3  100000      0     100000 Count
+northcentralus                                     o3                                          OpenAI.DataZoneBatch.o3  100000      0     100000 Count
+northcentralus                                o3-mini                                       OpenAI.GlobalBatch.o3-mini 1000000      0    1000000 Count
+northcentralus                                o3-mini                                     OpenAI.DataZoneBatch.o3-mini  100000      0     100000 Count
+northcentralus                                     o3                                       OpenAI.DataZoneStandard.o3     300      0        300 Count
+northcentralus                                o3-mini                                  OpenAI.DataZoneStandard.o3-mini     200      0        200 Count
+northcentralus                                o4-mini                                    OpenAI.GlobalStandard.o4-mini    1000      0       1000 Count
+northcentralus                                o4-mini                                          OpenAI.Standard.o4-mini    1000      0       1000 Count
+northcentralus                       o4-mini-finetune                           OpenAI.GlobalStandard.o4-mini-finetune     500      0        500 Count
+northcentralus                       o4-mini-finetune                            OpenAI.DeveloperTier.o4-mini-finetune     250      0        250 Count
+northcentralus                       o4-mini-finetune                                 OpenAI.Standard.o4-mini-finetune     500      0        500 Count
+northcentralus                                o4-mini                                       OpenAI.GlobalBatch.o4-mini  200000      0     200000 Count
+northcentralus                                o4-mini                                     OpenAI.DataZoneBatch.o4-mini   30000      0      30000 Count
+northcentralus                                o4-mini                                  OpenAI.DataZoneStandard.o4-mini     300      0        300 Count
+northcentralus                                 gpt4.1                                     OpenAI.GlobalStandard.gpt4.1    1000      0       1000 Count
+northcentralus                                 gpt4.1                                           OpenAI.Standard.gpt4.1    1000      0       1000 Count
+northcentralus                                 gpt4.1                                   OpenAI.DataZoneStandard.gpt4.1     300      0        300 Count
+northcentralus                        gpt4.1-finetune                            OpenAI.GlobalStandard.gpt4.1-finetune     250      0        250 Count
+northcentralus                        gpt4.1-finetune                                  OpenAI.Standard.gpt4.1-finetune     250      0        250 Count
+northcentralus                        gpt4.1-finetune                             OpenAI.DeveloperTier.gpt4.1-finetune     250      0        250 Count
+northcentralus                   gpt4.1-mini-finetune                       OpenAI.GlobalStandard.gpt4.1-mini-finetune     500      0        500 Count
+northcentralus                   gpt4.1-mini-finetune                             OpenAI.Standard.gpt4.1-mini-finetune     500      0        500 Count
+northcentralus                   gpt4.1-mini-finetune                        OpenAI.DeveloperTier.gpt4.1-mini-finetune     500      0        500 Count
+northcentralus                   gpt4.1-nano-finetune                       OpenAI.GlobalStandard.gpt4.1-nano-finetune     500      0        500 Count
+northcentralus                   gpt4.1-nano-finetune                             OpenAI.Standard.gpt4.1-nano-finetune     500      0        500 Count
+northcentralus                   gpt4.1-nano-finetune                        OpenAI.DeveloperTier.gpt4.1-nano-finetune     500      0        500 Count
+northcentralus                            gpt4.1-mini                                OpenAI.GlobalStandard.gpt4.1-mini    5000      0       5000 Count
+northcentralus                            gpt4.1-mini                                      OpenAI.Standard.gpt4.1-mini    5240    240       5000 Count
+northcentralus                           gpt-4.1-mini                                  OpenAI.GlobalBatch.gpt-4.1-mini 1000000      0    1000000 Count
+northcentralus                            gpt4.1-mini                              OpenAI.DataZoneStandard.gpt4.1-mini    2000      0       2000 Count
+northcentralus                            gpt4.1-nano                                OpenAI.GlobalStandard.gpt4.1-nano    5000      0       5000 Count
+northcentralus                            gpt4.1-nano                              OpenAI.DataZoneStandard.gpt4.1-nano    2000      0       2000 Count
+northcentralus                                gpt-4.1                                       OpenAI.GlobalBatch.gpt-4.1  200000      0     200000 Count
+northcentralus                                gpt-4.1                                     OpenAI.DataZoneBatch.gpt-4.1   30000      0      30000 Count
+northcentralus                           gpt-4.1-nano                                  OpenAI.GlobalBatch.gpt-4.1-nano  200000      0     200000 Count
+northcentralus                           gpt-4.1-mini                                OpenAI.DataZoneBatch.gpt-4.1-mini  100000      0     100000 Count
+northcentralus                           gpt-4.1-nano                                OpenAI.DataZoneBatch.gpt-4.1-nano   30000      0      30000 Count
+northcentralus                                  gpt-5                                      OpenAI.GlobalStandard.gpt-5    1000      0       1000 Count
+northcentralus                             gpt-5-mini                                 OpenAI.GlobalStandard.gpt-5-mini    1000      0       1000 Count
+northcentralus                             gpt-5-nano                                 OpenAI.GlobalStandard.gpt-5-nano    5000      0       5000 Count
+northcentralus                                  gpt-5                                    OpenAI.DataZoneStandard.gpt-5     300      0        300 Count
+northcentralus                             gpt-5-mini                               OpenAI.DataZoneStandard.gpt-5-mini     300      0        300 Count
+northcentralus                             gpt-5-nano                               OpenAI.DataZoneStandard.gpt-5-nano    2000      0       2000 Count
+northcentralus                                  gpt-5                                         OpenAI.GlobalBatch.gpt-5  200000      0     200000 Count
+northcentralus                                  gpt-5                                       OpenAI.DataZoneBatch.gpt-5  200000      0     200000 Count
+northcentralus                           AccountCount                                       AIServices.S0.AccountCount     100      0        100 Count
+northcentralus                                   MaaS                                   AIServices.GlobalStandard.MaaS     600      0        600 Count
+northcentralus                  Ministral-3B-finetune                  AIServices.GlobalStandard.Ministral-3B-finetune    1000      0       1000 Count
+northcentralus                            DeepSeek-R1                            AIServices.GlobalStandard.DeepSeek-R1    1000      0       1000 Count
+northcentralus                       DeepSeek-R1-0528                       AIServices.GlobalStandard.DeepSeek-R1-0528    1000      0       1000 Count
+northcentralus                       DeepSeek-V3-0324                       AIServices.GlobalStandard.DeepSeek-V3-0324    1000      0       1000 Count
+northcentralus                          DeepSeek-V3.1                          AIServices.GlobalStandard.DeepSeek-V3.1    1000      0       1000 Count
+northcentralus Llama-4-Maverick-17B-128E-Instruct-FP8 AIServices.GlobalStandard.Llama-4-Maverick-17B-128E-Instruct-FP8     250      0        250 Count
+northcentralus                 Llama-3.3-70B-Instruct                 AIServices.GlobalStandard.Llama-3.3-70B-Instruct     250      0        250 Count
+northcentralus                       Cohere-Command-A                       AIServices.GlobalStandard.Cohere-Command-A     100      0        100 Count
+northcentralus                            Embed-V-4-0                            AIServices.GlobalStandard.Embed-V-4-0     100      0        100 Count
+northcentralus                           gpt-oss-120b                           AIServices.GlobalStandard.gpt-oss-120b    5000      0       5000 Count
+northcentralus                              MAI-DS-R1                              AIServices.GlobalStandard.MAI-DS-R1    1000      0       1000 Count
+northcentralus                           FLUX-1.1-pro                           AIServices.GlobalStandard.FLUX-1.1-pro      30      0         30 Count
+northcentralus                           FLUX-1.1-pro                         AIServices.DataZoneStandard.FLUX-1.1-pro      30      0         30 Count
+northcentralus                     FLUX.1-Kontext-pro                     AIServices.GlobalStandard.FLUX.1-Kontext-pro      30      0         30 Count
+northcentralus                     FLUX.1-Kontext-pro                   AIServices.DataZoneStandard.FLUX.1-Kontext-pro      30      0         30 Count
+northcentralus               mistral-document-ai-2505               AIServices.GlobalStandard.mistral-document-ai-2505      60      0         60 Count
+northcentralus               mistral-document-ai-2505             AIServices.DataZoneStandard.mistral-document-ai-2505      60      0         60 Count
+northcentralus                                 grok-3                                 AIServices.GlobalStandard.grok-3    1000      0       1000 Count
+northcentralus                            grok-3-mini                            AIServices.GlobalStandard.grok-3-mini    1000      0       1000 Count
+northcentralus                                 grok-3                               AIServices.DataZoneStandard.grok-3     300      0        300 Count
+northcentralus                            grok-3-mini                          AIServices.DataZoneStandard.grok-3-mini     300      0        300 Count
+northcentralus                  grok-4-fast-reasoning                  AIServices.GlobalStandard.grok-4-fast-reasoning    1000      0       1000 Count
+northcentralus              grok-4-fast-non-reasoning              AIServices.GlobalStandard.grok-4-fast-non-reasoning    1000      0       1000 Count
+northcentralus                  grok-4-fast-reasoning                AIServices.DataZoneStandard.grok-4-fast-reasoning     300      0        300 Count
+northcentralus              grok-4-fast-non-reasoning            AIServices.DataZoneStandard.grok-4-fast-non-reasoning     300      0        300 Count
+northcentralus                           AccountCount                                                     AccountCount     200      3        197 Count
+       eastus2              OpenAI.ProvisionedManaged                                        OpenAI.ProvisionedManaged       0      0          0 Count
+       eastus2        OpenAI.GlobalProvisionedManaged                                  OpenAI.GlobalProvisionedManaged       0      0          0 Count
+       eastus2                            Deployments                                     OpenAI.FineTuned.Deployments      10      0         10 Count
+       eastus2                           AccountCount                                           OpenAI.S0.AccountCount      30      1         29 Count
+       eastus2                                whisper                                          OpenAI.Standard.whisper       3      1          2 Count
+       eastus2      OpenAI.DataZoneProvisionedManaged                                OpenAI.DataZoneProvisionedManaged       0      0          0 Count
+       eastus2                           gpt-35-turbo                                     OpenAI.Standard.gpt-35-turbo     360      0        360 Count
+       eastus2                  gpt-35-turbo-finetune                            OpenAI.Standard.gpt-35-turbo-finetune     500      0        500 Count
+       eastus2             gpt-35-turbo-1106-finetune                       OpenAI.Standard.gpt-35-turbo-1106-finetune     500      0        500 Count
+       eastus2             gpt-35-turbo-0125-finetune                       OpenAI.Standard.gpt-35-turbo-0125-finetune     500      0        500 Count
+       eastus2                           gpt-35-turbo                                  OpenAI.GlobalBatch.gpt-35-turbo 1000000      0    1000000 Count
+       eastus2                                  gpt-4                                            OpenAI.Standard.gpt-4      40      0         40 Count
+       eastus2                            gpt-4-turbo                                      OpenAI.Standard.gpt-4-turbo       0      0          0 Count
+       eastus2                  gpt-4-turbo-2024-0409                      OpenAI.GlobalStandard.gpt-4-turbo-2024-0409     450      0        450 Count
+       eastus2                        gpt-4o-finetune                                  OpenAI.Standard.gpt-4o-finetune     250      0        250 Count
+       eastus2                        gpt-4o-finetune                            OpenAI.GlobalStandard.gpt-4o-finetune     250      0        250 Count
+       eastus2                   gpt-4o-mini-finetune                       OpenAI.GlobalStandard.gpt-4o-mini-finetune     500      0        500 Count
+       eastus2                                  gpt-4                                         OpenAI.GlobalBatch.gpt-4   30000      0      30000 Count
+       eastus2                            gpt-4-turbo                                   OpenAI.GlobalBatch.gpt-4-turbo   80000      0      80000 Count
+       eastus2                                 gpt-4o                                        OpenAI.GlobalBatch.gpt-4o  200000      0     200000 Count
+       eastus2                            gpt-4o-mini                                   OpenAI.GlobalBatch.gpt-4o-mini 1000000      0    1000000 Count
+       eastus2                                    CUA                                        OpenAI.GlobalStandard.CUA     450    100        350 Count
+       eastus2                   gpt-4o-audio-preview                          OpenAI.Provisioned.gpt-4o-audio-preview       0      0          0 Count
+       eastus2                                 gpt-4o                                           OpenAI.Standard.gpt-4o     230     80        150 Count
+       eastus2                            gpt-4o-mini                                      OpenAI.Standard.gpt-4o-mini     450      0        450 Count
+       eastus2                                 gpt-4o                                     OpenAI.GlobalStandard.gpt-4o     450    420         30 Count
+       eastus2                            gpt-4o-mini                                OpenAI.GlobalStandard.gpt-4o-mini    2000   1010        990 Count
+       eastus2                gpt-4o-realtime-preview                    OpenAI.GlobalStandard.gpt-4o-realtime-preview       6      6          0 Count
+       eastus2           gpt-4o-mini-realtime-preview               OpenAI.GlobalStandard.gpt-4o-mini-realtime-preview       6      0          6 Count
+       eastus2                   gpt-4o-audio-preview                       OpenAI.GlobalStandard.gpt-4o-audio-preview   30000  15740      14260 Count
+       eastus2              gpt-4o-mini-audio-preview                  OpenAI.GlobalStandard.gpt-4o-mini-audio-preview   30000      0      30000 Count
+       eastus2                                 gpt-4o                                   OpenAI.DataZoneStandard.gpt-4o     300    300          0 Count
+       eastus2                            gpt-4o-mini                              OpenAI.DataZoneStandard.gpt-4o-mini    1000      0       1000 Count
+       eastus2                                 gpt-4o                                      OpenAI.DataZoneBatch.gpt-4o   30000      0      30000 Count
+       eastus2                            gpt-4o-mini                                 OpenAI.DataZoneBatch.gpt-4o-mini  100000 100000          0 Count
+       eastus2                      gpt-4o-transcribe                          OpenAI.GlobalStandard.gpt-4o-transcribe     400    100        300 Count
+       eastus2                 gpt-4o-mini-transcribe                     OpenAI.GlobalStandard.gpt-4o-mini-transcribe     600    100        500 Count
+       eastus2                        gpt-4o-mini-tts                            OpenAI.GlobalStandard.gpt-4o-mini-tts     600      0        600 Count
+       eastus2                 text-embedding-ada-002                           OpenAI.Standard.text-embedding-ada-002     350    150        200 Count
+       eastus2                 text-embedding-ada-002                     OpenAI.GlobalStandard.text-embedding-ada-002    1000    150        850 Count
+       eastus2                 text-embedding-3-small                           OpenAI.Standard.text-embedding-3-small     350    120        230 Count
+       eastus2                 text-embedding-3-large                           OpenAI.Standard.text-embedding-3-large     350      0        350 Count
+       eastus2                 text-embedding-3-small                     OpenAI.GlobalStandard.text-embedding-3-small    1000      0       1000 Count
+       eastus2                 text-embedding-3-large                     OpenAI.GlobalStandard.text-embedding-3-large    1000    280        720 Count
+       eastus2                                     o1                                               OpenAI.Standard.o1      50      0         50 Count
+       eastus2                                     o1                                         OpenAI.GlobalStandard.o1     500    100        400 Count
+       eastus2                                o1-mini                                    OpenAI.GlobalStandard.o1-mini     401      0        401 Count
+       eastus2                                     o1                                       OpenAI.DataZoneStandard.o1     100      0        100 Count
+       eastus2                                o3-mini                                    OpenAI.GlobalStandard.o3-mini     500    100        400 Count
+       eastus2                                     o3                                         OpenAI.GlobalStandard.o3    1000   1000          0 Count
+       eastus2                                     o3                                            OpenAI.GlobalBatch.o3  100000      0     100000 Count
+       eastus2                                     o3                                          OpenAI.DataZoneBatch.o3  100000      0     100000 Count
+       eastus2                                o3-mini                                       OpenAI.GlobalBatch.o3-mini 1000000      0    1000000 Count
+       eastus2                                 o3-pro                                     OpenAI.GlobalStandard.o3-pro     160    160          0 Count
+       eastus2                                o3-mini                                     OpenAI.DataZoneBatch.o3-mini  100000      0     100000 Count
+       eastus2                                     o3                                       OpenAI.DataZoneStandard.o3     300      0        300 Count
+       eastus2                                o3-mini                                  OpenAI.DataZoneStandard.o3-mini     200      0        200 Count
+       eastus2                            ModelRouter                                OpenAI.GlobalStandard.ModelRouter     250   2000      -1750 Count
+       eastus2                            ModelRouter                              OpenAI.DataZoneStandard.ModelRouter     150    100         50 Count
+       eastus2                             codex-mini                                 OpenAI.GlobalStandard.codex-mini    1000    280        720 Count
+       eastus2                                   sora                                             OpenAI.Standard.sora      60     60          0 Count
+       eastus2                                   sora                                       OpenAI.GlobalStandard.sora      60      0         60 Count
+       eastus2                                 sora-2                                     OpenAI.GlobalStandard.sora-2      60     60          0 Count
+       eastus2                                o4-mini                                    OpenAI.GlobalStandard.o4-mini    1099    249        850 Count
+       eastus2                                o4-mini                                          OpenAI.Standard.o4-mini    1000      0       1000 Count
+       eastus2                       o4-mini-finetune                           OpenAI.GlobalStandard.o4-mini-finetune     500      0        500 Count
+       eastus2                       o4-mini-finetune                            OpenAI.DeveloperTier.o4-mini-finetune     250      0        250 Count
+       eastus2                       o4-mini-finetune                                 OpenAI.Standard.o4-mini-finetune     500      0        500 Count
+       eastus2                                o4-mini                                       OpenAI.GlobalBatch.o4-mini  200000      0     200000 Count
+       eastus2                                o4-mini                                     OpenAI.DataZoneBatch.o4-mini   30000      0      30000 Count
+       eastus2                                o4-mini                                  OpenAI.DataZoneStandard.o4-mini     300      0        300 Count
+       eastus2                                 gpt4.1                                     OpenAI.GlobalStandard.gpt4.1    1000    280        720 Count
+       eastus2                                 gpt4.1                                           OpenAI.Standard.gpt4.1    1000      0       1000 Count
+       eastus2                                 gpt4.1                                   OpenAI.DataZoneStandard.gpt4.1     300      0        300 Count
+       eastus2                        gpt4.1-finetune                            OpenAI.GlobalStandard.gpt4.1-finetune     250      0        250 Count
+       eastus2                        gpt4.1-finetune                             OpenAI.DeveloperTier.gpt4.1-finetune     250      0        250 Count
+       eastus2                   gpt4.1-mini-finetune                       OpenAI.GlobalStandard.gpt4.1-mini-finetune     500      0        500 Count
+       eastus2                   gpt4.1-mini-finetune                        OpenAI.DeveloperTier.gpt4.1-mini-finetune     500      0        500 Count
+       eastus2                   gpt4.1-nano-finetune                       OpenAI.GlobalStandard.gpt4.1-nano-finetune     500      0        500 Count
+       eastus2                   gpt4.1-nano-finetune                        OpenAI.DeveloperTier.gpt4.1-nano-finetune     500      0        500 Count
+       eastus2                            gpt4.1-mini                                OpenAI.GlobalStandard.gpt4.1-mini    5000    280       4720 Count
+       eastus2                            gpt4.1-mini                                      OpenAI.Standard.gpt4.1-mini    5240    240       5000 Count
+       eastus2                           gpt-4.1-mini                                  OpenAI.GlobalBatch.gpt-4.1-mini 1000000      0    1000000 Count
+       eastus2                            gpt4.1-mini                              OpenAI.DataZoneStandard.gpt4.1-mini    2000      0       2000 Count
+       eastus2                            gpt4.1-nano                                OpenAI.GlobalStandard.gpt4.1-nano    5000   1250       3750 Count
+       eastus2                            gpt4.1-nano                              OpenAI.DataZoneStandard.gpt4.1-nano    2000      0       2000 Count
+       eastus2                                gpt-4.1                                       OpenAI.GlobalBatch.gpt-4.1  200000      0     200000 Count
+       eastus2                                gpt-4.1                                     OpenAI.DataZoneBatch.gpt-4.1   30000      0      30000 Count
+       eastus2                           gpt-4.1-nano                                  OpenAI.GlobalBatch.gpt-4.1-nano  200000      0     200000 Count
+       eastus2                           gpt-4.1-mini                                OpenAI.DataZoneBatch.gpt-4.1-mini  100000      0     100000 Count
+       eastus2                           gpt-4.1-nano                                OpenAI.DataZoneBatch.gpt-4.1-nano   30000      0      30000 Count
+       eastus2                            gpt-image-1                                OpenAI.GlobalStandard.gpt-image-1       3      3          0 Count
+       eastus2                       gpt-image-1-mini                           OpenAI.GlobalStandard.gpt-image-1-mini       4      4          0 Count
+       eastus2                                  gpt-5                                      OpenAI.GlobalStandard.gpt-5    1000    441        559 Count
+       eastus2                             gpt-5-chat                                 OpenAI.GlobalStandard.gpt-5-chat    1000   1000          0 Count
+       eastus2                             gpt-5-mini                                 OpenAI.GlobalStandard.gpt-5-mini    1000      0       1000 Count
+       eastus2                             gpt-5-nano                                 OpenAI.GlobalStandard.gpt-5-nano    5000      0       5000 Count
+       eastus2                                  gpt-5                                    OpenAI.DataZoneStandard.gpt-5     300    300          0 Count
+       eastus2                             gpt-5-mini                               OpenAI.DataZoneStandard.gpt-5-mini     300    300          0 Count
+       eastus2                             gpt-5-nano                               OpenAI.DataZoneStandard.gpt-5-nano    2000      0       2000 Count
+       eastus2                              gpt-5-pro                                  OpenAI.GlobalStandard.gpt-5-pro     160      0        160 Count
+       eastus2                                  gpt-5                                         OpenAI.GlobalBatch.gpt-5  200000      0     200000 Count
+       eastus2                                  gpt-5                                       OpenAI.DataZoneBatch.gpt-5  200000      0     200000 Count
+       eastus2                              gpt-audio                                  OpenAI.GlobalStandard.gpt-audio   30000      0      30000 Count
+       eastus2                           gpt-realtime                               OpenAI.GlobalStandard.gpt-realtime      10     10          0 Count
+       eastus2                            gpt-5-codex                                OpenAI.GlobalStandard.gpt-5-codex    1000   1000          0 Count
+       eastus2                         gpt-audio-mini                             OpenAI.GlobalStandard.gpt-audio-mini      20      0         20 Count
+       eastus2                      gpt-realtime-mini                          OpenAI.GlobalStandard.gpt-realtime-mini      20     20          0 Count
+       eastus2              gpt-4o-transcribe-diarize                  OpenAI.GlobalStandard.gpt-4o-transcribe-diarize     400      0        400 Count
+       eastus2                                gpt-5.1                                    OpenAI.GlobalStandard.gpt-5.1    1000      0       1000 Count
+       eastus2                                gpt-5.1                                  OpenAI.DataZoneStandard.gpt-5.1     300      0        300 Count
+       eastus2                           gpt-5.1-chat                               OpenAI.GlobalStandard.gpt-5.1-chat    1000      0       1000 Count
+       eastus2                          gpt-5.1-codex                              OpenAI.GlobalStandard.gpt-5.1-codex    1000    500        500 Count
+       eastus2                     gpt-5.1-codex-mini                         OpenAI.GlobalStandard.gpt-5.1-codex-mini    1000      0       1000 Count
+       eastus2                           AccountCount                                       AIServices.S0.AccountCount     100      4         96 Count
+       eastus2                                   MaaS                                   AIServices.GlobalStandard.MaaS     600      2        598 Count
+       eastus2                  Ministral-3B-finetune                  AIServices.GlobalStandard.Ministral-3B-finetune    1000      0       1000 Count
+       eastus2                            DeepSeek-R1                            AIServices.GlobalStandard.DeepSeek-R1    1000      0       1000 Count
+       eastus2                       DeepSeek-R1-0528                       AIServices.GlobalStandard.DeepSeek-R1-0528    1000      0       1000 Count
+       eastus2                       DeepSeek-V3-0324                       AIServices.GlobalStandard.DeepSeek-V3-0324    1000      0       1000 Count
+       eastus2                          DeepSeek-V3.1                          AIServices.GlobalStandard.DeepSeek-V3.1    1000      0       1000 Count
+       eastus2 Llama-4-Maverick-17B-128E-Instruct-FP8 AIServices.GlobalStandard.Llama-4-Maverick-17B-128E-Instruct-FP8     250      0        250 Count
+       eastus2                 Llama-3.3-70B-Instruct                 AIServices.GlobalStandard.Llama-3.3-70B-Instruct     250      0        250 Count
+       eastus2                       Cohere-Command-A                       AIServices.GlobalStandard.Cohere-Command-A     100      0        100 Count
+       eastus2                            Embed-V-4-0                            AIServices.GlobalStandard.Embed-V-4-0     100      0        100 Count
+       eastus2                           gpt-oss-120b                           AIServices.GlobalStandard.gpt-oss-120b    5000    500       4500 Count
+       eastus2                              MAI-DS-R1                              AIServices.GlobalStandard.MAI-DS-R1    1000      0       1000 Count
+       eastus2                           FLUX-1.1-pro                           AIServices.GlobalStandard.FLUX-1.1-pro      30     50        -20 Count
+       eastus2                           FLUX-1.1-pro                         AIServices.DataZoneStandard.FLUX-1.1-pro      30      0         30 Count
+       eastus2                     FLUX.1-Kontext-pro                     AIServices.GlobalStandard.FLUX.1-Kontext-pro      30    100        -70 Count
+       eastus2                     FLUX.1-Kontext-pro                   AIServices.DataZoneStandard.FLUX.1-Kontext-pro      30      0         30 Count
+       eastus2               mistral-document-ai-2505               AIServices.GlobalStandard.mistral-document-ai-2505      60     30         30 Count
+       eastus2               mistral-document-ai-2505             AIServices.DataZoneStandard.mistral-document-ai-2505      60      0         60 Count
+       eastus2                                 grok-3                                 AIServices.GlobalStandard.grok-3    1000      0       1000 Count
+       eastus2                            grok-3-mini                            AIServices.GlobalStandard.grok-3-mini    1000      0       1000 Count
+       eastus2                                 grok-3                               AIServices.DataZoneStandard.grok-3     300      0        300 Count
+       eastus2                            grok-3-mini                          AIServices.DataZoneStandard.grok-3-mini     300      0        300 Count
+       eastus2                  grok-4-fast-reasoning                  AIServices.GlobalStandard.grok-4-fast-reasoning    1000      0       1000 Count
+       eastus2              grok-4-fast-non-reasoning              AIServices.GlobalStandard.grok-4-fast-non-reasoning    1000      0       1000 Count
+       eastus2                  grok-4-fast-reasoning                AIServices.DataZoneStandard.grok-4-fast-reasoning     300      0        300 Count
+       eastus2              grok-4-fast-non-reasoning            AIServices.DataZoneStandard.grok-4-fast-non-reasoning     300      0        300 Count
+       eastus2                      claude-sonnet-4-5                      AIServices.GlobalStandard.claude-sonnet-4-5    1000      0       1000 Count
+       eastus2                       claude-haiku-4-5                       AIServices.GlobalStandard.claude-haiku-4-5    1000      0       1000 Count
+       eastus2                        claude-opus-4-1                        AIServices.GlobalStandard.claude-opus-4-1    1000      0       1000 Count
+       eastus2                           AccountCount                                                     AccountCount     200      5        195 Count
+        westus              OpenAI.ProvisionedManaged                                        OpenAI.ProvisionedManaged       0      0          0 Count
+        westus        OpenAI.GlobalProvisionedManaged                                  OpenAI.GlobalProvisionedManaged       0      0          0 Count
+        westus                            Deployments                                     OpenAI.FineTuned.Deployments      10      0         10 Count
+        westus                           AccountCount                                           OpenAI.S0.AccountCount      30      1         29 Count
+        westus      OpenAI.DataZoneProvisionedManaged                                OpenAI.DataZoneProvisionedManaged       0      0          0 Count
+        westus                            gpt-4-turbo                                      OpenAI.Standard.gpt-4-turbo      80      0         80 Count
+        westus                  gpt-4-turbo-2024-0409                      OpenAI.GlobalStandard.gpt-4-turbo-2024-0409     250      0        250 Count
+        westus                        gpt-4o-finetune                            OpenAI.GlobalStandard.gpt-4o-finetune     250      0        250 Count
+        westus                   gpt-4o-mini-finetune                       OpenAI.GlobalStandard.gpt-4o-mini-finetune     500      0        500 Count
+        westus                                   gptv                                             OpenAI.Standard.gptv       0      0          0 Count
+        westus                                  gpt-4                                         OpenAI.GlobalBatch.gpt-4   30000      0      30000 Count
+        westus                            gpt-4-turbo                                   OpenAI.GlobalBatch.gpt-4-turbo   80000      0      80000 Count
+        westus                                 gpt-4o                                        OpenAI.GlobalBatch.gpt-4o  200000      0     200000 Count
+        westus                            gpt-4o-mini                                   OpenAI.GlobalBatch.gpt-4o-mini 1000000      0    1000000 Count
+        westus                   gpt-4o-audio-preview                          OpenAI.Provisioned.gpt-4o-audio-preview       0      0          0 Count
+        westus                                 gpt-4o                                           OpenAI.Standard.gpt-4o     180     30        150 Count
+        westus                            gpt-4o-mini                                      OpenAI.Standard.gpt-4o-mini     450      0        450 Count
+        westus                                 gpt-4o                                     OpenAI.GlobalStandard.gpt-4o     450    450          0 Count
+        westus                            gpt-4o-mini                                OpenAI.GlobalStandard.gpt-4o-mini    2000   2000          0 Count
+        westus                                 gpt-4o                                   OpenAI.DataZoneStandard.gpt-4o     300    300          0 Count
+        westus                            gpt-4o-mini                              OpenAI.DataZoneStandard.gpt-4o-mini    1000      0       1000 Count
+        westus                                 gpt-4o                                      OpenAI.DataZoneBatch.gpt-4o   30000      0      30000 Count
+        westus                            gpt-4o-mini                                 OpenAI.DataZoneBatch.gpt-4o-mini  100000      0     100000 Count
+        westus                           gpt-35-turbo                                     OpenAI.Standard.gpt-35-turbo     300      0        300 Count
+        westus                           gpt-35-turbo                                  OpenAI.GlobalBatch.gpt-35-turbo 1000000      0    1000000 Count
+        westus                 text-embedding-ada-002                           OpenAI.Standard.text-embedding-ada-002     350     50        300 Count
+        westus                 text-embedding-ada-002                     OpenAI.GlobalStandard.text-embedding-ada-002    1000      0       1000 Count
+        westus                 text-embedding-3-small                           OpenAI.Standard.text-embedding-3-small     350      0        350 Count
+        westus                 text-embedding-3-small                     OpenAI.GlobalStandard.text-embedding-3-small    1000      0       1000 Count
+        westus                 text-embedding-3-large                     OpenAI.GlobalStandard.text-embedding-3-large    1000      0       1000 Count
+        westus                                     o1                                               OpenAI.Standard.o1      50      0         50 Count
+        westus                                     o1                                         OpenAI.GlobalStandard.o1     500      0        500 Count
+        westus                                o1-mini                                    OpenAI.GlobalStandard.o1-mini     490      0        490 Count
+        westus                                     o1                                       OpenAI.DataZoneStandard.o1     100      0        100 Count
+        westus                                o3-mini                                    OpenAI.GlobalStandard.o3-mini     500      0        500 Count
+        westus                                     o3                                         OpenAI.GlobalStandard.o3    1000      0       1000 Count
+        westus                                     o3                                            OpenAI.GlobalBatch.o3  100000      0     100000 Count
+        westus                                     o3                                          OpenAI.DataZoneBatch.o3  100000      0     100000 Count
+        westus                                o3-mini                                       OpenAI.GlobalBatch.o3-mini 1000000      0    1000000 Count
+        westus                                o3-mini                                     OpenAI.DataZoneBatch.o3-mini  100000      0     100000 Count
+        westus                                     o3                                       OpenAI.DataZoneStandard.o3     300      0        300 Count
+        westus                                o3-mini                                  OpenAI.DataZoneStandard.o3-mini     200      0        200 Count
+        westus                        o3-DeepResearch                            OpenAI.GlobalStandard.o3-DeepResearch    3000    250       2750 Count
+        westus                                o4-mini                                    OpenAI.GlobalStandard.o4-mini    1010     10       1000 Count
+        westus                                o4-mini                                          OpenAI.Standard.o4-mini    1000      0       1000 Count
+        westus                                o4-mini                                       OpenAI.GlobalBatch.o4-mini  200000      0     200000 Count
+        westus                                o4-mini                                     OpenAI.DataZoneBatch.o4-mini   30000      0      30000 Count
+        westus                                o4-mini                                  OpenAI.DataZoneStandard.o4-mini     300      0        300 Count
+        westus                                 gpt4.1                                     OpenAI.GlobalStandard.gpt4.1    1200    200       1000 Count
+        westus                                 gpt4.1                                           OpenAI.Standard.gpt4.1    1000      0       1000 Count
+        westus                                 gpt4.1                                   OpenAI.DataZoneStandard.gpt4.1     300      0        300 Count
+        westus                        gpt4.1-finetune                            OpenAI.GlobalStandard.gpt4.1-finetune     250      0        250 Count
+        westus                        gpt4.1-finetune                             OpenAI.DeveloperTier.gpt4.1-finetune     250      0        250 Count
+        westus                   gpt4.1-mini-finetune                       OpenAI.GlobalStandard.gpt4.1-mini-finetune     500      0        500 Count
+        westus                   gpt4.1-mini-finetune                        OpenAI.DeveloperTier.gpt4.1-mini-finetune     500      0        500 Count
+        westus                   gpt4.1-nano-finetune                       OpenAI.GlobalStandard.gpt4.1-nano-finetune     500      0        500 Count
+        westus                   gpt4.1-nano-finetune                        OpenAI.DeveloperTier.gpt4.1-nano-finetune     500      0        500 Count
+        westus                            gpt4.1-mini                                OpenAI.GlobalStandard.gpt4.1-mini    5000    250       4750 Count
+        westus                            gpt4.1-mini                                      OpenAI.Standard.gpt4.1-mini    5000      0       5000 Count
+        westus                           gpt-4.1-mini                                  OpenAI.GlobalBatch.gpt-4.1-mini 1000000      0    1000000 Count
+        westus                            gpt4.1-mini                              OpenAI.DataZoneStandard.gpt4.1-mini    2000      0       2000 Count
+        westus                            gpt4.1-nano                                OpenAI.GlobalStandard.gpt4.1-nano    5000      0       5000 Count
+        westus                            gpt4.1-nano                              OpenAI.DataZoneStandard.gpt4.1-nano    2000      0       2000 Count
+        westus                                gpt-4.1                                       OpenAI.GlobalBatch.gpt-4.1  200000      0     200000 Count
+        westus                                gpt-4.1                                     OpenAI.DataZoneBatch.gpt-4.1   30000      0      30000 Count
+        westus                           gpt-4.1-nano                                  OpenAI.GlobalBatch.gpt-4.1-nano  200000      0     200000 Count
+        westus                           gpt-4.1-mini                                OpenAI.DataZoneBatch.gpt-4.1-mini  100000      0     100000 Count
+        westus                           gpt-4.1-nano                                OpenAI.DataZoneBatch.gpt-4.1-nano   30000      0      30000 Count
+        westus                                  gpt-5                                      OpenAI.GlobalStandard.gpt-5    1000      0       1000 Count
+        westus                             gpt-5-mini                                 OpenAI.GlobalStandard.gpt-5-mini    1000      0       1000 Count
+        westus                             gpt-5-nano                                 OpenAI.GlobalStandard.gpt-5-nano    5000      0       5000 Count
+        westus                                  gpt-5                                    OpenAI.DataZoneStandard.gpt-5     300      0        300 Count
+        westus                             gpt-5-mini                               OpenAI.DataZoneStandard.gpt-5-mini     300      0        300 Count
+        westus                             gpt-5-nano                               OpenAI.DataZoneStandard.gpt-5-nano    2000      0       2000 Count
+        westus                                  gpt-5                                         OpenAI.GlobalBatch.gpt-5  200000      0     200000 Count
+        westus                                  gpt-5                                       OpenAI.DataZoneBatch.gpt-5  200000      0     200000 Count
+        westus                           AccountCount                                       AIServices.S0.AccountCount     100      2         98 Count
+        westus                                   MaaS                                   AIServices.GlobalStandard.MaaS     600      1        599 Count
+        westus                  Ministral-3B-finetune                  AIServices.GlobalStandard.Ministral-3B-finetune    1000      0       1000 Count
+        westus                            DeepSeek-R1                            AIServices.GlobalStandard.DeepSeek-R1    1000      0       1000 Count
+        westus                       DeepSeek-R1-0528                       AIServices.GlobalStandard.DeepSeek-R1-0528    1000      0       1000 Count
+        westus                       DeepSeek-V3-0324                       AIServices.GlobalStandard.DeepSeek-V3-0324    1000      0       1000 Count
+        westus                          DeepSeek-V3.1                          AIServices.GlobalStandard.DeepSeek-V3.1    1000      0       1000 Count
+        westus Llama-4-Maverick-17B-128E-Instruct-FP8 AIServices.GlobalStandard.Llama-4-Maverick-17B-128E-Instruct-FP8     250      0        250 Count
+        westus                 Llama-3.3-70B-Instruct                 AIServices.GlobalStandard.Llama-3.3-70B-Instruct     250      0        250 Count
+        westus                       Cohere-Command-A                       AIServices.GlobalStandard.Cohere-Command-A     100      0        100 Count
+        westus                            Embed-V-4-0                            AIServices.GlobalStandard.Embed-V-4-0     100      0        100 Count
+        westus                           gpt-oss-120b                           AIServices.GlobalStandard.gpt-oss-120b    5000      0       5000 Count
+        westus                              MAI-DS-R1                              AIServices.GlobalStandard.MAI-DS-R1    1000      0       1000 Count
+        westus                           FLUX-1.1-pro                           AIServices.GlobalStandard.FLUX-1.1-pro      30      0         30 Count
+        westus                           FLUX-1.1-pro                         AIServices.DataZoneStandard.FLUX-1.1-pro      30      0         30 Count
+        westus                     FLUX.1-Kontext-pro                     AIServices.GlobalStandard.FLUX.1-Kontext-pro      30      0         30 Count
+        westus                     FLUX.1-Kontext-pro                   AIServices.DataZoneStandard.FLUX.1-Kontext-pro      30      0         30 Count
+        westus               mistral-document-ai-2505               AIServices.GlobalStandard.mistral-document-ai-2505      60      0         60 Count
+        westus               mistral-document-ai-2505             AIServices.DataZoneStandard.mistral-document-ai-2505      60      0         60 Count
+        westus                                 grok-3                                 AIServices.GlobalStandard.grok-3    1000      0       1000 Count
+        westus                            grok-3-mini                            AIServices.GlobalStandard.grok-3-mini    1000      0       1000 Count
+        westus                                 grok-3                               AIServices.DataZoneStandard.grok-3     300      0        300 Count
+        westus                            grok-3-mini                          AIServices.DataZoneStandard.grok-3-mini     300      0        300 Count
+        westus                  grok-4-fast-reasoning                  AIServices.GlobalStandard.grok-4-fast-reasoning    1000      0       1000 Count
+        westus              grok-4-fast-non-reasoning              AIServices.GlobalStandard.grok-4-fast-non-reasoning    1000      0       1000 Count
+        westus                  grok-4-fast-reasoning                AIServices.DataZoneStandard.grok-4-fast-reasoning     300      0        300 Count
+        westus              grok-4-fast-non-reasoning            AIServices.DataZoneStandard.grok-4-fast-non-reasoning     300      0        300 Count
+        westus                           AccountCount                                                     AccountCount     200      4        196 Count
+       westus3              OpenAI.ProvisionedManaged                                        OpenAI.ProvisionedManaged       0      0          0 Count
+       westus3        OpenAI.GlobalProvisionedManaged                                  OpenAI.GlobalProvisionedManaged       0      0          0 Count
+       westus3                            Deployments                                     OpenAI.FineTuned.Deployments      10      0         10 Count
+       westus3                           AccountCount                                           OpenAI.S0.AccountCount      30      1         29 Count
+       westus3                                    tts                                              OpenAI.Standard.tts       3      0          3 Count
+       westus3                                 tts-hd                                           OpenAI.Standard.tts-hd       3      0          3 Count
+       westus3      OpenAI.DataZoneProvisionedManaged                                OpenAI.DataZoneProvisionedManaged       0      0          0 Count
+       westus3                           gpt-35-turbo                                     OpenAI.Standard.gpt-35-turbo     300      0        300 Count
+       westus3                           gpt-35-turbo                                  OpenAI.GlobalBatch.gpt-35-turbo 1000000      0    1000000 Count
+       westus3                            gpt-4-turbo                                      OpenAI.Standard.gpt-4-turbo      80      0         80 Count
+       westus3                  gpt-4-turbo-2024-0409                      OpenAI.GlobalStandard.gpt-4-turbo-2024-0409     450      0        450 Count
+       westus3                        gpt-4o-finetune                            OpenAI.GlobalStandard.gpt-4o-finetune     250      0        250 Count
+       westus3                   gpt-4o-mini-finetune                       OpenAI.GlobalStandard.gpt-4o-mini-finetune     500      0        500 Count
+       westus3                                  gpt-4                                         OpenAI.GlobalBatch.gpt-4   30000      0      30000 Count
+       westus3                            gpt-4-turbo                                   OpenAI.GlobalBatch.gpt-4-turbo   80000      0      80000 Count
+       westus3                                 gpt-4o                                        OpenAI.GlobalBatch.gpt-4o  200000      0     200000 Count
+       westus3                            gpt-4o-mini                                   OpenAI.GlobalBatch.gpt-4o-mini 1000000      0    1000000 Count
+       westus3                   gpt-4o-audio-preview                          OpenAI.Provisioned.gpt-4o-audio-preview       0      0          0 Count
+       westus3                                 gpt-4o                                           OpenAI.Standard.gpt-4o     150      0        150 Count
+       westus3                            gpt-4o-mini                                      OpenAI.Standard.gpt-4o-mini     450      0        450 Count
+       westus3                                 gpt-4o                                     OpenAI.GlobalStandard.gpt-4o     450      0        450 Count
+       westus3                            gpt-4o-mini                                OpenAI.GlobalStandard.gpt-4o-mini    2000      0       2000 Count
+       westus3                                 gpt-4o                                   OpenAI.DataZoneStandard.gpt-4o     300      0        300 Count
+       westus3                            gpt-4o-mini                              OpenAI.DataZoneStandard.gpt-4o-mini    1000      0       1000 Count
+       westus3                                 gpt-4o                                      OpenAI.DataZoneBatch.gpt-4o   30000      0      30000 Count
+       westus3                            gpt-4o-mini                                 OpenAI.DataZoneBatch.gpt-4o-mini  100000      0     100000 Count
+       westus3                 text-embedding-ada-002                           OpenAI.Standard.text-embedding-ada-002     350      0        350 Count
+       westus3                 text-embedding-ada-002                     OpenAI.GlobalStandard.text-embedding-ada-002    1000    130        870 Count
+       westus3                 text-embedding-3-large                           OpenAI.Standard.text-embedding-3-large     350      0        350 Count
+       westus3                 text-embedding-3-small                     OpenAI.GlobalStandard.text-embedding-3-small    1000      0       1000 Count
+       westus3                 text-embedding-3-large                     OpenAI.GlobalStandard.text-embedding-3-large    1000      0       1000 Count
+       westus3                                     o1                                               OpenAI.Standard.o1      50      0         50 Count
+       westus3                                     o1                                         OpenAI.GlobalStandard.o1     500      0        500 Count
+       westus3                                o1-mini                                    OpenAI.GlobalStandard.o1-mini     500      0        500 Count
+       westus3                                     o1                                       OpenAI.DataZoneStandard.o1     100      0        100 Count
+       westus3                                o3-mini                                    OpenAI.GlobalStandard.o3-mini     500      0        500 Count
+       westus3                                     o3                                         OpenAI.GlobalStandard.o3    1000      0       1000 Count
+       westus3                                     o3                                            OpenAI.GlobalBatch.o3  100000      0     100000 Count
+       westus3                                     o3                                          OpenAI.DataZoneBatch.o3  100000      0     100000 Count
+       westus3                                o3-mini                                       OpenAI.GlobalBatch.o3-mini 1000000      0    1000000 Count
+       westus3                                o3-mini                                     OpenAI.DataZoneBatch.o3-mini  100000      0     100000 Count
+       westus3                                     o3                                       OpenAI.DataZoneStandard.o3     300      0        300 Count
+       westus3                                o3-mini                                  OpenAI.DataZoneStandard.o3-mini     200      0        200 Count
+       westus3                                o4-mini                                    OpenAI.GlobalStandard.o4-mini    1000      0       1000 Count
+       westus3                                o4-mini                                          OpenAI.Standard.o4-mini    1000      0       1000 Count
+       westus3                                o4-mini                                       OpenAI.GlobalBatch.o4-mini  200000      0     200000 Count
+       westus3                                o4-mini                                     OpenAI.DataZoneBatch.o4-mini   30000      0      30000 Count
+       westus3                                o4-mini                                  OpenAI.DataZoneStandard.o4-mini     300      0        300 Count
+       westus3                                 gpt4.1                                     OpenAI.GlobalStandard.gpt4.1    1000    508        492 Count
+       westus3                                 gpt4.1                                           OpenAI.Standard.gpt4.1    1000      0       1000 Count
+       westus3                                 gpt4.1                                   OpenAI.DataZoneStandard.gpt4.1     300      0        300 Count
+       westus3                        gpt4.1-finetune                            OpenAI.GlobalStandard.gpt4.1-finetune     250      0        250 Count
+       westus3                        gpt4.1-finetune                             OpenAI.DeveloperTier.gpt4.1-finetune     250      0        250 Count
+       westus3                   gpt4.1-mini-finetune                       OpenAI.GlobalStandard.gpt4.1-mini-finetune     500      0        500 Count
+       westus3                   gpt4.1-mini-finetune                        OpenAI.DeveloperTier.gpt4.1-mini-finetune     500      0        500 Count
+       westus3                   gpt4.1-nano-finetune                       OpenAI.GlobalStandard.gpt4.1-nano-finetune     500      0        500 Count
+       westus3                   gpt4.1-nano-finetune                        OpenAI.DeveloperTier.gpt4.1-nano-finetune     500      0        500 Count
+       westus3                            gpt4.1-mini                                OpenAI.GlobalStandard.gpt4.1-mini    5000      0       5000 Count
+       westus3                            gpt4.1-mini                                      OpenAI.Standard.gpt4.1-mini    5000      0       5000 Count
+       westus3                           gpt-4.1-mini                                  OpenAI.GlobalBatch.gpt-4.1-mini 1000000      0    1000000 Count
+       westus3                            gpt4.1-mini                              OpenAI.DataZoneStandard.gpt4.1-mini    2000      0       2000 Count
+       westus3                            gpt4.1-nano                                OpenAI.GlobalStandard.gpt4.1-nano    5000      0       5000 Count
+       westus3                            gpt4.1-nano                              OpenAI.DataZoneStandard.gpt4.1-nano    2000      0       2000 Count
+       westus3                                gpt-4.1                                       OpenAI.GlobalBatch.gpt-4.1  200000      0     200000 Count
+       westus3                                gpt-4.1                                     OpenAI.DataZoneBatch.gpt-4.1   30000      0      30000 Count
+       westus3                           gpt-4.1-nano                                  OpenAI.GlobalBatch.gpt-4.1-nano  200000      0     200000 Count
+       westus3                           gpt-4.1-mini                                OpenAI.DataZoneBatch.gpt-4.1-mini  100000      0     100000 Count
+       westus3                           gpt-4.1-nano                                OpenAI.DataZoneBatch.gpt-4.1-nano   30000      0      30000 Count
+       westus3                            gpt-image-1                                OpenAI.GlobalStandard.gpt-image-1       3      2          1 Count
+       westus3                       gpt-image-1-mini                           OpenAI.GlobalStandard.gpt-image-1-mini       4      0          4 Count
+       westus3                                  gpt-5                                      OpenAI.GlobalStandard.gpt-5    1000      0       1000 Count
+       westus3                             gpt-5-mini                                 OpenAI.GlobalStandard.gpt-5-mini    1000      0       1000 Count
+       westus3                             gpt-5-nano                                 OpenAI.GlobalStandard.gpt-5-nano    5000      0       5000 Count
+       westus3                                  gpt-5                                    OpenAI.DataZoneStandard.gpt-5     300      0        300 Count
+       westus3                             gpt-5-mini                               OpenAI.DataZoneStandard.gpt-5-mini     300      0        300 Count
+       westus3                             gpt-5-nano                               OpenAI.DataZoneStandard.gpt-5-nano    2000      0       2000 Count
+       westus3                                  gpt-5                                         OpenAI.GlobalBatch.gpt-5  200000      0     200000 Count
+       westus3                                  gpt-5                                       OpenAI.DataZoneBatch.gpt-5  200000      0     200000 Count
+       westus3                           AccountCount                                       AIServices.S0.AccountCount     100      1         99 Count
+       westus3                                   MaaS                                   AIServices.GlobalStandard.MaaS     600      0        600 Count
+       westus3                  Ministral-3B-finetune                  AIServices.GlobalStandard.Ministral-3B-finetune    1000      0       1000 Count
+       westus3                            DeepSeek-R1                            AIServices.GlobalStandard.DeepSeek-R1    1000      0       1000 Count
+       westus3                       DeepSeek-R1-0528                       AIServices.GlobalStandard.DeepSeek-R1-0528    1000      0       1000 Count
+       westus3                       DeepSeek-V3-0324                       AIServices.GlobalStandard.DeepSeek-V3-0324    1000      0       1000 Count
+       westus3                          DeepSeek-V3.1                          AIServices.GlobalStandard.DeepSeek-V3.1    1000      0       1000 Count
+       westus3 Llama-4-Maverick-17B-128E-Instruct-FP8 AIServices.GlobalStandard.Llama-4-Maverick-17B-128E-Instruct-FP8     250      0        250 Count
+       westus3                 Llama-3.3-70B-Instruct                 AIServices.GlobalStandard.Llama-3.3-70B-Instruct     250      0        250 Count
+       westus3                       Cohere-Command-A                       AIServices.GlobalStandard.Cohere-Command-A     100      0        100 Count
+       westus3                            Embed-V-4-0                            AIServices.GlobalStandard.Embed-V-4-0     100      0        100 Count
+       westus3                           gpt-oss-120b                           AIServices.GlobalStandard.gpt-oss-120b    5000      0       5000 Count
+       westus3                              MAI-DS-R1                              AIServices.GlobalStandard.MAI-DS-R1    1000      0       1000 Count
+       westus3                           FLUX-1.1-pro                           AIServices.GlobalStandard.FLUX-1.1-pro      30      0         30 Count
+       westus3                           FLUX-1.1-pro                         AIServices.DataZoneStandard.FLUX-1.1-pro      30      0         30 Count
+       westus3                     FLUX.1-Kontext-pro                     AIServices.GlobalStandard.FLUX.1-Kontext-pro      30      0         30 Count
+       westus3                     FLUX.1-Kontext-pro                   AIServices.DataZoneStandard.FLUX.1-Kontext-pro      30      0         30 Count
+       westus3               mistral-document-ai-2505               AIServices.GlobalStandard.mistral-document-ai-2505      60      0         60 Count
+       westus3               mistral-document-ai-2505             AIServices.DataZoneStandard.mistral-document-ai-2505      60      0         60 Count
+       westus3                                 grok-3                                 AIServices.GlobalStandard.grok-3    1000      0       1000 Count
+       westus3                            grok-3-mini                            AIServices.GlobalStandard.grok-3-mini    1000      0       1000 Count
+       westus3                                 grok-3                               AIServices.DataZoneStandard.grok-3     300      0        300 Count
+       westus3                            grok-3-mini                          AIServices.DataZoneStandard.grok-3-mini     300      0        300 Count
+       westus3                  grok-4-fast-reasoning                  AIServices.GlobalStandard.grok-4-fast-reasoning    1000      0       1000 Count
+       westus3              grok-4-fast-non-reasoning              AIServices.GlobalStandard.grok-4-fast-non-reasoning    1000      0       1000 Count
+       westus3                  grok-4-fast-reasoning                AIServices.DataZoneStandard.grok-4-fast-reasoning     300      0        300 Count
+       westus3              grok-4-fast-non-reasoning            AIServices.DataZoneStandard.grok-4-fast-non-reasoning     300      0        300 Count
+       westus3                           AccountCount                                                     AccountCount     200      2        198 Count
+southcentralus              OpenAI.ProvisionedManaged                                        OpenAI.ProvisionedManaged       0      0          0 Count
+southcentralus        OpenAI.GlobalProvisionedManaged                                  OpenAI.GlobalProvisionedManaged       0      0          0 Count
+southcentralus                       code-cushman-001                                 OpenAI.Standard.code-cushman-001     240     33        207 Count
+southcentralus             code-cushman-fine-tune-002                       OpenAI.Standard.code-cushman-fine-tune-002     240      0        240 Count
+southcentralus                            Deployments                                     OpenAI.FineTuned.Deployments      10      0         10 Count
+southcentralus                           AccountCount                                           OpenAI.S0.AccountCount      30      1         29 Count
+southcentralus      OpenAI.DataZoneProvisionedManaged                                OpenAI.DataZoneProvisionedManaged       0      0          0 Count
+southcentralus                           gpt-35-turbo                                     OpenAI.Standard.gpt-35-turbo       0      0          0 Count
+southcentralus                           gpt-35-turbo                                  OpenAI.GlobalBatch.gpt-35-turbo 1000000      0    1000000 Count
+southcentralus                            gpt-4-turbo                                      OpenAI.Standard.gpt-4-turbo      80      0         80 Count
+southcentralus                  gpt-4-turbo-2024-0409                      OpenAI.GlobalStandard.gpt-4-turbo-2024-0409     450      0        450 Count
+southcentralus                        gpt-4o-finetune                            OpenAI.GlobalStandard.gpt-4o-finetune     250      0        250 Count
+southcentralus                   gpt-4o-mini-finetune                       OpenAI.GlobalStandard.gpt-4o-mini-finetune     500      0        500 Count
+southcentralus                                  gpt-4                                         OpenAI.GlobalBatch.gpt-4   30000      0      30000 Count
+southcentralus                            gpt-4-turbo                                   OpenAI.GlobalBatch.gpt-4-turbo   80000      0      80000 Count
+southcentralus                                 gpt-4o                                        OpenAI.GlobalBatch.gpt-4o  200000      0     200000 Count
+southcentralus                            gpt-4o-mini                                   OpenAI.GlobalBatch.gpt-4o-mini 1000000      0    1000000 Count
+southcentralus                   gpt-4o-audio-preview                          OpenAI.Provisioned.gpt-4o-audio-preview       0      0          0 Count
+southcentralus                                 gpt-4o                                           OpenAI.Standard.gpt-4o     151      1        150 Count
+southcentralus                            gpt-4o-mini                                      OpenAI.Standard.gpt-4o-mini     450      0        450 Count
+southcentralus                                 gpt-4o                                     OpenAI.GlobalStandard.gpt-4o     450    450          0 Count
+southcentralus                            gpt-4o-mini                                OpenAI.GlobalStandard.gpt-4o-mini    2000      0       2000 Count
+southcentralus                                 gpt-4o                                   OpenAI.DataZoneStandard.gpt-4o     300      0        300 Count
+southcentralus                            gpt-4o-mini                              OpenAI.DataZoneStandard.gpt-4o-mini    1000      0       1000 Count
+southcentralus                                 gpt-4o                                      OpenAI.DataZoneBatch.gpt-4o   30000      0      30000 Count
+southcentralus                            gpt-4o-mini                                 OpenAI.DataZoneBatch.gpt-4o-mini  100000      0     100000 Count
+southcentralus             code-davinci-fine-tune-002                       OpenAI.Standard.code-davinci-fine-tune-002     240      0        240 Count
+southcentralus                                davinci                                          OpenAI.Standard.davinci     240      0        240 Count
+southcentralus                       text-davinci-001                                 OpenAI.Standard.text-davinci-001     240      0        240 Count
+southcentralus                       text-davinci-002                                 OpenAI.Standard.text-davinci-002     240      0        240 Count
+southcentralus                       text-davinci-003                                 OpenAI.Standard.text-davinci-003     120      1        119 Count
+southcentralus             text-davinci-fine-tune-002                       OpenAI.Standard.text-davinci-fine-tune-002     240      0        240 Count
+southcentralus            text-search-davinci-doc-001                      OpenAI.Standard.text-search-davinci-doc-001     240      0        240 Count
+southcentralus          text-search-davinci-query-001                    OpenAI.Standard.text-search-davinci-query-001     240      0        240 Count
+southcentralus            text-similarity-davinci-001                      OpenAI.Standard.text-similarity-davinci-001     240      0        240 Count
+southcentralus                                  curie                                            OpenAI.Standard.curie     240      0        240 Count
+southcentralus                         text-curie-001                                   OpenAI.Standard.text-curie-001     240     33        207 Count
+southcentralus              text-search-curie-doc-001                        OpenAI.Standard.text-search-curie-doc-001     240      0        240 Count
+southcentralus            text-search-curie-query-001                      OpenAI.Standard.text-search-curie-query-001     240      0        240 Count
+southcentralus              text-similarity-curie-001                        OpenAI.Standard.text-similarity-curie-001     240     33        207 Count
+southcentralus                                    ada                                              OpenAI.Standard.ada     350      0        350 Count
+southcentralus               code-search-ada-code-001                         OpenAI.Standard.code-search-ada-code-001     350      0        350 Count
+southcentralus               code-search-ada-text-001                         OpenAI.Standard.code-search-ada-text-001     350      0        350 Count
+southcentralus                           text-ada-001                                     OpenAI.Standard.text-ada-001     350      0        350 Count
+southcentralus                 text-embedding-ada-002                           OpenAI.Standard.text-embedding-ada-002     240    240          0 Count
+southcentralus                 text-embedding-ada-002                     OpenAI.GlobalStandard.text-embedding-ada-002     240      0        240 Count
+southcentralus                text-search-ada-doc-001                          OpenAI.Standard.text-search-ada-doc-001     350     33        317 Count
+southcentralus              text-search-ada-query-001                        OpenAI.Standard.text-search-ada-query-001     350     33        317 Count
+southcentralus                text-similarity-ada-001                          OpenAI.Standard.text-similarity-ada-001     350      0        350 Count
+southcentralus                                babbage                                          OpenAI.Standard.babbage     240      0        240 Count
+southcentralus           code-search-babbage-code-001                     OpenAI.Standard.code-search-babbage-code-001     240     33        207 Count
+southcentralus           code-search-babbage-text-001                     OpenAI.Standard.code-search-babbage-text-001     240      0        240 Count
+southcentralus                       text-babbage-001                                 OpenAI.Standard.text-babbage-001     240      0        240 Count
+southcentralus            text-search-babbage-doc-001                      OpenAI.Standard.text-search-babbage-doc-001     240      0        240 Count
+southcentralus          text-search-babbage-query-001                    OpenAI.Standard.text-search-babbage-query-001     240      0        240 Count
+southcentralus            text-similarity-babbage-001                      OpenAI.Standard.text-similarity-babbage-001     240      0        240 Count
+southcentralus                 text-embedding-3-small                     OpenAI.GlobalStandard.text-embedding-3-small    1000      0       1000 Count
+southcentralus                 text-embedding-3-large                     OpenAI.GlobalStandard.text-embedding-3-large    1000      0       1000 Count
+southcentralus                                     o1                                               OpenAI.Standard.o1      50      0         50 Count
+southcentralus                                     o1                                         OpenAI.GlobalStandard.o1     500      0        500 Count
+southcentralus                                o1-mini                                    OpenAI.GlobalStandard.o1-mini     500      0        500 Count
+southcentralus                                     o1                                       OpenAI.DataZoneStandard.o1     100      0        100 Count
+southcentralus                                o3-mini                                    OpenAI.GlobalStandard.o3-mini     500      0        500 Count
+southcentralus                                     o3                                         OpenAI.GlobalStandard.o3    1000      0       1000 Count
+southcentralus                                     o3                                            OpenAI.GlobalBatch.o3  100000      0     100000 Count
+southcentralus                                     o3                                          OpenAI.DataZoneBatch.o3  100000      0     100000 Count
+southcentralus                                o3-mini                                       OpenAI.GlobalBatch.o3-mini 1000000      0    1000000 Count
+southcentralus                                o3-mini                                     OpenAI.DataZoneBatch.o3-mini  100000      0     100000 Count
+southcentralus                                     o3                                       OpenAI.DataZoneStandard.o3     300      0        300 Count
+southcentralus                                o3-mini                                  OpenAI.DataZoneStandard.o3-mini     200      0        200 Count
+southcentralus                                o4-mini                                    OpenAI.GlobalStandard.o4-mini    1000      0       1000 Count
+southcentralus                                o4-mini                                          OpenAI.Standard.o4-mini    1000      0       1000 Count
+southcentralus                                o4-mini                                       OpenAI.GlobalBatch.o4-mini  200000      0     200000 Count
+southcentralus                                o4-mini                                     OpenAI.DataZoneBatch.o4-mini   30000      0      30000 Count
+southcentralus                                o4-mini                                  OpenAI.DataZoneStandard.o4-mini     300      0        300 Count
+southcentralus                                 gpt4.1                                     OpenAI.GlobalStandard.gpt4.1    1000      0       1000 Count
+southcentralus                                 gpt4.1                                           OpenAI.Standard.gpt4.1    1000      0       1000 Count
+southcentralus                                 gpt4.1                                   OpenAI.DataZoneStandard.gpt4.1     300      0        300 Count
+southcentralus                        gpt4.1-finetune                            OpenAI.GlobalStandard.gpt4.1-finetune     250      0        250 Count
+southcentralus                        gpt4.1-finetune                             OpenAI.DeveloperTier.gpt4.1-finetune     250      0        250 Count
+southcentralus                   gpt4.1-mini-finetune                       OpenAI.GlobalStandard.gpt4.1-mini-finetune     500      0        500 Count
+southcentralus                   gpt4.1-mini-finetune                        OpenAI.DeveloperTier.gpt4.1-mini-finetune     500      0        500 Count
+southcentralus                   gpt4.1-nano-finetune                       OpenAI.GlobalStandard.gpt4.1-nano-finetune     500      0        500 Count
+southcentralus                   gpt4.1-nano-finetune                        OpenAI.DeveloperTier.gpt4.1-nano-finetune     500      0        500 Count
+southcentralus                            gpt4.1-mini                                OpenAI.GlobalStandard.gpt4.1-mini    5000      0       5000 Count
+southcentralus                            gpt4.1-mini                                      OpenAI.Standard.gpt4.1-mini    5240    240       5000 Count
+southcentralus                           gpt-4.1-mini                                  OpenAI.GlobalBatch.gpt-4.1-mini 1000000      0    1000000 Count
+southcentralus                            gpt4.1-mini                              OpenAI.DataZoneStandard.gpt4.1-mini    2000      0       2000 Count
+southcentralus                            gpt4.1-nano                                OpenAI.GlobalStandard.gpt4.1-nano    5000      0       5000 Count
+southcentralus                            gpt4.1-nano                              OpenAI.DataZoneStandard.gpt4.1-nano    2000      0       2000 Count
+southcentralus                                gpt-4.1                                       OpenAI.GlobalBatch.gpt-4.1  200000      0     200000 Count
+southcentralus                                gpt-4.1                                     OpenAI.DataZoneBatch.gpt-4.1   30000      0      30000 Count
+southcentralus                           gpt-4.1-nano                                  OpenAI.GlobalBatch.gpt-4.1-nano  200000      0     200000 Count
+southcentralus                           gpt-4.1-mini                                OpenAI.DataZoneBatch.gpt-4.1-mini  100000      0     100000 Count
+southcentralus                           gpt-4.1-nano                                OpenAI.DataZoneBatch.gpt-4.1-nano   30000      0      30000 Count
+southcentralus                                  gpt-5                                      OpenAI.GlobalStandard.gpt-5    1000      0       1000 Count
+southcentralus                             gpt-5-mini                                 OpenAI.GlobalStandard.gpt-5-mini    1000      0       1000 Count
+southcentralus                             gpt-5-nano                                 OpenAI.GlobalStandard.gpt-5-nano    5000      0       5000 Count
+southcentralus                                  gpt-5                                    OpenAI.DataZoneStandard.gpt-5     300      0        300 Count
+southcentralus                             gpt-5-mini                               OpenAI.DataZoneStandard.gpt-5-mini     300      0        300 Count
+southcentralus                             gpt-5-nano                               OpenAI.DataZoneStandard.gpt-5-nano    2000      0       2000 Count
+southcentralus                                  gpt-5                                         OpenAI.GlobalBatch.gpt-5  200000      0     200000 Count
+southcentralus                                  gpt-5                                       OpenAI.DataZoneBatch.gpt-5  200000      0     200000 Count
+southcentralus                           AccountCount                                       AIServices.S0.AccountCount     100      0        100 Count
+southcentralus                                   MaaS                                   AIServices.GlobalStandard.MaaS     600      0        600 Count
+southcentralus                  Ministral-3B-finetune                  AIServices.GlobalStandard.Ministral-3B-finetune    1000      0       1000 Count
+southcentralus                            DeepSeek-R1                            AIServices.GlobalStandard.DeepSeek-R1    1000      0       1000 Count
+southcentralus                       DeepSeek-R1-0528                       AIServices.GlobalStandard.DeepSeek-R1-0528    1000      0       1000 Count
+southcentralus                       DeepSeek-V3-0324                       AIServices.GlobalStandard.DeepSeek-V3-0324    1000      0       1000 Count
+southcentralus                          DeepSeek-V3.1                          AIServices.GlobalStandard.DeepSeek-V3.1    1000      0       1000 Count
+southcentralus Llama-4-Maverick-17B-128E-Instruct-FP8 AIServices.GlobalStandard.Llama-4-Maverick-17B-128E-Instruct-FP8     250      0        250 Count
+southcentralus                 Llama-3.3-70B-Instruct                 AIServices.GlobalStandard.Llama-3.3-70B-Instruct     250      0        250 Count
+southcentralus                       Cohere-Command-A                       AIServices.GlobalStandard.Cohere-Command-A     100      0        100 Count
+southcentralus                            Embed-V-4-0                            AIServices.GlobalStandard.Embed-V-4-0     100      0        100 Count
+southcentralus                           gpt-oss-120b                           AIServices.GlobalStandard.gpt-oss-120b    5000      0       5000 Count
+southcentralus                              MAI-DS-R1                              AIServices.GlobalStandard.MAI-DS-R1    1000      0       1000 Count
+southcentralus                           FLUX-1.1-pro                           AIServices.GlobalStandard.FLUX-1.1-pro      30      0         30 Count
+southcentralus                           FLUX-1.1-pro                         AIServices.DataZoneStandard.FLUX-1.1-pro      30      0         30 Count
+southcentralus                     FLUX.1-Kontext-pro                     AIServices.GlobalStandard.FLUX.1-Kontext-pro      30      0         30 Count
+southcentralus                     FLUX.1-Kontext-pro                   AIServices.DataZoneStandard.FLUX.1-Kontext-pro      30      0         30 Count
+southcentralus               mistral-document-ai-2505               AIServices.GlobalStandard.mistral-document-ai-2505      60      0         60 Count
+southcentralus               mistral-document-ai-2505             AIServices.DataZoneStandard.mistral-document-ai-2505      60      0         60 Count
+southcentralus                                 grok-3                                 AIServices.GlobalStandard.grok-3    1000      0       1000 Count
+southcentralus                            grok-3-mini                            AIServices.GlobalStandard.grok-3-mini    1000      0       1000 Count
+southcentralus                                 grok-3                               AIServices.DataZoneStandard.grok-3     300      0        300 Count
+southcentralus                            grok-3-mini                          AIServices.DataZoneStandard.grok-3-mini     300      0        300 Count
+southcentralus                  grok-4-fast-reasoning                  AIServices.GlobalStandard.grok-4-fast-reasoning    1000      0       1000 Count
+southcentralus              grok-4-fast-non-reasoning              AIServices.GlobalStandard.grok-4-fast-non-reasoning    1000      0       1000 Count
+southcentralus                  grok-4-fast-reasoning                AIServices.DataZoneStandard.grok-4-fast-reasoning     300      0        300 Count
+southcentralus              grok-4-fast-non-reasoning            AIServices.DataZoneStandard.grok-4-fast-non-reasoning     300      0        300 Count
+southcentralus                           AccountCount                                                     AccountCount     200      1        199 Count
+        eastus              OpenAI.ProvisionedManaged                                        OpenAI.ProvisionedManaged       0      0          0 Count
+        eastus        OpenAI.GlobalProvisionedManaged                                  OpenAI.GlobalProvisionedManaged       0      0          0 Count
+        eastus             code-cushman-fine-tune-002                       OpenAI.Standard.code-cushman-fine-tune-002     240      0        240 Count
+        eastus                                  Dalle                                            OpenAI.Standard.Dalle       2      0          2 Count
+        eastus                                Dalle-2                                          OpenAI.Standard.Dalle-2       2      0          2 Count
+        eastus                            Deployments                                     OpenAI.FineTuned.Deployments      10      0         10 Count
+        eastus                           AccountCount                                           OpenAI.S0.AccountCount      30      1         29 Count
+        eastus      OpenAI.DataZoneProvisionedManaged                                OpenAI.DataZoneProvisionedManaged       0      0          0 Count
+        eastus                                  gpt-4                                            OpenAI.Standard.gpt-4      33      0         33 Count
+        eastus                            gpt-4-turbo                                      OpenAI.Standard.gpt-4-turbo      80      0         80 Count
+        eastus                  gpt-4-turbo-2024-0409                      OpenAI.GlobalStandard.gpt-4-turbo-2024-0409     440      0        440 Count
+        eastus                        gpt-4o-finetune                            OpenAI.GlobalStandard.gpt-4o-finetune     250      0        250 Count
+        eastus                   gpt-4o-mini-finetune                       OpenAI.GlobalStandard.gpt-4o-mini-finetune     500      0        500 Count
+        eastus                              gpt-4-32k                                        OpenAI.Standard.gpt-4-32k      60      0         60 Count
+        eastus                                  gpt-4                                         OpenAI.GlobalBatch.gpt-4   30000      0      30000 Count
+        eastus                            gpt-4-turbo                                   OpenAI.GlobalBatch.gpt-4-turbo   80000      0      80000 Count
+        eastus                                 gpt-4o                                        OpenAI.GlobalBatch.gpt-4o  200000  50000     150000 Count
+        eastus                            gpt-4o-mini                                   OpenAI.GlobalBatch.gpt-4o-mini 1000000      0    1000000 Count
+        eastus                   gpt-4o-audio-preview                          OpenAI.Provisioned.gpt-4o-audio-preview       0      0          0 Count
+        eastus                                 gpt-4o                                           OpenAI.Standard.gpt-4o     150      0        150 Count
+        eastus                            gpt-4o-mini                                      OpenAI.Standard.gpt-4o-mini     450      0        450 Count
+        eastus                                 gpt-4o                                     OpenAI.GlobalStandard.gpt-4o     450    419         31 Count
+        eastus                            gpt-4o-mini                                OpenAI.GlobalStandard.gpt-4o-mini    2000   1139        861 Count
+        eastus              gpt-4o-mini-audio-preview                  OpenAI.GlobalStandard.gpt-4o-mini-audio-preview   30000      0      30000 Count
+        eastus                                 gpt-4o                                   OpenAI.DataZoneStandard.gpt-4o     300      0        300 Count
+        eastus                            gpt-4o-mini                              OpenAI.DataZoneStandard.gpt-4o-mini    1000      0       1000 Count
+        eastus                                 gpt-4o                                      OpenAI.DataZoneBatch.gpt-4o   30000      0      30000 Count
+        eastus                            gpt-4o-mini                                 OpenAI.DataZoneBatch.gpt-4o-mini  100000      0     100000 Count
+        eastus                           gpt-35-turbo                                     OpenAI.Standard.gpt-35-turbo     390      0        390 Count
+        eastus                  gpt-35-turbo-instruct                            OpenAI.Standard.gpt-35-turbo-instruct     240      0        240 Count
+        eastus                           gpt-35-turbo                                  OpenAI.GlobalBatch.gpt-35-turbo 1000000      0    1000000 Count
+        eastus                       code-davinci-002                                 OpenAI.Standard.code-davinci-002     240      0        240 Count
+        eastus             code-davinci-fine-tune-002                       OpenAI.Standard.code-davinci-fine-tune-002     240      0        240 Count
+        eastus                                davinci                                          OpenAI.Standard.davinci     240      0        240 Count
+        eastus                       text-davinci-002                                 OpenAI.Standard.text-davinci-002     240      0        240 Count
+        eastus                       text-davinci-003                                 OpenAI.Standard.text-davinci-003     120      0        120 Count
+        eastus             text-davinci-fine-tune-002                       OpenAI.Standard.text-davinci-fine-tune-002     240      0        240 Count
+        eastus                                babbage                                          OpenAI.Standard.babbage     240      0        240 Count
+        eastus                       text-babbage-001                                 OpenAI.Standard.text-babbage-001     240      0        240 Count
+        eastus                                    ada                                              OpenAI.Standard.ada     350      0        350 Count
+        eastus                           text-ada-001                                     OpenAI.Standard.text-ada-001     350      0        350 Count
+        eastus                 text-embedding-ada-002                           OpenAI.Standard.text-embedding-ada-002     240     50        190 Count
+        eastus                 text-embedding-ada-002                     OpenAI.GlobalStandard.text-embedding-ada-002     240      0        240 Count
+        eastus                text-similarity-ada-001                          OpenAI.Standard.text-similarity-ada-001     350      0        350 Count
+        eastus                                  curie                                            OpenAI.Standard.curie     240      0        240 Count
+        eastus                         text-curie-001                                   OpenAI.Standard.text-curie-001     240      0        240 Count
+        eastus              text-similarity-curie-001                        OpenAI.Standard.text-similarity-curie-001     240      0        240 Count
+        eastus                 text-embedding-3-small                           OpenAI.Standard.text-embedding-3-small     350    120        230 Count
+        eastus                 text-embedding-3-large                           OpenAI.Standard.text-embedding-3-large     350      0        350 Count
+        eastus                 text-embedding-3-small                     OpenAI.GlobalStandard.text-embedding-3-small    1000      0       1000 Count
+        eastus                 text-embedding-3-large                     OpenAI.GlobalStandard.text-embedding-3-large    1000    150        850 Count
+        eastus                                     o1                                               OpenAI.Standard.o1      50      0         50 Count
+        eastus                                     o1                                         OpenAI.GlobalStandard.o1     500      0        500 Count
+        eastus                                o1-mini                                    OpenAI.GlobalStandard.o1-mini     500      0        500 Count
+        eastus                                     o1                                       OpenAI.DataZoneStandard.o1     100    100          0 Count
+        eastus                                o3-mini                                    OpenAI.GlobalStandard.o3-mini     500    100        400 Count
+        eastus                                     o3                                         OpenAI.GlobalStandard.o3    1000      0       1000 Count
+        eastus                                     o3                                            OpenAI.GlobalBatch.o3  100000      0     100000 Count
+        eastus                                     o3                                          OpenAI.DataZoneBatch.o3  100000      0     100000 Count
+        eastus                                o3-mini                                       OpenAI.GlobalBatch.o3-mini 1000000      0    1000000 Count
+        eastus                                o3-mini                                     OpenAI.DataZoneBatch.o3-mini  100000      0     100000 Count
+        eastus                                     o3                                       OpenAI.DataZoneStandard.o3     300      0        300 Count
+        eastus                                o3-mini                                  OpenAI.DataZoneStandard.o3-mini     200      0        200 Count
+        eastus                                o4-mini                                    OpenAI.GlobalStandard.o4-mini    1000      0       1000 Count
+        eastus                                o4-mini                                          OpenAI.Standard.o4-mini    1000      0       1000 Count
+        eastus                                o4-mini                                       OpenAI.GlobalBatch.o4-mini  200000      0     200000 Count
+        eastus                                o4-mini                                     OpenAI.DataZoneBatch.o4-mini   30000      0      30000 Count
+        eastus                                o4-mini                                  OpenAI.DataZoneStandard.o4-mini     300      0        300 Count
+        eastus                                 gpt4.1                                     OpenAI.GlobalStandard.gpt4.1    1010    487        523 Count
+        eastus                                 gpt4.1                                           OpenAI.Standard.gpt4.1    1000      0       1000 Count
+        eastus                                 gpt4.1                                   OpenAI.DataZoneStandard.gpt4.1     300    100        200 Count
+        eastus                        gpt4.1-finetune                            OpenAI.GlobalStandard.gpt4.1-finetune     250      0        250 Count
+        eastus                        gpt4.1-finetune                             OpenAI.DeveloperTier.gpt4.1-finetune     250      0        250 Count
+        eastus                   gpt4.1-mini-finetune                       OpenAI.GlobalStandard.gpt4.1-mini-finetune     500      0        500 Count
+        eastus                   gpt4.1-mini-finetune                        OpenAI.DeveloperTier.gpt4.1-mini-finetune     500      0        500 Count
+        eastus                   gpt4.1-nano-finetune                       OpenAI.GlobalStandard.gpt4.1-nano-finetune     500      0        500 Count
+        eastus                   gpt4.1-nano-finetune                        OpenAI.DeveloperTier.gpt4.1-nano-finetune     500      0        500 Count
+        eastus                            gpt4.1-mini                                OpenAI.GlobalStandard.gpt4.1-mini    5000      0       5000 Count
+        eastus                            gpt4.1-mini                                      OpenAI.Standard.gpt4.1-mini    5000      0       5000 Count
+        eastus                           gpt-4.1-mini                                  OpenAI.GlobalBatch.gpt-4.1-mini 1000000      0    1000000 Count
+        eastus                            gpt4.1-mini                              OpenAI.DataZoneStandard.gpt4.1-mini    2000    100       1900 Count
+        eastus                            gpt4.1-nano                              OpenAI.DataZoneStandard.gpt4.1-nano    2000      0       2000 Count
+        eastus                                gpt-4.1                                       OpenAI.GlobalBatch.gpt-4.1  200000      0     200000 Count
+        eastus                                gpt-4.1                                     OpenAI.DataZoneBatch.gpt-4.1   30000      0      30000 Count
+        eastus                           gpt-4.1-nano                                  OpenAI.GlobalBatch.gpt-4.1-nano  200000      0     200000 Count
+        eastus                           gpt-4.1-mini                                OpenAI.DataZoneBatch.gpt-4.1-mini  100000      0     100000 Count
+        eastus                           gpt-4.1-nano                                OpenAI.DataZoneBatch.gpt-4.1-nano   30000      0      30000 Count
+        eastus                                  gpt-5                                      OpenAI.GlobalStandard.gpt-5    1000      0       1000 Count
+        eastus                             gpt-5-mini                                 OpenAI.GlobalStandard.gpt-5-mini    1000      0       1000 Count
+        eastus                             gpt-5-nano                                 OpenAI.GlobalStandard.gpt-5-nano    5000      0       5000 Count
+        eastus                                  gpt-5                                    OpenAI.DataZoneStandard.gpt-5     300      0        300 Count
+        eastus                             gpt-5-mini                               OpenAI.DataZoneStandard.gpt-5-mini     300      0        300 Count
+        eastus                             gpt-5-nano                               OpenAI.DataZoneStandard.gpt-5-nano    2000      0       2000 Count
+        eastus                                  gpt-5                                         OpenAI.GlobalBatch.gpt-5  200000      0     200000 Count
+        eastus                                  gpt-5                                       OpenAI.DataZoneBatch.gpt-5  200000      0     200000 Count
+        eastus                           AccountCount                                       AIServices.S0.AccountCount     100      8         92 Count
+        eastus                                   MaaS                                   AIServices.GlobalStandard.MaaS     600      2        598 Count
+        eastus                  Ministral-3B-finetune                  AIServices.GlobalStandard.Ministral-3B-finetune    1000      0       1000 Count
+        eastus                            DeepSeek-R1                            AIServices.GlobalStandard.DeepSeek-R1    1000      0       1000 Count
+        eastus                       DeepSeek-R1-0528                       AIServices.GlobalStandard.DeepSeek-R1-0528    1000      0       1000 Count
+        eastus                       DeepSeek-V3-0324                       AIServices.GlobalStandard.DeepSeek-V3-0324    1000      0       1000 Count
+        eastus                          DeepSeek-V3.1                          AIServices.GlobalStandard.DeepSeek-V3.1    1000      0       1000 Count
+        eastus Llama-4-Maverick-17B-128E-Instruct-FP8 AIServices.GlobalStandard.Llama-4-Maverick-17B-128E-Instruct-FP8     250      0        250 Count
+        eastus                 Llama-3.3-70B-Instruct                 AIServices.GlobalStandard.Llama-3.3-70B-Instruct     250      0        250 Count
+        eastus                       Cohere-Command-A                       AIServices.GlobalStandard.Cohere-Command-A     100      0        100 Count
+        eastus                            Embed-V-4-0                            AIServices.GlobalStandard.Embed-V-4-0     100      0        100 Count
+        eastus                           gpt-oss-120b                           AIServices.GlobalStandard.gpt-oss-120b    5000    250       4750 Count
+        eastus                              MAI-DS-R1                              AIServices.GlobalStandard.MAI-DS-R1    1000  10000      -9000 Count
+        eastus                           FLUX-1.1-pro                           AIServices.GlobalStandard.FLUX-1.1-pro      30      0         30 Count
+        eastus                           FLUX-1.1-pro                         AIServices.DataZoneStandard.FLUX-1.1-pro      30      0         30 Count
+        eastus                     FLUX.1-Kontext-pro                     AIServices.GlobalStandard.FLUX.1-Kontext-pro      30      0         30 Count
+        eastus                     FLUX.1-Kontext-pro                   AIServices.DataZoneStandard.FLUX.1-Kontext-pro      30      0         30 Count
+        eastus               mistral-document-ai-2505               AIServices.GlobalStandard.mistral-document-ai-2505      60     30         30 Count
+        eastus               mistral-document-ai-2505             AIServices.DataZoneStandard.mistral-document-ai-2505      60      0         60 Count
+        eastus                                 grok-3                                 AIServices.GlobalStandard.grok-3    1000      0       1000 Count
+        eastus                            grok-3-mini                            AIServices.GlobalStandard.grok-3-mini    1000      0       1000 Count
+        eastus                                 grok-3                               AIServices.DataZoneStandard.grok-3     300      0        300 Count
+        eastus                            grok-3-mini                          AIServices.DataZoneStandard.grok-3-mini     300      0        300 Count
+        eastus                  grok-4-fast-reasoning                  AIServices.GlobalStandard.grok-4-fast-reasoning    1000      0       1000 Count
+        eastus              grok-4-fast-non-reasoning              AIServices.GlobalStandard.grok-4-fast-non-reasoning    1000      0       1000 Count
+        eastus                  grok-4-fast-reasoning                AIServices.DataZoneStandard.grok-4-fast-reasoning     300      0        300 Count
+        eastus              grok-4-fast-non-reasoning            AIServices.DataZoneStandard.grok-4-fast-non-reasoning     300      0        300 Count
+        eastus                           AccountCount                                                     AccountCount     200     19        181 Count
