@@ -1,0 +1,54 @@
+<policies>
+    <inbound>
+        <base />
+        <set-variable name="batchExpirationPayload" value="@{
+            var original = context.Request.Body.As<Newtonsoft.Json.Linq.JObject>(preserveContent: true);
+            if (original == null)
+            {
+                return null;
+            }
+
+            var updated = original.DeepClone() as Newtonsoft.Json.Linq.JObject;
+            if (updated == null)
+            {
+                return null;
+            }
+
+            var outputExpiresAfter = updated["output_expires_after"];
+            if (outputExpiresAfter == null || outputExpiresAfter.Type == Newtonsoft.Json.Linq.JTokenType.Null)
+            {
+                var expiresAfterPayload = new Newtonsoft.Json.Linq.JObject();
+                expiresAfterPayload["seconds"] = 1209600;
+                updated["output_expires_after"] = expiresAfterPayload;
+            }
+
+            var anchor = updated["anchor"];
+            if (anchor == null || anchor.Type == Newtonsoft.Json.Linq.JTokenType.Null)
+            {
+                updated["anchor"] = "created_at";
+            }
+
+            return updated.ToString(Newtonsoft.Json.Formatting.None);
+        }" />
+
+        <choose>
+            <when condition="@(!string.IsNullOrEmpty((string)context.Variables[&quot;batchExpirationPayload&quot;]))">
+                <set-body>@((string)context.Variables[&quot;batchExpirationPayload&quot;])</set-body>
+                <set-header name="Content-Type" exists-action="override">
+                    <value>application/json</value>
+                </set-header>
+            </when>
+        </choose>
+
+        <set-backend-service backend-id="{backend-id}" />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
