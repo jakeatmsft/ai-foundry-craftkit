@@ -1,0 +1,1 @@
+{"log_id": "l-77", "level": "warn", "message": "Rate limit approaching", "context": {"remaining": 12, "window_sec": 60}}

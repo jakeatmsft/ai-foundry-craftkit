@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/MLTable.schema.json
+paths:
+  - pattern: ./*.jsonl
+transformations:
+  - read_json_lines:
+      encoding: utf8

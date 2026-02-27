@@ -1,0 +1,1 @@
+{"session": "s-001", "steps": ["open_app", "click_login", "error"], "error": {"code": "E401", "message": "Unauthorized"}}

@@ -1,0 +1,2 @@
+{"user": {"id": 42, "name": "Avery"}, "actions": ["login", "upload"], "success": true}
+{"user": {"id": 43, "name": "Riley"}, "actions": ["login"], "success": false}
