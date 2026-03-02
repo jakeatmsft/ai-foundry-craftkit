@@ -4,9 +4,6 @@ from azure.ai.ml.entities import Data
 from azure.ai.ml.constants import AssetTypes
 from azure.identity import DefaultAzureCredential
 import mltable
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # set the version number of the data asset to the current UTC time
 VERSION = "1" #time.strftime("%Y.%m.%d.%H%M%S", time.gmtime())
