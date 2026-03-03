@@ -9,3 +9,4 @@ dependencies:
       - mltable
       - azure-ai-ml
       - azure-identity
+      - azureml-dataprep[pandas]
