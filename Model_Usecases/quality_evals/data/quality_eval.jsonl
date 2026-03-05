@@ -1,0 +1,12 @@
+{"query":"Option 2 please.","ground_truth":"is_rpa_flow_related=True; route_to='current'; requires_prompt=False"}
+{"query":"I'll take the third one.","ground_truth":"is_rpa_flow_related=True; route_to='current'; requires_prompt=False"}
+{"query":"Pick the entry named Basic Plan.","ground_truth":"is_rpa_flow_related: True\nroute_to: current\nrequires_prompt: False"}
+{"query":"Go back to the questionnaire.","ground_truth":"Result: is_rpa_flow_related=True, route_to='step_b', requires_prompt=True"}
+{"query":"Can I change my answers from the last step?","ground_truth":"- is_rpa_flow_related: True\n- route_to: step_c\n- requires_prompt: True"}
+{"query":"Start over.","ground_truth":"is_rpa_flow_related=True, route_to='step_a'"}
+{"query":"Let's move to payment details.","ground_truth":"is_rpa_flow_related=True, route_to='premature_forward'"}
+{"query":"When do I review the summary?","ground_truth":"- is_rpa_flow_related: True\n- route_to: premature_forward"}
+{"query":"What's the weather today?","ground_truth":"is_rpa_flow_related: False\nroute_to: null\nNote: The user asked about weather, which is unrelated to the current rpa_flow step. Escalate to the Fallback Handler."}
+{"query":"I need help with my account.","ground_truth":"is_rpa_flow_related=False, route_to=null"}
+{"query":"Show me the list again.","ground_truth":"is_rpa_flow_related=True, route_to='current'"}
+{"query":"Number 1.","ground_truth":"is_rpa_flow_related=True, route_to='current', requires_prompt=False"}
