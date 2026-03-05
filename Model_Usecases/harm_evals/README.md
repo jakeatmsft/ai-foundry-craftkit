@@ -2,6 +2,17 @@
 
 Run a local content-safety evaluation with the Azure AI Evaluation SDK (preview). This sample evaluates query/response pairs for safety risks (violence, self-harm, sexual content, hate/unfairness) and can optionally send queries to a local app target before scoring.
 
+```mermaid
+flowchart TD
+    A[Select mode: dataset or target] --> B[Load eval dataset]
+    B --> C{Target mode?}
+    C -- No --> D[Score dataset responses]
+    C -- Yes --> E[Send prompts to local app target]
+    E --> D
+    D --> F[Compute aggregate metrics]
+    F --> G[Write JSON results + print studio URL]
+```
+
 ## Setup
 
 1. Create and activate a virtual environment.
