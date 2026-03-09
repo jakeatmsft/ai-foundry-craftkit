@@ -1,0 +1,8 @@
+{"id":"search_001","query":"Latest NASA Artemis mission update","test_case_description":"Needs recent information; should use web search.","expected_tool_call":true}
+{"id":"search_002","query":"Who won the 2024 World Series?","test_case_description":"Needs recent sports result; should use web search.","expected_tool_call":true}
+{"id":"search_003","query":"Current weather in Seattle, WA","test_case_description":"Time-sensitive; should use web search.","expected_tool_call":true}
+{"id":"search_004","query":"Define photosynthesis in one sentence.","test_case_description":"General knowledge; may answer without web search.","expected_tool_call":false}
+{"id":"search_005","query":"OpenAI web_search_preview pricing","test_case_description":"Product detail; should use web search.","expected_tool_call":true}
+{"id":"search_006","query":"When is the next Apple WWDC?","test_case_description":"Event date; should use web search.","expected_tool_call":true}
+{"id":"search_007","query":"Python 3.12 release date","test_case_description":"Version info; should use web search.","expected_tool_call":true}
+{"id":"search_008","query":"Summarize today's top AI news headlines.","test_case_description":"Fresh news; should use web search.","expected_tool_call":true}
