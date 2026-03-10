@@ -39,6 +39,7 @@ response = client.responses.create(
     model=model,
     tools=[{"type": "web_search"}],
     input="What happened in the last NFL game?",
+    tool_choice="required", #Optional if you want to enforce tool calling
 )
 
 print(response.output_text)
