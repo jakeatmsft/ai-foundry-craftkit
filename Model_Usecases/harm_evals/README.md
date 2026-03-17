@@ -10,7 +10,7 @@ flowchart TD
     C -- Yes --> E[Send prompts to local app target]
     E --> D
     D --> F[Compute aggregate metrics]
-    F --> G[Write JSON results + print studio URL]
+    F --> G[Write JSON results]
 ```
 
 ## Setup
