@@ -10,7 +10,7 @@ sequenceDiagram
     User->>Client: Ask a question
     Note over Client,API: TLS 1.2
     Client->>API: POST /responses (tools=[web_search])
-    Note right of API: Hosted tool orchestration.<br/>Client does not submit tool outputs.
+    Note right of API: Hosted tool orchestration.<br/>
     API->>API: Decompose query into search terms
     API-->>Client: response.web_search_call.in_progress
     Note over API,Bing: TLS 1.2
