@@ -90,53 +90,31 @@ Each event includes the `item_id`, `output_index`, and a `sequence_number` that 
 
 ```text
 User -> Client: Ask a question
-Client -> OpenAI API: POST /responses (tools=[web_search])
-OpenAI API -> OpenAI API: Decompose query into search terms
-OpenAI API -> OpenAI API: Execute web search
-OpenAI API -> Client: Stream web_search_call events + response output
-Client -> User: Present final answer (optionally with sources)
+Client -> Responses API: POST /responses (tools=[web_search])
+Responses API -> Responses API: Decompose query into search terms
+Responses API -> Bing Grounding API: Execute web search
+Responses API -> Client: Stream web_search_call events + response output
+Client -> User: Present final answer (with sources)
 ```
 
 ```mermaid
 sequenceDiagram
     participant User
     participant Client
-    participant API as OpenAI API
+    participant API as Responses API
     participant Bing as Bing Grounding API Service
     User->>Client: Ask a question
     Client->>API: POST /responses (tools=[web_search])
     API->>API: Decompose query into search terms
-    API->>Bing: Execute web search
     API-->>Client: response.web_search_call.in_progress
-    API-->>Client: response.web_search_call.searching
-    Bing-->>API: Return search results
-    API-->>Client: response.web_search_call.completed
-    API-->>Client: response.output_item.added (web_search_call)
+    loop One or more searches
+        API->>Bing: Execute web search
+        API-->>Client: response.web_search_call.searching
+        Bing-->>API: Return search results
+        API-->>Client: response.web_search_call.completed
+        API-->>Client: response.output_item.added (web_search_call)
+    end
     API-->>Client: response.output_item.done (web_search_call)
     API-->>Client: Response output (assistant message)
     Client-->>User: Present final answer (with sources)
 ```
-
-## InputItems
-
-Types:
-
-```python
-from openai.types.responses import ResponseItemList
-```
-
-Methods:
-
-- <code title="get /responses/{response_id}/input_items">client.responses.input_items.<a href="./src/openai/resources/responses/input_items.py">list</a>(response_id, \*\*<a href="src/openai/types/responses/input_item_list_params.py">params</a>) -> <a href="./src/openai/types/responses/response_item.py">SyncCursorPage[ResponseItem]</a></code>
-
-## InputTokens
-
-Types:
-
-```python
-from openai.types.responses import InputTokenCountResponse
-```
-
-Methods:
-
-- <code title="post /responses/input_tokens">client.responses.input_tokens.<a href="./src/openai/resources/responses/input_tokens.py">count</a>(\*\*<a href="src/openai/types/responses/input_token_count_params.py">params</a>) -> <a href="./src/openai/types/responses/input_token_count_response.py">InputTokenCountResponse</a></code>
