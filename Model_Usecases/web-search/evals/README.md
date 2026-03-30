@@ -1,6 +1,6 @@
 # Web Search Evals
 
-Run local web search evaluations with the Responses API and the `web_search_preview` tool. The notebooks generate a JSONL log of response payloads and then evaluate tool usage based on the tool call metadata in each response.
+Run local web search evaluations with the Responses API and the `web_search` tool. The notebooks generate a JSONL log of response payloads and then evaluate tool usage based on the tool call metadata in each response.
 
 ## Setup
 
@@ -34,7 +34,7 @@ Example input line:
 
 ## Notebooks
 
-- `notebooks/generate_eval_dataset.ipynb` reads `data/search_eval.jsonl`, calls the Responses API with `web_search_preview`, and writes `outputs/web_search_eval_raw_<timestamp>.jsonl` with the raw response payloads.
+- `notebooks/generate_eval_dataset.ipynb` reads `data/search_eval.jsonl`, calls the Responses API with `web_search`, and writes `outputs/web_search_eval_raw_<timestamp>.jsonl` with the raw response payloads.
 - `notebooks/evaluate_search.ipynb` uses the Azure AI Evaluation SDK to score tool-call usage, and reports tool-call rate plus accuracy when `expected_tool_call` is present.
 - `notebooks/evaluate_with_various_inputs.ipynb` parses tool call metadata from the raw JSONL and summarizes web search usage rates (lightweight, no SDK dependency).
 
@@ -43,7 +43,7 @@ Example input line:
 ```mermaid
 flowchart TD
     A[For each row in data/search_eval.jsonl] --> B[Run generate_eval_dataset.ipynb]
-    B --> C[Call Responses API with web_search_preview]
+    B --> C[Call Responses API with web_search]
     C --> D[Write row to outputs/web_search_eval_raw_*.jsonl]
     D --> E[Run evaluate_search.ipynb]
     E --> F[Aggregate tool call metrics]
