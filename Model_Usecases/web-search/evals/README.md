@@ -42,10 +42,28 @@ Example input line:
 
 ```mermaid
 flowchart TD
-    A[data/search_eval.jsonl] --> B[generate_eval_dataset.ipynb]
-    B --> C[outputs/web_search_eval_raw_*.jsonl]
-    C --> D[evaluate_search.ipynb]
-    D --> F[tool call accuracy metrics]
+    A[For each row in data/search_eval.jsonl] --> B[Run generate_eval_dataset.ipynb]
+    B --> C[Call Responses API with web_search_preview]
+    C --> D[Write row to outputs/web_search_eval_raw_*.jsonl]
+    D --> E[Run evaluate_search.ipynb]
+    E --> F[Aggregate tool call metrics]
+```
+
+## Per-text evaluator flow
+
+```mermaid
+flowchart TD
+    A[For each row in outputs/web_search_eval_raw_*.jsonl] --> B[Extract tool calls from response.output]
+    B --> C{Tool call present?}
+    C -- Yes --> D[Set result=1.0 and tool_call_made=true]
+    C -- No --> E[Set result=0.0 and tool_call_made=false]
+    D --> F{expected_tool_call present?}
+    E --> F
+    F -- Yes --> G[Set tool_call_correct to tool_call_made == expected_tool_call]
+    F -- No --> H[Set tool_call_correct to null]
+    G --> I[Store per-row evaluator output]
+    H --> I
+    I --> J[Aggregate tool_call_count, tool_call_rate, and tool_call_accuracy]
 ```
 
 ## What you get
