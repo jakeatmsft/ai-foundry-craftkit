@@ -4,9 +4,19 @@
         <set-variable name="restrictionMessage" value="@{
             var requestPath = context.Request.Url.Path ?? string.Empty;
             var normalizedPath = requestPath.TrimEnd('/');
+            var isPostRequest =
+                string.Equals(context.Request.Method, &quot;POST&quot;, System.StringComparison.OrdinalIgnoreCase);
             var isResponsesCreateRequest =
-                string.Equals(context.Request.Method, &quot;POST&quot;, System.StringComparison.OrdinalIgnoreCase) &&
+                isPostRequest &&
                 normalizedPath.EndsWith(&quot;/responses&quot;, System.StringComparison.OrdinalIgnoreCase);
+            var isFilesCreateRequest =
+                isPostRequest &&
+                normalizedPath.EndsWith(&quot;/files&quot;, System.StringComparison.OrdinalIgnoreCase);
+
+            if (isFilesCreateRequest)
+            {
+                return &quot;File uploads via /files are not permitted.&quot;;
+            }
 
             if (!isResponsesCreateRequest)
             {
@@ -21,75 +31,64 @@
 
             bool hasBlockedMessageAttachment = false;
             bool hasBlockedMessageContent = false;
+            bool hasBlockedFileUrlInput = false;
             bool hasTopLevelFileIds = false;
             bool hasBackgroundTrue = false;
 
             string message = null;
 
             var inputToken = body["input"];
-            var inputArray = inputToken as Newtonsoft.Json.Linq.JArray;
-            if (inputArray != null)
+            if (inputToken != null)
             {
-                foreach (var inputItemToken in inputArray)
+                foreach (var typeToken in inputToken.SelectTokens("$..type"))
                 {
-                    var inputItem = inputItemToken as Newtonsoft.Json.Linq.JObject;
-                    if (inputItem == null)
+                    if (typeToken == null || typeToken.Type != Newtonsoft.Json.Linq.JTokenType.String)
                     {
                         continue;
                     }
 
-                    var contentArray = inputItem["content"] as Newtonsoft.Json.Linq.JArray;
-                    if (contentArray == null)
+                    var typeValue = (string)typeToken;
+                    if (string.IsNullOrWhiteSpace(typeValue) ||
+                        (!string.Equals(typeValue, "input_file", System.StringComparison.OrdinalIgnoreCase) &&
+                         !string.Equals(typeValue, "file_input", System.StringComparison.OrdinalIgnoreCase)))
                     {
                         continue;
                     }
 
-                    foreach (var contentToken in contentArray)
+                    var typeProperty = typeToken.Parent as Newtonsoft.Json.Linq.JProperty;
+                    var typeContainer = typeProperty != null ? typeProperty.Parent as Newtonsoft.Json.Linq.JObject : null;
+                    if (typeContainer == null)
                     {
-                        var content = contentToken as Newtonsoft.Json.Linq.JObject;
-                        if (content == null)
-                        {
-                            continue;
-                        }
-
-                        var typeValue = (string)content["type"];
-                        if (!string.IsNullOrEmpty(typeValue) &&
-                            (string.Equals(typeValue, "input_file", System.StringComparison.OrdinalIgnoreCase) ||
-                             string.Equals(typeValue, "file_input", System.StringComparison.OrdinalIgnoreCase)))
-                        {
-                            hasBlockedMessageContent = true;
-                            break;
-                        }
-                    }
-
-                    if (hasBlockedMessageContent)
-                    {
+                        hasBlockedMessageContent = true;
                         break;
                     }
-                }
-            }
-            else
-            {
-                var singleInput = inputToken as Newtonsoft.Json.Linq.JObject;
-                var contentArray = singleInput?["content"] as Newtonsoft.Json.Linq.JArray;
-                if (contentArray != null)
-                {
-                    foreach (var contentToken in contentArray)
-                    {
-                        var content = contentToken as Newtonsoft.Json.Linq.JObject;
-                        if (content == null)
-                        {
-                            continue;
-                        }
 
-                        var typeValue = (string)content["type"];
-                        if (!string.IsNullOrEmpty(typeValue) &&
-                            (string.Equals(typeValue, "input_file", System.StringComparison.OrdinalIgnoreCase) ||
-                             string.Equals(typeValue, "file_input", System.StringComparison.OrdinalIgnoreCase)))
-                        {
-                            hasBlockedMessageContent = true;
-                            break;
-                        }
+                    var fileDataValue = (string)typeContainer["file_data"];
+                    var hasInlineFileData = !string.IsNullOrWhiteSpace(fileDataValue);
+                    var fileUrlValue = (string)typeContainer["file_url"];
+                    var hasFileUrl = !string.IsNullOrWhiteSpace(fileUrlValue);
+
+                    bool hasFileReference = false;
+                    var fileIdValue = (string)typeContainer["file_id"];
+                    if (!string.IsNullOrWhiteSpace(fileIdValue))
+                    {
+                        hasFileReference = true;
+                    }
+                    else
+                    {
+                        var fileIds = typeContainer["file_ids"] as Newtonsoft.Json.Linq.JArray;
+                        hasFileReference = fileIds != null && fileIds.Count > 0;
+                    }
+
+                    if (hasFileUrl)
+                    {
+                        hasBlockedFileUrlInput = true;
+                    }
+
+                    if (hasFileReference || hasFileUrl || !hasInlineFileData)
+                    {
+                        hasBlockedMessageContent = true;
+                        break;
                     }
                 }
             }
@@ -181,7 +180,11 @@
 
             if (hasBlockedMessageContent)
             {
-                message = "Tool input 'input_file' (or 'file_input') is not permitted.";
+                message = "Only inline file input using non-empty 'file_data' is permitted; 'file_id'/'file_ids' references are not allowed.";
+                if (hasBlockedFileUrlInput)
+                {
+                    message = message + " URL-based file input ('file_url') is not permitted.";
+                }
             }
 
             if (hasBlockedMessageAttachment)
