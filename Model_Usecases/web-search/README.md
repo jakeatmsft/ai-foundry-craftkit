@@ -13,6 +13,7 @@ This guide summarizes how the `web_search` tool is used via the OpenAI Python SD
 
 ```python
 import os
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -23,17 +24,20 @@ base_url = (
     or os.getenv("AZURE_OPENAI_API_BASE")
     or os.getenv("AZURE_EXISTING_AIPROJECT_ENDPOINT")
 )
-api_key = os.getenv("AZURE_OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default",
+)
 model = os.getenv("AZURE_OPENAI_MODEL") or os.getenv("AZURE_OPENAI_DEPLOYMENT") or "gpt-5.2"
 
-if not base_url or not api_key:
-    raise ValueError("Set base URL and API key in .env (see prerequisites).")
+if not base_url:
+    raise ValueError("Set base URL in .env (see prerequisites).")
 
 base_url = base_url.rstrip("/")
 if not base_url.endswith("/openai/v1"):
     base_url = f"{base_url}/openai/v1"
 
-client = OpenAI(api_key=api_key, base_url=base_url)
+client = OpenAI(api_key=token_provider, base_url=base_url)
 
 response = client.responses.create(
     model=model,

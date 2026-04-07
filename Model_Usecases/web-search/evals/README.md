@@ -19,8 +19,9 @@ cp .env.example .env
 Required environment variables (for dataset generation):
 
 - `AZURE_OPENAI_BASE_URL` (or `AZURE_OPENAI_API_BASE` / `AZURE_EXISTING_AIPROJECT_ENDPOINT`)
-- `AZURE_OPENAI_API_KEY` (or `OPENAI_API_KEY`)
 - `AZURE_OPENAI_MODEL` (or `AZURE_OPENAI_DEPLOYMENT`)
+
+Authentication is handled with `DefaultAzureCredential` + `get_bearer_token_provider` in the notebook. Run `az login` locally (or use managed identity in Azure) before execution.
 
 ## Data
 

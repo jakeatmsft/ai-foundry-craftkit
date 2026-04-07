@@ -1,4 +1,4 @@
-from azure.identity.aio import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import AsyncAzureOpenAI
 import asyncio, nest_asyncio
 from dotenv import load_dotenv
@@ -8,10 +8,13 @@ load_dotenv()
 nest_asyncio.apply()
 
 async def main() -> None:
-    credential = DefaultAzureCredential()
+    token_provider = get_bearer_token_provider(
+        DefaultAzureCredential(),
+        "https://cognitiveservices.azure.com/.default",
+    )
     client = AsyncAzureOpenAI(
             azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-            api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+            azure_ad_token_provider=token_provider,
             api_version=os.getenv("AZURE_OPENAI_API_VERSION"))
     async with client.realtime.connect(model='gpt-realtime') as connection:
         #await connection.session.update(session={"modalities": ["text"]})  # type: ignore

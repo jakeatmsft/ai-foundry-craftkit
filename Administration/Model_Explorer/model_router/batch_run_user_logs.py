@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import OpenAI
 try:
     from dotenv import load_dotenv
@@ -18,6 +19,7 @@ except ImportError:
 
 LOG_SAMPLE_MARKER = "Evaluation completed successfully: "
 TARGET_MARKER = "Running evaluation target:"
+AZURE_OPENAI_SCOPE = "https://cognitiveservices.azure.com/.default"
 
 
 def safe_literal_loads(value: str):
@@ -372,11 +374,6 @@ def parse_args() -> argparse.Namespace:
         help="Azure OpenAI deployment name to target.",
     )
     parser.add_argument(
-        "--api-key",
-        default=None,
-        help="API key to use. Defaults to OPENAI_API_KEY/AZURE_OPENAI_API_KEY env vars if omitted.",
-    )
-    parser.add_argument(
         "--system",
         default=None,
         help="Optional system prompt to prepend to every request.",
@@ -481,7 +478,11 @@ def main() -> None:
         examples = examples[: args.limit]
     client: Optional[OpenAI] = None
     if not args.dry_run:
-        client = OpenAI(base_url=args.endpoint, api_key=args.api_key)
+        token_provider = get_bearer_token_provider(
+            DefaultAzureCredential(),
+            AZURE_OPENAI_SCOPE,
+        )
+        client = OpenAI(base_url=args.endpoint, api_key=token_provider)
     records = run_examples(
         client,
         examples,

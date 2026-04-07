@@ -5,10 +5,16 @@ import os
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import AsyncAzureOpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
+
+AZURE_OPENAI_TOKEN_PROVIDER = get_bearer_token_provider(
+    DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default",
+)
 
 
 def now_iso() -> str:
@@ -79,7 +85,7 @@ async def run_connection(conn_id: int, model: Optional[str], hold_s: float, writ
 
     client = AsyncAzureOpenAI(
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+        azure_ad_token_provider=AZURE_OPENAI_TOKEN_PROVIDER,
         api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
     )
 

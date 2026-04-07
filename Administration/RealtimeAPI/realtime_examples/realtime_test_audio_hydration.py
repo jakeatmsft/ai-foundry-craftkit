@@ -1,8 +1,9 @@
-import asyncio, base64, json, openai
+import asyncio, base64, json
 import gradio as gr
 import numpy as np
 from pathlib import Path
 from openai import AsyncAzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, StreamingResponse
 from fastrtc import (
@@ -21,9 +22,12 @@ load_dotenv()
 SAMPLE_RATE = 24000
 
 AZURE_OPENAI_API_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
-AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
 AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
 AZURE_OPENAI_DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
+AZURE_OPENAI_TOKEN_PROVIDER = get_bearer_token_provider(
+    DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default",
+)
 SESSION_CONFIG={
     "input_audio_transcription": {
       "model": "gpt-realtime"
@@ -78,10 +82,10 @@ class OpenAIHandler(AsyncStreamHandler):
         Establish a persistent realtime connection to the Azure OpenAI backend.
         The connection is configured for server‐side Voice Activity Detection.
         """
-        self.client = openai.AsyncAzureOpenAI(
+        self.client = AsyncAzureOpenAI(
             azure_endpoint=AZURE_OPENAI_API_ENDPOINT,
             azure_deployment=AZURE_OPENAI_DEPLOYMENT_NAME,
-            api_key=AZURE_OPENAI_API_KEY,
+            azure_ad_token_provider=AZURE_OPENAI_TOKEN_PROVIDER,
             api_version=AZURE_OPENAI_API_VERSION,
         )
         # When using Azure OpenAI realtime (beta), set the model/deployment identifier
