@@ -1,0 +1,14 @@
+email_address          = "admin@example.com"
+ai_gateway_resource_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-apim-rg/providers/Microsoft.ApiManagement/service/my-apim"
+
+resource_group_name           = "ai-gateway-monitoring-rg"
+resource_group_location       = "East US2"
+log_analytics_workspace_name  = "my-ai-gateway-law"
+action_group_name             = "my-ai-gateway-alerts"
+action_group_short_name       = "aigwalert"
+alert_name                    = "ai-gateway-token-usage-spike"
+alert_severity                = 2
+app_id_header_name            = "appid"
+min_total_tokens_in_window    = 100000
+spike_multiplier              = 1.5
+notification_throttle_minutes = 60
