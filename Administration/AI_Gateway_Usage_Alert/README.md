@@ -1,8 +1,17 @@
-# AI Gateway Usage Spike Alert Terraform Example
+# AI Gateway Token Anomaly Alert with Subscription Routing
 
-This example adapts the basic Log Analytics + Action Group + Scheduled Query Alert pattern to detect anomalous token usage spikes from Azure API Management AI gateway logs.
+This Terraform configuration detects anomalous token consumption spikes from Azure API Management AI gateway logs and routes notifications to subscription owners via email.
 
-It uses the `ApiManagementGatewayLlmLog` table and the `TotalTokens` column as the signal, and joins to `ApiManagementGatewayLogs` to extract an `appid` from request headers. The alert evaluates every 10 minutes and compares the most recent completed 10-minute window for each app ID against the historical 95th percentile of that same app ID across the last day.
+The architecture uses:
+- **Log Analytics**: collects AI gateway and LLM logs
+- **Scheduled Query Alert**: runs a KQL anomaly detection rule on token consumption trends per subscription ID
+- **Shared Action Group**: routes all alerts to a webhook
+- **Logic App (Consumption)**: parses alerts, looks up subscription → email mappings, and sends emails
+- **No storage account required**: Logic App Consumption is a serverless event handler
+
+## Architecture
+
+![AI Gateway Token Anomaly Alert with Subscription Routing](https://aka.ms/azure/api-management/ai-gateway/anomaly-alerts/ai-gateway-token-anomaly-alert-with-subscription-routing.png)
 
 ## What it creates
 

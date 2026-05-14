@@ -55,7 +55,7 @@ variable "action_group_short_name" {
 variable "alert_name" {
   description = "Name of the scheduled query alert."
   type        = string
-  default     = "ai-gateway-token-usage-spike"
+  default     = "ai-gateway-token-spike"
 }
 
 variable "alert_severity" {
@@ -100,17 +100,37 @@ variable "notification_throttle_minutes" {
   default     = 60
 }
 
+variable "app_email_map" {
+  description = "Map of ApimSubscriptionId to email recipients; include a default key."
+  type        = map(list(string))
+  default = {
+    default = ["ai-gateway-admins@example.com"]
+  }
+}
+
+variable "logic_app_name" {
+  description = "Name of the Logic App that routes alerts to email recipients by AppId."
+  type        = string
+  default     = "ai-gateway-alert-router"
+}
+
+variable "router_action_group_name" {
+  description = "Name of the shared action group that triggers the alert router Logic App."
+  type        = string
+  default     = "ai-gateway-router-ag"
+}
+
 locals {
   common_tags = {
     workload = "ai-gateway"
-    signal   = "api-call-anomaly"
+    signal   = "token-anomaly"
   }
 
-    ai_gateway_usage_spike_query = <<-QUERY
-    let lookback      = ${var.lookback_days}d;
-    let binSize       = ${var.bin_size_minutes}m;
+  ai_gateway_token_spike_query = <<-QUERY
+    let lookback        = ${var.lookback_days}d;
+    let binSize         = ${var.bin_size_minutes}m;
     let anomalyThreshold = ${var.anomaly_threshold};
-    let recentWindow  = ${var.recent_window_minutes}m;
+    let recentWindow    = ${var.recent_window_minutes}m;
     ApiManagementGatewayLogs
     | where _ResourceId =~ "${var.ai_gateway_resource_id}"
     | where TimeGenerated >= ago(lookback)
@@ -127,34 +147,29 @@ locals {
       | where SequenceNumber == 0
       | project CorrelationId, TotalTokens
     ) on CorrelationId
-    | summarize api_calls = count(), total_tokens = sum(TotalTokens)
+    | summarize total_tokens = sum(TotalTokens)
       by bin(TimeGenerated, binSize), ApimSubscriptionId
     | make-series
-      api_calls_series = sum(api_calls) default=0,
-      tokens_series    = sum(total_tokens) default=0
-      on TimeGenerated
-      from ago(lookback) to now()
-      step binSize
+      tokens_series = sum(total_tokens) default=0
+      on TimeGenerated from ago(lookback) to now() step binSize
       by ApimSubscriptionId
-    | extend (anomalies, anomaly_score, baseline) = series_decompose_anomalies(api_calls_series, anomalyThreshold)
+    | extend (anomalies, anomaly_score, baseline) = series_decompose_anomalies(tokens_series, anomalyThreshold)
     | mv-expand
-      TimeGenerated    to typeof(datetime),
-      api_calls_series to typeof(long),
-      tokens_series    to typeof(long),
-      anomalies        to typeof(int),
-      anomaly_score    to typeof(double),
-      baseline         to typeof(double)
+      TimeGenerated   to typeof(datetime),
+      tokens_series   to typeof(long),
+      anomalies       to typeof(int),
+      anomaly_score   to typeof(double),
+      baseline        to typeof(double)
     | where anomalies == 1
     | where TimeGenerated >= ago(recentWindow)
     | project
       TimeGenerated,
       ApimSubscriptionId,
-      api_calls       = api_calls_series,
-      total_tokens    = tokens_series,
-      baseline_calls  = baseline,
+      total_tokens = tokens_series,
+      baseline_tokens = baseline,
       anomaly_score
     | order by anomaly_score desc
-    QUERY
+  QUERY
 }
 
 provider "azurerm" {
@@ -178,38 +193,161 @@ resource "azurerm_log_analytics_workspace" "law" {
   tags = local.common_tags
 }
 
-resource "azurerm_monitor_action_group" "email_group" {
-  name                = var.action_group_name
-  resource_group_name = azurerm_resource_group.monitoring.name
-  short_name          = var.action_group_short_name
+resource "azapi_resource" "router_logic_app" {
+  type      = "Microsoft.Logic/workflows@2019-05-01"
+  name      = var.logic_app_name
+  parent_id = azurerm_resource_group.monitoring.id
+  location  = azurerm_resource_group.monitoring.location
 
-  email_receiver {
-    name          = "ai-gateway-admin-email"
-    email_address = var.email_address
+  body = jsonencode({
+    properties = {
+      state = "Enabled"
+      parameters = {
+        appEmailMap = {
+          type         = "Object"
+          defaultValue = var.app_email_map
+        }
+      }
+      definition = {
+        "$schema"       = "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#"
+        contentVersion  = "1.0.0.0"
+        parameters = {
+          appEmailMap = {
+            type = "Object"
+          }
+        }
+        triggers = {
+          When_HTTP_request_is_received = {
+            type = "Request"
+            kind = "Http"
+            inputs = {
+              schema = {
+                type = "object"
+                properties = {
+                  data = {
+                    type = "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+        actions = {
+          Parse_Alert = {
+            type = "Compose"
+            inputs = "@triggerBody()?['data']"
+          }
+          Extract_Tables = {
+            type = "Compose"
+            inputs = "@coalesce(outputs('Parse_Alert')?['alertContext']?['SearchResults']?['tables']?[0]?['rows'], createArray())"
+            runAfter = {
+              Parse_Alert = ["Succeeded"]
+            }
+          }
+          For_each_alert_row = {
+            type = "Foreach"
+            foreach = "@outputs('Extract_Tables')"
+            actions = {
+              Extract_AppId = {
+                type = "Compose"
+                inputs = "@{item()?[1]}"
+              }
+              Resolve_Email_Recipients = {
+                type = "Compose"
+                inputs = "@coalesce(parameters('appEmailMap')[outputs('Extract_AppId')], parameters('appEmailMap')?['default'])"
+                runAfter = {
+                  Extract_AppId = ["Succeeded"]
+                }
+              }
+              Format_Email_Body = {
+                type = "Compose"
+                inputs = "@concat('Subscription ID: ', outputs('Extract_AppId'), '\n', 'Time: ', item()?[0], '\n', 'Total Tokens: ', item()?[2], '\n', 'Baseline: ', item()?[3], '\n', 'Anomaly Score: ', item()?[4])"
+                runAfter = {
+                  Resolve_Email_Recipients = ["Succeeded"]
+                }
+              }
+              Send_email = {
+                type = "ApiConnection"
+                inputs = {
+                  host = {
+                    connection = {
+                      name = "@parameters('$connections')['office365']["value"]["connectionId"]"
+                    }
+                  }
+                  method = "post"
+                  path = "/Mail"
+                  body = {
+                    To = "@join(outputs('Resolve_Email_Recipients'), ';')"
+                    Subject = "@concat('AI Gateway Token Spike - ', outputs('Extract_AppId'))"
+                    Body = "@outputs('Format_Email_Body')"
+                  }
+                }
+                runAfter = {
+                  Format_Email_Body = ["Succeeded"]
+                }
+              }
+            }
+            runAfter = {
+              Extract_Tables = ["Succeeded"]
+            }
+          }
+        }
+        outputs = {}
+        parameters = {
+          "$connections" = {
+            defaultValue = {}
+            type = "Object"
+          }
+        }
+      }
+    }
+  })
+}
+
+data "azapi_resource_action" "router_callback" {
+  type        = "Microsoft.Logic/workflows/triggers@2019-05-01"
+  resource_id = "${azapi_resource.router_logic_app.id}/triggers/When_HTTP_request_is_received"
+  action      = "listCallbackUrl"
+  method      = "POST"
+}
+
+locals {
+  router_callback_url = jsondecode(data.azapi_resource_action.router_callback.output).value
+}
+
+resource "azurerm_monitor_action_group" "router_ag" {
+  name                = var.router_action_group_name
+  resource_group_name = azurerm_resource_group.monitoring.name
+  short_name          = "aigwroute"
+
+  webhook_receiver {
+    name                    = "logic-app-router"
+    service_uri             = local.router_callback_url
+    use_common_alert_schema = true
   }
 
   tags = local.common_tags
 }
 
-resource "azurerm_monitor_scheduled_query_rules_alert" "ai_gateway_usage_spike" {
+resource "azurerm_monitor_scheduled_query_rules_alert" "token_spike" {
   name                = var.alert_name
   location            = azurerm_log_analytics_workspace.law.location
   resource_group_name = azurerm_resource_group.monitoring.name
 
   action {
-    action_group  = [azurerm_monitor_action_group.email_group.id]
-    email_subject = "AI gateway anomalous API call volume detected by subscription ID"
+    action_group  = [azurerm_monitor_action_group.router_ag.id]
+    email_subject = "AI Gateway: Anomalous token consumption by subscription"
   }
 
   data_source_id = azurerm_log_analytics_workspace.law.id
-  description    = "Alert when a subscription ID (ApimSubscriptionId) exhibits anomalous API call volume relative to its historical baseline, as detected by series_decompose_anomalies."
+  description    = "Alert when a subscription ID exhibits anomalous token consumption relative to its historical baseline."
   enabled        = true
   query_type     = "ResultCount"
   severity       = var.alert_severity
   frequency      = var.bin_size_minutes
   time_window    = 1440
   throttling     = var.notification_throttle_minutes
-  query          = local.ai_gateway_usage_spike_query
+  query          = local.ai_gateway_token_spike_query
 
   trigger {
     operator  = "GreaterThan"
@@ -217,4 +355,15 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "ai_gateway_usage_spike" 
   }
 
   tags = local.common_tags
+}
+
+output "router_logic_app_url" {
+  description = "HTTP trigger URL of the alert router Logic App."
+  value       = local.router_callback_url
+  sensitive   = true
+}
+
+output "router_action_group_id" {
+  description = "Resource ID of the shared router action group."
+  value       = azurerm_monitor_action_group.router_ag.id
 }
