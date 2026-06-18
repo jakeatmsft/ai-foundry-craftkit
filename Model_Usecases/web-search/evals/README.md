@@ -26,6 +26,7 @@ Authentication is handled with `DefaultAzureCredential` + `get_bearer_token_prov
 ## Data
 
 - `data/search_eval.jsonl` stores input records. Each line is JSON with a required `query` and optional `id` and `test_case_description` fields.
+- `data/search_eval_blocklist_domains_20250826.jsonl` contains one query per domain from the `2025-08-26` blocked-domain list. Each record asks the model to investigate a specific blocked domain with `web_search`, and includes `blocked_domain` and `source_blocklist` metadata for downstream analysis.
 
 Example input line:
 

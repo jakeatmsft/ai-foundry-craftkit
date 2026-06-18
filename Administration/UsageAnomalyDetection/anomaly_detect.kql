@@ -1,0 +1,44 @@
+let startDate = now();
+
+let lookback = 14d;
+let binSize = 1h;
+let anomalyThreshold = 1.1;
+let recentWindow = 1h;
+
+ApiManagementGatewayLogs
+| where TimeGenerated >= startDate - lookback and TimeGenerated < startDate
+| where ApimSubscriptionId contains "107309"
+| where IsRequestSuccess == true
+| where Url has "/deployments/"
+| parse Url with * "/deployments/" model_deployment_name "/" *
+| where isnotempty(model_deployment_name)
+| project TimeGenerated, CorrelationId, ApimSubscriptionId
+| join hint.strategy=broadcast kind=inner (
+	ApiManagementGatewayLlmLog
+	| where TimeGenerated >= startDate - lookback and TimeGenerated < startDate
+	| where SequenceNumber == 0
+	| project CorrelationId, TotalTokens
+)
+	on CorrelationId
+| summarize total_tokens = sum(TotalTokens)
+	by bin(TimeGenerated, binSize), ApimSubscriptionId
+| make-series
+	tokens_series = sum(total_tokens) default=0
+	on TimeGenerated from startDate - lookback to startDate step binSize
+	by ApimSubscriptionId
+| extend (anomalies, anomaly_score, baseline) = series_decompose_anomalies(tokens_series, anomalyThreshold)
+| mv-expand
+	TimeGenerated to typeof(datetime),
+	tokens_series to typeof(long),
+	anomalies to typeof(int),
+	anomaly_score to typeof(double),
+	baseline to typeof(double)
+| where TimeGenerated >= startDate - recentWindow and TimeGenerated < startDate
+| where anomaly_score > 1
+| project
+	TimeGenerated,
+	ApimSubscriptionId,
+	total_tokens = tokens_series,
+	baseline_tokens = baseline,
+	anomaly_score
+| order by anomaly_score desc

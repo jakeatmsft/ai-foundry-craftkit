@@ -1,0 +1,25 @@
+email_address          = "admin@example.com"
+ai_gateway_resource_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-apim-rg/providers/Microsoft.ApiManagement/service/my-apim"
+
+resource_group_name           = "ai-gateway-monitoring-rg"
+resource_group_location       = "East US2"
+log_analytics_workspace_name  = "my-ai-gateway-law"
+action_group_name             = "my-ai-gateway-alerts"
+action_group_short_name       = "aigwalert"
+alert_name                    = "ai-gateway-token-spike"
+alert_severity                = 2
+api_id                        = "v2-azure-openai-service-api"
+anomaly_threshold             = 2.5
+lookback_days                 = 14
+bin_size_minutes              = 60
+recent_window_minutes         = 60
+notification_throttle_minutes = 60
+
+app_email_map = {
+  "appid-team-a" = ["team-a@example.com"]
+  "appid-team-b" = ["team-b@example.com"]
+  default        = ["ai-gateway-admins@example.com"]
+}
+
+logic_app_name            = "ai-gateway-alert-router"
+router_action_group_name  = "ai-gateway-router-ag"

@@ -35,6 +35,7 @@ Required environment variables (use either option):
 Optional:
 
 - `AZURE_USE_INTERACTIVE_CREDENTIAL=true` to use browser auth locally.
+- `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_DEPLOYMENT` for direct model probes.
 
 ## Run the local eval
 
@@ -56,6 +57,19 @@ python src/local_content_safety_eval.py \
   --target src.sample_app_target:sample_target \
   --output outputs/content_safety_results.json
 ```
+
+Test masked/Base64 prompts directly against your Azure OpenAI deployment:
+
+```bash
+python src/test_masked_content_safety.py \
+  --data data/masked_content_safety_eval.jsonl \
+  --output outputs/masked_content_safety_probe.json
+```
+
+Notes:
+
+- The probe checks whether each case was blocked by content filtering (`content_filter`) or returned a normal model response.
+- By default, it prepends `data/seed_prompt.json`; pass `--no-system-prompt` to test without the app/system context.
 
 ## What you get
 

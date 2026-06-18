@@ -1,0 +1,13 @@
+# Sample variable definitions for the standalone Azure AI Foundry account deployment.
+resource_group_name      = "<resource-group-name>"
+account_base_name        = "foundry"
+location                 = "eastus"
+public_network_access    = "Enabled"
+disable_local_auth       = false
+allow_project_management = true
+custom_subdomain_name    = ""
+deploy_model             = true
+model_deployment_name    = "gpt-5-mini"
+model_version            = "2025-08-07"
+model_sku_name           = "GlobalStandard"
+model_capacity           = 10

@@ -190,6 +190,14 @@ Administration/Deployment_Configs/BYO_AOAI_wPrivate_Networking/terraform/terrafo
 /Agents/agent-framework/ELI5/checkpoint/eli5_tmp
 Administration/Foundry_Service_Health_Alert/README.md
 Administration/Foundry_Service_Health_Alert/.terraform.lock.hcl
-Administration/Foundry_Service_Health_Alert/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.50.0/windows_amd64/LICENSE.txt
-Administration/Foundry_Service_Health_Alert/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.50.0/windows_amd64/terraform-provider-azurerm_v4.50.0_x5.exe
+Administration/Foundry_Service_Health_Alert/.terraform/
+Administration/Foundry_Service_Health_Alert/.terraform/
 ML/azureml_v2_job/config.json
+Model_Usecases/web-search/evals/outputs/
+Administration/RealtimeAPI/realtime_examples/outputs/
+Administration/UsageAnomalyDetection/.terraform/
+Model_Usecases/web-search/evals/data/*.xlsx
+Model_Usecases/web-search/blocklists/domains.txt
+Administration/UsageAnomalyDetection/.terraform.lock.hcl
+azure-cli_jammy.deb
+

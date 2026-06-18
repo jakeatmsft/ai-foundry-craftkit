@@ -6,6 +6,9 @@ Use the summaries below to pick the template that best matches your environment,
 
 ## Available Scenarios
 
+- [**AIFoundry_Account_Only**](AIFoundry_Account_Only)
+  - Creates an Azure AI Foundry account (`Microsoft.CognitiveServices/accounts` with `kind = AIServices`) plus its system-assigned managed identity and, by default, a `gpt-5-mini` deployment.
+  - Use this when you need a clean starting account without projects, connections, networking, or supporting services. Set `deployModel` / `deploy_model` to `false` if you want just the account.
 - [**BYO_AOAI_wPrivate_Networking**](BYO_AOAI_wPrivate_Networking)
   - Provisions a new virtual network, dedicated subnets (private endpoint + agent), AI Foundry account, project, and a bring-your-own Azure OpenAI connection.
   - Ideal when you want a self-contained deployment that sets up networking from scratch.
@@ -32,6 +35,8 @@ Use the summaries below to pick the template that best matches your environment,
 All templates rely on the Azure AzAPI provider/resource type versions noted in their manifests. Review the scenario documentation for any additional role assignments, feature flags, or cleanup guidance.
 
 ## Step-by-Step Provisioning Process
+
+The sequence below applies to the project-centric scenarios. `AIFoundry_Account_Only` can stop after provisioning the AI Foundry account in step 2 when `deployModel` / `deploy_model` is `false`; by default it also adds a standalone `gpt-5-mini` deployment and still skips the downstream project, connection, and capability-host work.
 
 1. Create the project-dependent resources required for the standard setup:
    - Create new (or supply the resource ID of an existing) Cosmos DB resource.

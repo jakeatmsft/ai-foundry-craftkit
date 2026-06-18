@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "accountBaseName": {
+      "value": "foundry"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "publicNetworkAccess": {
+      "value": "Enabled"
+    },
+    "disableLocalAuth": {
+      "value": false
+    },
+    "allowProjectManagement": {
+      "value": true
+    },
+    "customSubDomainName": {
+      "value": ""
+    },
+    "deployModel": {
+      "value": true
+    },
+    "modelDeploymentName": {
+      "value": "gpt-5-mini"
+    },
+    "modelVersion": {
+      "value": "2025-08-07"
+    },
+    "modelSkuName": {
+      "value": "GlobalStandard"
+    },
+    "modelCapacity": {
+      "value": 10
+    }
+  }
+}
