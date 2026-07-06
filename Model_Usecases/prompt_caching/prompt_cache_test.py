@@ -73,6 +73,8 @@ def run_request(client: OpenAI, model: str, question: str) -> tuple[float, int, 
         model=model,
         messages=[
             {"role": "system", "content": long_prefix()},
+            {"role": "user", "content": "question"},
+            {"role": "assistant", "content": long_prefix()},
             {"role": "user", "content": question},
         ],
         extra_body=extra_body,
