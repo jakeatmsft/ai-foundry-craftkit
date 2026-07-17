@@ -19,7 +19,7 @@ from urllib.request import Request, urlopen
 
 ACTIVE_STATUSES = {"validating", "in_progress", "finalizing"}
 DEFAULT_MAX_AGE_HOURS = 24.0
-DEFAULT_POLL_INTERVAL_SECONDS = 300
+DEFAULT_POLL_INTERVAL_SECONDS = 3600
 
 
 class BatchApiClient:
@@ -171,7 +171,7 @@ def parse_args() -> argparse.Namespace:
         default=float(
             os.getenv("BATCH_POLL_INTERVAL_SECONDS", DEFAULT_POLL_INTERVAL_SECONDS)
         ),
-        help="seconds between scans in watch mode (default: 300)",
+        help="seconds between scans in watch mode (default: 3600)",
     )
     parser.add_argument(
         "--dry-run", action="store_true", help="report overdue jobs without cancelling"

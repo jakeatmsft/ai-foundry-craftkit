@@ -34,7 +34,7 @@ Perform one scan and cancel overdue jobs:
 python monitor_batch_jobs_openai.py
 ```
 
-Keep polling every five minutes:
+Keep polling every hour:
 
 ```bash
 python monitor_batch_jobs_openai.py --watch
