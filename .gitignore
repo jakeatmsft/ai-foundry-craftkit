@@ -201,3 +201,4 @@ Model_Usecases/web-search/blocklists/domains.txt
 Administration/UsageAnomalyDetection/.terraform.lock.hcl
 azure-cli_jammy.deb
 
+evals/outputs/*

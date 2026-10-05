@@ -1,0 +1,8 @@
+requests>=2.32.4,<3
+python-dotenv>=1.1,<2
+ipykernel>=6.29,<8
+jupyterlab>=4.4,<5
+
+# Optional, only for the authenticated Azure examples:
+# azure-identity>=1.23,<2
+# azure-ai-ml>=1.28,<2
