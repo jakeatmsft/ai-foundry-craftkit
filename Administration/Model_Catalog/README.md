@@ -24,8 +24,6 @@ The default lookup needs internet access but no credentials. JSON export, a seco
 
 | Source | Use it for | Requirements |
 | --- | --- | --- |
-| [Azure ML ModelOperations SDK](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.operations.modeloperations?view=azure-python) | Registry model versions, descriptions, tags and properties via `MLClient.models.get/list` | `azure-ai-ml`, `azure-identity`, an Entra identity with registry read access, and a registry name |
-| [Foundry Models – List REST API](https://learn.microsoft.com/en-us/rest/api/microsoftfoundry/accountmanagement/models/list) | Regional model capabilities, versions, lifecycle/deprecation information and SKUs | `azure-identity`, subscription ID, region, and `Microsoft.CognitiveServices/locations/models/read` permission |
 | Public catalog HTML | The model card and metadata embedded in a model detail page | Anonymous HTTPS; undocumented page-data format |
 
 The notebook includes runnable optional examples for both supported interfaces and handles REST pagination. The documented REST endpoint is:
