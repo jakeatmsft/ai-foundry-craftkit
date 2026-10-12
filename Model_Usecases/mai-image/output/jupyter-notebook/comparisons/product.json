@@ -1,0 +1,259 @@
+{
+  "title": "Product photography",
+  "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+  "reference": null,
+  "omitted_models": [],
+  "results": [
+    {
+      "model": "gpt-image-1.5",
+      "deployment": "gpt-image-1.5",
+      "scenario": "product",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-1.5",
+        "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:02:34.051629+00:00",
+      "elapsed_seconds": 15.15,
+      "request_id": "65df3014-1476-492c-9828-6d2f14005d53",
+      "usage": {
+        "input_tokens": 104,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 104
+        },
+        "output_tokens": 399,
+        "total_tokens": 503,
+        "output_tokens_details": {
+          "image_tokens": 272,
+          "text_tokens": 127
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_product_gpt-image-1.5_57410956.png"
+    },
+    {
+      "model": "gpt-image-2",
+      "deployment": "gpt-image-2",
+      "scenario": "product",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2",
+        "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:02:49.342787+00:00",
+      "elapsed_seconds": 17.21,
+      "request_id": "1f5c2d52-0f20-47e0-9a57-a0fc13a4b7f7",
+      "usage": {
+        "input_tokens": 104,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 104
+        },
+        "output_tokens": 196,
+        "total_tokens": 300,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_product_gpt-image-2_bad193e1.png"
+    },
+    {
+      "model": "gpt-image-2.5-flare",
+      "deployment": "gpt-image-2.5-flare",
+      "scenario": "product",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2.5-flare",
+        "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:03:06.686906+00:00",
+      "elapsed_seconds": 13.41,
+      "request_id": "92a27123-8e29-4f67-96ec-bbb8bf6ae332",
+      "usage": {
+        "input_tokens": 104,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 104
+        },
+        "output_tokens": 196,
+        "total_tokens": 300,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_product_gpt-image-2.5-flare_602b28b9.png"
+    },
+    {
+      "model": "gpt-image-2.5-sunburst",
+      "deployment": "gpt-image-2.5-sunburst",
+      "scenario": "product",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:03:20.536423+00:00",
+      "elapsed_seconds": 24.02,
+      "request_id": "338b7a69-dc08-4795-ba13-f42b54b8c53e",
+      "usage": {
+        "input_tokens": 104,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 104
+        },
+        "output_tokens": 196,
+        "total_tokens": 300,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_product_gpt-image-2.5-sunburst_2d23924a.png"
+    },
+    {
+      "model": "MAI-Image-2.6",
+      "deployment": "MAI-Image-2.6",
+      "provider": "mai",
+      "scenario": "product",
+      "operation": "generate",
+      "request": {
+        "model": "MAI-Image-2.6",
+        "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false,
+        "width": 1024,
+        "height": 1024
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+      "api_version": null,
+      "source_image": null,
+      "created_at": "2026-09-14T20:39:42.113478+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "c0febd15-5472-4fab-92c0-449d45017132",
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1024,
+        "num_input_text_tokens": 97,
+        "num_input_image_tokens": 0
+      },
+      "elapsed_seconds": 35.23,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/product_MAI-Image-2.6_16297b2c.png"
+    },
+    {
+      "model": "MAI-Image-2.6-Flash",
+      "deployment": "MAI-Image-2.6-Flash",
+      "provider": "mai",
+      "scenario": "product",
+      "operation": "generate",
+      "request": {
+        "model": "MAI-Image-2.6-Flash",
+        "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false,
+        "width": 1024,
+        "height": 1024
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+      "api_version": null,
+      "source_image": null,
+      "created_at": "2026-09-14T20:40:17.537619+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "e23852df-c869-4111-96f4-167e9067ddff",
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1024,
+        "num_input_text_tokens": 97,
+        "num_input_image_tokens": 0
+      },
+      "elapsed_seconds": 12.41,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/product_MAI-Image-2.6-Flash_74f8292d.png"
+    }
+  ],
+  "prior_attempts": []
+}

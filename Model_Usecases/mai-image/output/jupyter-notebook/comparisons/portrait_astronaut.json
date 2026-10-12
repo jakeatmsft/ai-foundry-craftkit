@@ -1,0 +1,306 @@
+{
+  "title": "Photo to astronaut",
+  "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+  "reference": "assets/reference_portrait.png",
+  "omitted_models": [],
+  "results": [
+    {
+      "model": "gpt-image-1.5",
+      "deployment": "gpt-image-1.5",
+      "scenario": "portrait_astronaut",
+      "operation": "edit",
+      "request": {
+        "model": "gpt-image-1.5",
+        "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": "reference_portrait.png",
+      "created_at": "2026-09-14T18:03:44.761370+00:00",
+      "elapsed_seconds": 12.11,
+      "request_id": "3918d407-9aec-4b2b-a4cc-e20685c30151",
+      "usage": {
+        "input_tokens": 351,
+        "input_tokens_details": {
+          "image_tokens": 194,
+          "text_tokens": 157
+        },
+        "output_tokens": 422,
+        "total_tokens": 773,
+        "output_tokens_details": {
+          "image_tokens": 272,
+          "text_tokens": 150
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_portrait_gpt-image-1.5_1d5b8b89.png"
+    },
+    {
+      "model": "gpt-image-2",
+      "deployment": "gpt-image-2",
+      "scenario": "portrait_astronaut",
+      "operation": "edit",
+      "request": {
+        "model": "gpt-image-2",
+        "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": "reference_portrait.png",
+      "created_at": "2026-09-14T18:03:57.221211+00:00",
+      "elapsed_seconds": 20.81,
+      "request_id": "bb39d5ef-6a94-47a4-bddf-455598498c8e",
+      "usage": {
+        "input_tokens": 1103,
+        "input_tokens_details": {
+          "image_tokens": 961,
+          "text_tokens": 142
+        },
+        "output_tokens": 196,
+        "total_tokens": 1299,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_portrait_gpt-image-2_0a825aff.png"
+    },
+    {
+      "model": "gpt-image-2.5-flare",
+      "deployment": "gpt-image-2.5-flare",
+      "scenario": "portrait_astronaut",
+      "operation": "edit",
+      "request": {
+        "model": "gpt-image-2.5-flare",
+        "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": "reference_portrait.png",
+      "created_at": "2026-09-14T18:04:18.707858+00:00",
+      "elapsed_seconds": 21.01,
+      "request_id": "836a2fc9-783d-441c-8ba9-743711fe2214",
+      "usage": {
+        "input_tokens": 1113,
+        "input_tokens_details": {
+          "image_tokens": 961,
+          "text_tokens": 152
+        },
+        "output_tokens": 196,
+        "total_tokens": 1309,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_portrait_gpt-image-2.5-flare_657e51a6.png"
+    },
+    {
+      "model": "gpt-image-2.5-sunburst",
+      "deployment": "gpt-image-2.5-sunburst",
+      "scenario": "portrait_astronaut",
+      "operation": "edit",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": "reference_portrait.png",
+      "created_at": "2026-09-14T18:04:40.040594+00:00",
+      "elapsed_seconds": 33.32,
+      "request_id": "d364bce2-da6e-4f55-8aff-dc74d50efe1f",
+      "usage": {
+        "input_tokens": 1113,
+        "input_tokens_details": {
+          "image_tokens": 961,
+          "text_tokens": 152
+        },
+        "output_tokens": 196,
+        "total_tokens": 1309,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_portrait_gpt-image-2.5-sunburst_60e0decc.png"
+    },
+    {
+      "model": "MAI-Image-2.6",
+      "deployment": "MAI-Image-2.6",
+      "provider": "mai",
+      "scenario": "portrait_astronaut",
+      "operation": "edit",
+      "request": {
+        "model": "MAI-Image-2.6",
+        "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/edits",
+      "api_version": null,
+      "source_image": "reference_portrait.png",
+      "created_at": "2026-09-14T20:44:20.444700+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "614c701b-86df-4964-8a5c-90f321037544",
+      "retry_after": null,
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1023,
+        "num_input_text_tokens": 123,
+        "num_input_image_tokens": 233
+      },
+      "elapsed_seconds": 23.19,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1008,
+        1040
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T204330Z_ee45eb95/portrait_astronaut_MAI-Image-2.6_ffada350.png"
+    },
+    {
+      "model": "MAI-Image-2.6-Flash",
+      "deployment": "MAI-Image-2.6-Flash",
+      "provider": "mai",
+      "scenario": "portrait_astronaut",
+      "operation": "edit",
+      "request": {
+        "model": "MAI-Image-2.6-Flash",
+        "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/edits",
+      "api_version": null,
+      "source_image": "reference_portrait.png",
+      "created_at": "2026-09-14T20:44:44.268403+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "4136048a-9012-41e4-8aac-f3c1a2a67bf5",
+      "retry_after": null,
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1023,
+        "num_input_text_tokens": 123,
+        "num_input_image_tokens": 233
+      },
+      "elapsed_seconds": 17.91,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1008,
+        1040
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T204330Z_ee45eb95/portrait_astronaut_MAI-Image-2.6-Flash_ca6bed2f.png"
+    }
+  ],
+  "prior_attempts": [
+    {
+      "model": "MAI-Image-2.6-Flash",
+      "deployment": "MAI-Image-2.6-Flash",
+      "provider": "mai",
+      "scenario": "portrait_astronaut",
+      "operation": "edit",
+      "request": {
+        "model": "MAI-Image-2.6-Flash",
+        "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/edits",
+      "api_version": null,
+      "source_image": "reference_portrait.png",
+      "created_at": "2026-09-14T20:42:05.116393+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "fab7798b-fa6d-4c85-9b06-b3e2b4aea058",
+      "status": "error",
+      "error": "429 Client Error: Too Many Requests for url: https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/edits | {\"error\":{\"code\":\"RateLimitReached\",\"message\":\"Your requests to MAI-Image-2.6-Flash for MAI-Image-2.6-Flash in eastus have exceeded rate limit.\",\"details\":\"Your requests to MAI-Image-2.6-Flash for MAI-Image-2.6-Flash in eastus have exceeded rate limit.\"}}",
+      "http_status": 429,
+      "elapsed_seconds": 0.53
+    },
+    {
+      "model": "MAI-Image-2.6",
+      "deployment": "MAI-Image-2.6",
+      "provider": "mai",
+      "scenario": "portrait_astronaut",
+      "operation": "edit",
+      "request": {
+        "model": "MAI-Image-2.6",
+        "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/edits",
+      "api_version": null,
+      "source_image": "reference_portrait.png",
+      "created_at": "2026-09-14T20:41:49.325730+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "780a56c8-7245-4fe8-9b5c-33fefdc489a2",
+      "status": "error",
+      "error": "429 Client Error: Too Many Requests for url: https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/edits | {\"error\":{\"code\":\"RateLimitReached\",\"message\":\"Your requests to MAI-Image-2.6 for MAI-Image-2.6 in eastus have exceeded rate limit.\",\"details\":\"Your requests to MAI-Image-2.6 for MAI-Image-2.6 in eastus have exceeded rate limit.\"}}",
+      "http_status": 429,
+      "elapsed_seconds": 0.46
+    }
+  ]
+}

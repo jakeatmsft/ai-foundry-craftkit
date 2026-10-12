@@ -1,0 +1,1280 @@
+[
+  {
+    "model": "gpt-image-1.5",
+    "deployment": "gpt-image-1.5",
+    "scenario": "illustration",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-1.5",
+      "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:11:15.547573+00:00",
+    "elapsed_seconds": 12.09,
+    "request_id": "fe32a92d-7e29-4475-adab-a06969a5d7b8",
+    "usage": {
+      "input_tokens": 105,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 105
+      },
+      "output_tokens": 509,
+      "total_tokens": 614,
+      "output_tokens_details": {
+        "image_tokens": 272,
+        "text_tokens": 237
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/illustration_gpt-image-1.5_755a0a2d.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/illustration.json"
+  },
+  {
+    "model": "gpt-image-2",
+    "deployment": "gpt-image-2",
+    "scenario": "illustration",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2",
+      "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:11:27.869870+00:00",
+    "elapsed_seconds": 18.3,
+    "request_id": "d677b953-60f1-46ab-b0ad-306d1653b95f",
+    "usage": {
+      "input_tokens": 105,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 105
+      },
+      "output_tokens": 196,
+      "total_tokens": 301,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/illustration_gpt-image-2_956184e8.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/illustration.json"
+  },
+  {
+    "model": "gpt-image-2.5-flare",
+    "deployment": "gpt-image-2.5-flare",
+    "scenario": "illustration",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2.5-flare",
+      "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:11:46.312637+00:00",
+    "elapsed_seconds": 17.2,
+    "request_id": "eeac777c-2dad-4c50-8e18-54a9e2d12a62",
+    "usage": {
+      "input_tokens": 105,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 105
+      },
+      "output_tokens": 196,
+      "total_tokens": 301,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/illustration_gpt-image-2.5-flare_e0421352.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/illustration.json"
+  },
+  {
+    "model": "gpt-image-2.5-sunburst",
+    "deployment": "gpt-image-2.5-sunburst",
+    "scenario": "illustration",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2.5-sunburst",
+      "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:12:03.653528+00:00",
+    "elapsed_seconds": 29.24,
+    "request_id": "7eebaae1-6b2f-4164-98e3-b0a89a0d1a66",
+    "usage": {
+      "input_tokens": 105,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 105
+      },
+      "output_tokens": 196,
+      "total_tokens": 301,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/illustration_gpt-image-2.5-sunburst_03e53dd4.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/illustration.json"
+  },
+  {
+    "model": "MAI-Image-2.6",
+    "deployment": "MAI-Image-2.6",
+    "provider": "mai",
+    "scenario": "illustration",
+    "operation": "generate",
+    "request": {
+      "model": "MAI-Image-2.6",
+      "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false,
+      "width": 1024,
+      "height": 1024
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+    "api_version": null,
+    "source_image": null,
+    "created_at": "2026-09-14T20:41:07.319423+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "8e943297-02b2-4e81-9374-061245a119f9",
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1024,
+      "num_input_text_tokens": 98,
+      "num_input_image_tokens": 0
+    },
+    "elapsed_seconds": 26.72,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/illustration_MAI-Image-2.6_3466bc09.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/illustration.json"
+  },
+  {
+    "model": "MAI-Image-2.6-Flash",
+    "deployment": "MAI-Image-2.6-Flash",
+    "provider": "mai",
+    "scenario": "illustration",
+    "operation": "generate",
+    "request": {
+      "model": "MAI-Image-2.6-Flash",
+      "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false,
+      "width": 1024,
+      "height": 1024
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+    "api_version": null,
+    "source_image": null,
+    "created_at": "2026-09-14T20:41:34.709241+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "0defae8f-91e1-4682-8a3e-0d55953b275b",
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1024,
+      "num_input_text_tokens": 98,
+      "num_input_image_tokens": 0
+    },
+    "elapsed_seconds": 13.93,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/illustration_MAI-Image-2.6-Flash_36b003db.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/illustration.json"
+  },
+  {
+    "model": "gpt-image-1.5",
+    "deployment": "gpt-image-1.5",
+    "scenario": "portrait_astronaut",
+    "operation": "edit",
+    "request": {
+      "model": "gpt-image-1.5",
+      "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": "reference_portrait.png",
+    "created_at": "2026-09-14T18:03:44.761370+00:00",
+    "elapsed_seconds": 12.11,
+    "request_id": "3918d407-9aec-4b2b-a4cc-e20685c30151",
+    "usage": {
+      "input_tokens": 351,
+      "input_tokens_details": {
+        "image_tokens": 194,
+        "text_tokens": 157
+      },
+      "output_tokens": 422,
+      "total_tokens": 773,
+      "output_tokens_details": {
+        "image_tokens": 272,
+        "text_tokens": 150
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_portrait_gpt-image-1.5_1d5b8b89.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/portrait_astronaut.json"
+  },
+  {
+    "model": "gpt-image-2",
+    "deployment": "gpt-image-2",
+    "scenario": "portrait_astronaut",
+    "operation": "edit",
+    "request": {
+      "model": "gpt-image-2",
+      "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": "reference_portrait.png",
+    "created_at": "2026-09-14T18:03:57.221211+00:00",
+    "elapsed_seconds": 20.81,
+    "request_id": "bb39d5ef-6a94-47a4-bddf-455598498c8e",
+    "usage": {
+      "input_tokens": 1103,
+      "input_tokens_details": {
+        "image_tokens": 961,
+        "text_tokens": 142
+      },
+      "output_tokens": 196,
+      "total_tokens": 1299,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_portrait_gpt-image-2_0a825aff.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/portrait_astronaut.json"
+  },
+  {
+    "model": "gpt-image-2.5-flare",
+    "deployment": "gpt-image-2.5-flare",
+    "scenario": "portrait_astronaut",
+    "operation": "edit",
+    "request": {
+      "model": "gpt-image-2.5-flare",
+      "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": "reference_portrait.png",
+    "created_at": "2026-09-14T18:04:18.707858+00:00",
+    "elapsed_seconds": 21.01,
+    "request_id": "836a2fc9-783d-441c-8ba9-743711fe2214",
+    "usage": {
+      "input_tokens": 1113,
+      "input_tokens_details": {
+        "image_tokens": 961,
+        "text_tokens": 152
+      },
+      "output_tokens": 196,
+      "total_tokens": 1309,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_portrait_gpt-image-2.5-flare_657e51a6.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/portrait_astronaut.json"
+  },
+  {
+    "model": "gpt-image-2.5-sunburst",
+    "deployment": "gpt-image-2.5-sunburst",
+    "scenario": "portrait_astronaut",
+    "operation": "edit",
+    "request": {
+      "model": "gpt-image-2.5-sunburst",
+      "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": "reference_portrait.png",
+    "created_at": "2026-09-14T18:04:40.040594+00:00",
+    "elapsed_seconds": 33.32,
+    "request_id": "d364bce2-da6e-4f55-8aff-dc74d50efe1f",
+    "usage": {
+      "input_tokens": 1113,
+      "input_tokens_details": {
+        "image_tokens": 961,
+        "text_tokens": 152
+      },
+      "output_tokens": 196,
+      "total_tokens": 1309,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_portrait_gpt-image-2.5-sunburst_60e0decc.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/portrait_astronaut.json"
+  },
+  {
+    "model": "MAI-Image-2.6",
+    "deployment": "MAI-Image-2.6",
+    "provider": "mai",
+    "scenario": "portrait_astronaut",
+    "operation": "edit",
+    "request": {
+      "model": "MAI-Image-2.6",
+      "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/edits",
+    "api_version": null,
+    "source_image": "reference_portrait.png",
+    "created_at": "2026-09-14T20:44:20.444700+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "614c701b-86df-4964-8a5c-90f321037544",
+    "retry_after": null,
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1023,
+      "num_input_text_tokens": 123,
+      "num_input_image_tokens": 233
+    },
+    "elapsed_seconds": 23.19,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1008,
+      1040
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T204330Z_ee45eb95/portrait_astronaut_MAI-Image-2.6_ffada350.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/portrait_astronaut.json"
+  },
+  {
+    "model": "MAI-Image-2.6-Flash",
+    "deployment": "MAI-Image-2.6-Flash",
+    "provider": "mai",
+    "scenario": "portrait_astronaut",
+    "operation": "edit",
+    "request": {
+      "model": "MAI-Image-2.6-Flash",
+      "prompt": "Transform the person in this reference photograph into a cinematic, photorealistic astronaut portrait aboard a space station orbiting Mars. Preserve the person's recognizable facial features, face shape, skin tone, dark hair, broad smile, visible teeth, and cheerful expression. Keep the head angle and close portrait framing. Replace the striped shirt with a detailed cream astronaut suit with subtle terracotta accents, with the helmet removed so the face is completely visible. Replace the background with a softly blurred spacecraft interior and a window showing Mars. Use natural warm light on the face and subtle cool rim lighting. Preserve realistic skin texture. No additional people, no text, and no changes to the person's identity.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/edits",
+    "api_version": null,
+    "source_image": "reference_portrait.png",
+    "created_at": "2026-09-14T20:44:44.268403+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "4136048a-9012-41e4-8aac-f3c1a2a67bf5",
+    "retry_after": null,
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1023,
+      "num_input_text_tokens": 123,
+      "num_input_image_tokens": 233
+    },
+    "elapsed_seconds": 17.91,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1008,
+      1040
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T204330Z_ee45eb95/portrait_astronaut_MAI-Image-2.6-Flash_ca6bed2f.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/portrait_astronaut.json"
+  },
+  {
+    "model": "gpt-image-1.5",
+    "deployment": "gpt-image-1.5",
+    "scenario": "poster",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-1.5",
+      "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:09:54.601838+00:00",
+    "elapsed_seconds": 12.76,
+    "request_id": "88449838-3dca-427b-be95-20e44564ce96",
+    "usage": {
+      "input_tokens": 122,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 122
+      },
+      "output_tokens": 541,
+      "total_tokens": 663,
+      "output_tokens_details": {
+        "image_tokens": 272,
+        "text_tokens": 269
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/poster_gpt-image-1.5_f7aebab1.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/poster.json"
+  },
+  {
+    "model": "gpt-image-2",
+    "deployment": "gpt-image-2",
+    "scenario": "poster",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2",
+      "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:10:07.579650+00:00",
+    "elapsed_seconds": 22.1,
+    "request_id": "054d97d8-1a72-4e59-a11e-5cb909a439bc",
+    "usage": {
+      "input_tokens": 122,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 122
+      },
+      "output_tokens": 196,
+      "total_tokens": 318,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/poster_gpt-image-2_910ac6be.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/poster.json"
+  },
+  {
+    "model": "gpt-image-2.5-flare",
+    "deployment": "gpt-image-2.5-flare",
+    "scenario": "poster",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2.5-flare",
+      "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:10:29.807776+00:00",
+    "elapsed_seconds": 21.62,
+    "request_id": "f24d7fdd-71b4-47fa-8b1c-0557376acd05",
+    "usage": {
+      "input_tokens": 122,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 122
+      },
+      "output_tokens": 196,
+      "total_tokens": 318,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/poster_gpt-image-2.5-flare_e7d31810.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/poster.json"
+  },
+  {
+    "model": "gpt-image-2.5-sunburst",
+    "deployment": "gpt-image-2.5-sunburst",
+    "scenario": "poster",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2.5-sunburst",
+      "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:10:51.626318+00:00",
+    "elapsed_seconds": 23.78,
+    "request_id": "b7e7eeea-2398-4b3f-9f25-63edc1b09912",
+    "usage": {
+      "input_tokens": 122,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 122
+      },
+      "output_tokens": 196,
+      "total_tokens": 318,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/poster_gpt-image-2.5-sunburst_95da1539.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/poster.json"
+  },
+  {
+    "model": "MAI-Image-2.6",
+    "deployment": "MAI-Image-2.6",
+    "provider": "mai",
+    "scenario": "poster",
+    "operation": "generate",
+    "request": {
+      "model": "MAI-Image-2.6",
+      "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false,
+      "width": 1024,
+      "height": 1024
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+    "api_version": null,
+    "source_image": null,
+    "created_at": "2026-09-14T20:40:30.456089+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "93136fc5-0685-483e-b833-b8e1b7c7027a",
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1024,
+      "num_input_text_tokens": 115,
+      "num_input_image_tokens": 0
+    },
+    "elapsed_seconds": 24.1,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/poster_MAI-Image-2.6_2c55070b.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/poster.json"
+  },
+  {
+    "model": "MAI-Image-2.6-Flash",
+    "deployment": "MAI-Image-2.6-Flash",
+    "provider": "mai",
+    "scenario": "poster",
+    "operation": "generate",
+    "request": {
+      "model": "MAI-Image-2.6-Flash",
+      "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false,
+      "width": 1024,
+      "height": 1024
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+    "api_version": null,
+    "source_image": null,
+    "created_at": "2026-09-14T20:40:55.123867+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "3708a768-dcf8-42d6-b08b-6a6179aaa15d",
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1024,
+      "num_input_text_tokens": 115,
+      "num_input_image_tokens": 0
+    },
+    "elapsed_seconds": 11.89,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/poster_MAI-Image-2.6-Flash_ca3865d4.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/poster.json"
+  },
+  {
+    "model": "gpt-image-1.5",
+    "deployment": "gpt-image-1.5",
+    "scenario": "product",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-1.5",
+      "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:02:34.051629+00:00",
+    "elapsed_seconds": 15.15,
+    "request_id": "65df3014-1476-492c-9828-6d2f14005d53",
+    "usage": {
+      "input_tokens": 104,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 104
+      },
+      "output_tokens": 399,
+      "total_tokens": 503,
+      "output_tokens_details": {
+        "image_tokens": 272,
+        "text_tokens": 127
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_product_gpt-image-1.5_57410956.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/product.json"
+  },
+  {
+    "model": "gpt-image-2",
+    "deployment": "gpt-image-2",
+    "scenario": "product",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2",
+      "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:02:49.342787+00:00",
+    "elapsed_seconds": 17.21,
+    "request_id": "1f5c2d52-0f20-47e0-9a57-a0fc13a4b7f7",
+    "usage": {
+      "input_tokens": 104,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 104
+      },
+      "output_tokens": 196,
+      "total_tokens": 300,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_product_gpt-image-2_bad193e1.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/product.json"
+  },
+  {
+    "model": "gpt-image-2.5-flare",
+    "deployment": "gpt-image-2.5-flare",
+    "scenario": "product",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2.5-flare",
+      "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:03:06.686906+00:00",
+    "elapsed_seconds": 13.41,
+    "request_id": "92a27123-8e29-4f67-96ec-bbb8bf6ae332",
+    "usage": {
+      "input_tokens": 104,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 104
+      },
+      "output_tokens": 196,
+      "total_tokens": 300,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_product_gpt-image-2.5-flare_602b28b9.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/product.json"
+  },
+  {
+    "model": "gpt-image-2.5-sunburst",
+    "deployment": "gpt-image-2.5-sunburst",
+    "scenario": "product",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2.5-sunburst",
+      "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "auto"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:03:20.536423+00:00",
+    "elapsed_seconds": 24.02,
+    "request_id": "338b7a69-dc08-4795-ba13-f42b54b8c53e",
+    "usage": {
+      "input_tokens": 104,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 104
+      },
+      "output_tokens": 196,
+      "total_tokens": 300,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180233Z_97386b4d/live_smoke_product_gpt-image-2.5-sunburst_2d23924a.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/product.json"
+  },
+  {
+    "model": "MAI-Image-2.6",
+    "deployment": "MAI-Image-2.6",
+    "provider": "mai",
+    "scenario": "product",
+    "operation": "generate",
+    "request": {
+      "model": "MAI-Image-2.6",
+      "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false,
+      "width": 1024,
+      "height": 1024
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+    "api_version": null,
+    "source_image": null,
+    "created_at": "2026-09-14T20:39:42.113478+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "c0febd15-5472-4fab-92c0-449d45017132",
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1024,
+      "num_input_text_tokens": 97,
+      "num_input_image_tokens": 0
+    },
+    "elapsed_seconds": 35.23,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/product_MAI-Image-2.6_16297b2c.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/product.json"
+  },
+  {
+    "model": "MAI-Image-2.6-Flash",
+    "deployment": "MAI-Image-2.6-Flash",
+    "provider": "mai",
+    "scenario": "product",
+    "operation": "generate",
+    "request": {
+      "model": "MAI-Image-2.6-Flash",
+      "prompt": "Create a premium photorealistic studio product photograph for the fictional ORBIT brand. One matte terracotta ceramic mug with a single curved handle on its right, sitting on a pale stone plinth. The word ORBIT is printed clearly on the front in small ivory uppercase letters. Soft morning light from the upper left, believable contact shadow, fine ceramic texture, warm cream seamless background. Three-quarter camera view. Keep the entire mug visible with generous negative space. No additional objects or text.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false,
+      "width": 1024,
+      "height": 1024
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+    "api_version": null,
+    "source_image": null,
+    "created_at": "2026-09-14T20:40:17.537619+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "e23852df-c869-4111-96f4-167e9067ddff",
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1024,
+      "num_input_text_tokens": 97,
+      "num_input_image_tokens": 0
+    },
+    "elapsed_seconds": 12.41,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/product_MAI-Image-2.6-Flash_74f8292d.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/product.json"
+  },
+  {
+    "model": "gpt-image-1.5",
+    "deployment": "gpt-image-1.5",
+    "scenario": "transparent_mascot",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-1.5",
+      "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "transparent"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:05:10.826669+00:00",
+    "elapsed_seconds": 11.88,
+    "request_id": "33dca30e-edf3-4d5d-9648-4044a04fc96e",
+    "usage": {
+      "input_tokens": 72,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 72
+      },
+      "output_tokens": 496,
+      "total_tokens": 568,
+      "output_tokens_details": {
+        "image_tokens": 272,
+        "text_tokens": 224
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": true,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180426Z_246eafc6/live_smoke_transparency_gpt-image-1.5_65d0da03.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/transparent_mascot.json"
+  },
+  {
+    "model": "gpt-image-2",
+    "deployment": "gpt-image-2",
+    "scenario": "transparent_mascot",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2",
+      "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "transparent"
+    },
+    "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:15:11.263024+00:00",
+    "elapsed_seconds": 30.44,
+    "request_id": "05a7c620-e64c-4a1d-a46f-7122bf72de68",
+    "usage": {
+      "input_tokens": 72,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 72
+      },
+      "output_tokens": 196,
+      "total_tokens": 268,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": true,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T181510Z_e79a4004/transparent_mascot_gpt-image-2_3f9e9218.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/transparent_mascot.json"
+  },
+  {
+    "model": "gpt-image-2.5-flare",
+    "deployment": "gpt-image-2.5-flare",
+    "scenario": "transparent_mascot",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2.5-flare",
+      "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "transparent"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:04:27.919007+00:00",
+    "elapsed_seconds": 17.25,
+    "request_id": "c5e96f53-1438-44f2-b381-2ac41ba97187",
+    "usage": {
+      "input_tokens": 72,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 72
+      },
+      "output_tokens": 196,
+      "total_tokens": 268,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": true,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180426Z_246eafc6/live_smoke_transparency_gpt-image-2.5-flare_7a407238.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/transparent_mascot.json"
+  },
+  {
+    "model": "gpt-image-2.5-sunburst",
+    "deployment": "gpt-image-2.5-sunburst",
+    "scenario": "transparent_mascot",
+    "operation": "generate",
+    "request": {
+      "model": "gpt-image-2.5-sunburst",
+      "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "low",
+      "output_format": "png",
+      "background": "transparent"
+    },
+    "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+    "api_version": "2025-04-01-preview",
+    "source_image": null,
+    "created_at": "2026-09-14T18:04:45.414952+00:00",
+    "elapsed_seconds": 25.13,
+    "request_id": "dca571e6-7931-4539-ad6b-883f498721aa",
+    "usage": {
+      "input_tokens": 72,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 72
+      },
+      "output_tokens": 196,
+      "total_tokens": 268,
+      "output_tokens_details": {
+        "image_tokens": 196,
+        "text_tokens": 0
+      }
+    },
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": true,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T180426Z_246eafc6/live_smoke_transparency_gpt-image-2.5-sunburst_94bad536.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/transparent_mascot.json"
+  },
+  {
+    "model": "MAI-Image-2.6",
+    "deployment": "MAI-Image-2.6",
+    "provider": "mai",
+    "scenario": "transparent_mascot",
+    "operation": "generate",
+    "request": {
+      "model": "MAI-Image-2.6",
+      "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false,
+      "width": 1024,
+      "height": 1024
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+    "api_version": null,
+    "source_image": null,
+    "created_at": "2026-09-14T20:42:19.893187+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "342c64a3-2e81-4d01-a950-0b88d7b525e6",
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1024,
+      "num_input_text_tokens": 65,
+      "num_input_image_tokens": 0
+    },
+    "elapsed_seconds": 31.97,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/transparent_mascot_MAI-Image-2.6_c99fefd0.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/transparent_mascot.json"
+  },
+  {
+    "model": "MAI-Image-2.6-Flash",
+    "deployment": "MAI-Image-2.6-Flash",
+    "provider": "mai",
+    "scenario": "transparent_mascot",
+    "operation": "generate",
+    "request": {
+      "model": "MAI-Image-2.6-Flash",
+      "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+      "auto_aspect_ratio": false,
+      "web_grounding": false,
+      "width": 1024,
+      "height": 1024
+    },
+    "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+    "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+    "api_version": null,
+    "source_image": null,
+    "created_at": "2026-09-14T20:42:52.533344+00:00",
+    "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+    "request_id": "37e6f03f-26d8-4619-aad4-0e3905916656",
+    "response_fields": [
+      "created",
+      "data",
+      "model",
+      "size",
+      "usage"
+    ],
+    "usage": {
+      "num_output_tokens": 1024,
+      "num_input_text_tokens": 65,
+      "num_input_image_tokens": 0
+    },
+    "elapsed_seconds": 12.72,
+    "usage_note": "Reported by service",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "has_transparency": false,
+    "status": "ok",
+    "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/transparent_mascot_MAI-Image-2.6-Flash_57c92e90.png",
+    "source_file": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons/transparent_mascot.json"
+  }
+]

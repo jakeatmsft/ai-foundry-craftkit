@@ -1,0 +1,259 @@
+{
+  "title": "Poster and typography",
+  "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+  "reference": null,
+  "omitted_models": [],
+  "results": [
+    {
+      "model": "gpt-image-1.5",
+      "deployment": "gpt-image-1.5",
+      "scenario": "poster",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-1.5",
+        "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:09:54.601838+00:00",
+      "elapsed_seconds": 12.76,
+      "request_id": "88449838-3dca-427b-be95-20e44564ce96",
+      "usage": {
+        "input_tokens": 122,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 122
+        },
+        "output_tokens": 541,
+        "total_tokens": 663,
+        "output_tokens_details": {
+          "image_tokens": 272,
+          "text_tokens": 269
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/poster_gpt-image-1.5_f7aebab1.png"
+    },
+    {
+      "model": "gpt-image-2",
+      "deployment": "gpt-image-2",
+      "scenario": "poster",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2",
+        "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:10:07.579650+00:00",
+      "elapsed_seconds": 22.1,
+      "request_id": "054d97d8-1a72-4e59-a11e-5cb909a439bc",
+      "usage": {
+        "input_tokens": 122,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 122
+        },
+        "output_tokens": 196,
+        "total_tokens": 318,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/poster_gpt-image-2_910ac6be.png"
+    },
+    {
+      "model": "gpt-image-2.5-flare",
+      "deployment": "gpt-image-2.5-flare",
+      "scenario": "poster",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2.5-flare",
+        "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:10:29.807776+00:00",
+      "elapsed_seconds": 21.62,
+      "request_id": "f24d7fdd-71b4-47fa-8b1c-0557376acd05",
+      "usage": {
+        "input_tokens": 122,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 122
+        },
+        "output_tokens": 196,
+        "total_tokens": 318,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/poster_gpt-image-2.5-flare_e7d31810.png"
+    },
+    {
+      "model": "gpt-image-2.5-sunburst",
+      "deployment": "gpt-image-2.5-sunburst",
+      "scenario": "poster",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:10:51.626318+00:00",
+      "elapsed_seconds": 23.78,
+      "request_id": "b7e7eeea-2398-4b3f-9f25-63edc1b09912",
+      "usage": {
+        "input_tokens": 122,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 122
+        },
+        "output_tokens": 196,
+        "total_tokens": 318,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/poster_gpt-image-2.5-sunburst_95da1539.png"
+    },
+    {
+      "model": "MAI-Image-2.6",
+      "deployment": "MAI-Image-2.6",
+      "provider": "mai",
+      "scenario": "poster",
+      "operation": "generate",
+      "request": {
+        "model": "MAI-Image-2.6",
+        "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false,
+        "width": 1024,
+        "height": 1024
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+      "api_version": null,
+      "source_image": null,
+      "created_at": "2026-09-14T20:40:30.456089+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "93136fc5-0685-483e-b833-b8e1b7c7027a",
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1024,
+        "num_input_text_tokens": 115,
+        "num_input_image_tokens": 0
+      },
+      "elapsed_seconds": 24.1,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/poster_MAI-Image-2.6_2c55070b.png"
+    },
+    {
+      "model": "MAI-Image-2.6-Flash",
+      "deployment": "MAI-Image-2.6-Flash",
+      "provider": "mai",
+      "scenario": "poster",
+      "operation": "generate",
+      "request": {
+        "model": "MAI-Image-2.6-Flash",
+        "prompt": "Design a polished campaign poster for the fictional ORBIT coffee brand. Terracotta, cream, and deep navy palette. A small ceramic mug floats above a beautifully lit Mars landscape in the bottom half. At the top, render exactly these two headline lines: SMALL SIPS. / BIG IDEAS. The slash indicates a line break and must not appear. Below the headline, write exactly: ORBIT COFFEE. At the bottom, write exactly: LAUNCH DAY \u2022 09:30. Clear typographic hierarchy, generous margins, crisp readable lettering. Include no other text.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false,
+        "width": 1024,
+        "height": 1024
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+      "api_version": null,
+      "source_image": null,
+      "created_at": "2026-09-14T20:40:55.123867+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "3708a768-dcf8-42d6-b08b-6a6179aaa15d",
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1024,
+        "num_input_text_tokens": 115,
+        "num_input_image_tokens": 0
+      },
+      "elapsed_seconds": 11.89,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/poster_MAI-Image-2.6-Flash_ca3865d4.png"
+    }
+  ],
+  "prior_attempts": []
+}

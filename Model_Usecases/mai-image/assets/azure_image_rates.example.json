@@ -1,0 +1,48 @@
+{
+  "basis": "User-supplied Azure token rates + MAI-Image-2 starting-rate assumptions (uncached inputs)",
+  "currency": "USD",
+  "retrieved_on": "YYYY-MM-DD",
+  "source": "Replace with the source/date of your Azure price sheet or quote",
+  "notes": "Fill GPT token rates from your Azure price sheet for the appropriate model/region/SKU. MAI text input ($5) and image output ($33) per million tokens are prefilled at user request for both MAI models. Image-input rates remain null. Null means unavailable, not zero. Do not enter per-image prices in token-rate columns.",
+  "usd_per_million_tokens": {
+    "gpt-image-1.5": {
+      "input_text": null,
+      "input_image": null,
+      "output_text": null,
+      "output_image": null
+    },
+    "gpt-image-2": {
+      "input_text": null,
+      "input_image": null,
+      "output_text": null,
+      "output_image": null
+    },
+    "gpt-image-2.5-flare": {
+      "input_text": null,
+      "input_image": null,
+      "output_text": null,
+      "output_image": null
+    },
+    "gpt-image-2.5-sunburst": {
+      "input_text": null,
+      "input_image": null,
+      "output_text": null,
+      "output_image": null
+    },
+    "MAI-Image-2.6": {
+      "input_text": 5.0,
+      "input_image": null,
+      "output_text": null,
+      "output_image": 33.0
+    },
+    "MAI-Image-2.6-Flash": {
+      "input_text": 5.0,
+      "input_image": null,
+      "output_text": null,
+      "output_image": 33.0
+    }
+  },
+  "mai_output_tokens_as_image_output": true,
+  "mai_rate_source": "User-supplied MAI-Image-2 starting rates: $5 per 1M text-input tokens and $33 per 1M image-output tokens; apply to all MAI models.",
+  "mai_pricing_assumption": "For estimation, price MAI num_output_tokens as image output. Raw response modality fields remain unchanged. Image-input pricing was not supplied; positive image-input tokens prevent a complete total."
+}
