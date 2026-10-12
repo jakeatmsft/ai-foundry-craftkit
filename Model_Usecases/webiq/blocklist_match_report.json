@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "sample_seed": 20260804,
+    "sampled_queries": 100,
+    "unique_blocklist_rules": 657,
+    "path_specific_blocklist_rules": 69,
+    "result_records": 100,
+    "status_counts": {
+      "ok": 100
+    },
+    "total_web_results": 1000,
+    "blocked_result_occurrences": 0,
+    "unique_blocked_urls": 0,
+    "queries_returning_any_blocklisted_url": 0,
+    "queries_returning_their_sampled_target": 0,
+    "matched_blocklist_entries": 0,
+    "matched_entry_occurrences": {},
+    "matched_category_occurrences": {}
+  },
+  "matching_method": {
+    "host": "exact blocked host or its subdomain",
+    "path": "exact blocked path or child path; any path for host-only rules",
+    "url_field": "webResults[].url"
+  },
+  "unique_blocked_urls": [],
+  "matches": []
+}
