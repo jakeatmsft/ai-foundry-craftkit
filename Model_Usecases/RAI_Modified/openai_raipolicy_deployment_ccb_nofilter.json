@@ -1,0 +1,87 @@
+{
+  "basePolicyName": "Microsoft.Default",
+  "contentFilters": [
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Violence",
+      "severityThreshold": "High",
+      "source": "Prompt"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Hate",
+      "severityThreshold": "High",
+      "source": "Prompt"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Sexual",
+      "severityThreshold": "High",
+      "source": "Prompt"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Selfharm",
+      "severityThreshold": "High",
+      "source": "Prompt"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Jailbreak",
+      "source": "Prompt"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Indirect Attack",
+      "source": "Prompt"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Violence",
+      "severityThreshold": "High",
+      "source": "Completion"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Hate",
+      "severityThreshold": "High",
+      "source": "Completion"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Sexual",
+      "severityThreshold": "High",
+      "source": "Completion"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Selfharm",
+      "severityThreshold": "High",
+      "source": "Completion"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Protected Material Text",
+      "source": "Completion"
+    },
+    {
+      "blocking": false,
+      "enabled": true,
+      "name": "Protected Material Code",
+      "source": "Completion"
+    }
+  ],
+  "mode": "Asynchronous_filter",
+  "type": "UserManaged"
+}
