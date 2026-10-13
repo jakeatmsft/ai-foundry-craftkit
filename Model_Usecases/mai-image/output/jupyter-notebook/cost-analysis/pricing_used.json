@@ -1,0 +1,48 @@
+{
+  "basis": "OpenAI reference rates + user-supplied MAI-Image-2 starting rates (uncached inputs)",
+  "currency": "USD",
+  "retrieved_on": "2026-09-14",
+  "source": "OpenAI: https://developers.openai.com/api/docs/pricing; MAI: user-supplied MAI-Image-2 starting rates applied to all MAI models",
+  "notes": "GPT prices are public OpenAI reference rates, not verified Azure deployment prices. MAI-Image-2 starting rates are assumed for both MAI models at user request. No cache discounts, taxes, or negotiated discounts. Null means unavailable, not zero.",
+  "usd_per_million_tokens": {
+    "gpt-image-1.5": {
+      "input_text": 5.0,
+      "input_image": 8.0,
+      "output_text": 10.0,
+      "output_image": 32.0
+    },
+    "gpt-image-2": {
+      "input_text": 5.0,
+      "input_image": 8.0,
+      "output_text": null,
+      "output_image": 30.0
+    },
+    "gpt-image-2.5-flare": {
+      "input_text": 5.0,
+      "input_image": 8.0,
+      "output_text": null,
+      "output_image": 30.0
+    },
+    "gpt-image-2.5-sunburst": {
+      "input_text": 5.0,
+      "input_image": 8.0,
+      "output_text": null,
+      "output_image": 30.0
+    },
+    "MAI-Image-2.6": {
+      "input_text": 5.0,
+      "input_image": null,
+      "output_text": null,
+      "output_image": 33.0
+    },
+    "MAI-Image-2.6-Flash": {
+      "input_text": 5.0,
+      "input_image": null,
+      "output_text": null,
+      "output_image": 33.0
+    }
+  },
+  "mai_output_tokens_as_image_output": true,
+  "mai_rate_source": "User-supplied MAI-Image-2 starting rates: $5 per 1M text-input tokens and $33 per 1M image-output tokens; apply to all MAI models.",
+  "mai_pricing_assumption": "For estimation, price MAI num_output_tokens as image output. Raw response modality fields remain unchanged. Image-input pricing was not supplied; positive image-input tokens prevent a complete total."
+}

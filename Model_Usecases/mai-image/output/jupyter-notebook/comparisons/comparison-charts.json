@@ -1,0 +1,1664 @@
+[
+  {
+    "id": "usage-token-chart",
+    "title": "Average tokens per image",
+    "description": "Input text + input image + output total. MAI output is not split into text and image tokens.",
+    "figure": {
+      "data": [
+        {
+          "customdata": [
+            [
+              "gpt-image-1.5",
+              624.2
+            ],
+            [
+              "gpt-image-2",
+              497.2
+            ],
+            [
+              "gpt-image-2.5-flare",
+              499.2
+            ],
+            [
+              "gpt-image-2.5-sunburst",
+              499.2
+            ],
+            [
+              "MAI-Image-2.6",
+              1170.0
+            ],
+            [
+              "MAI-Image-2.6-Flash",
+              1170.0
+            ]
+          ],
+          "hovertemplate": "%{customdata[0]}<br>Input text: %{x:,.2f} tokens<br>Total: %{customdata[1]:,.2f} tokens<extra></extra>",
+          "marker": {
+            "color": "#2563eb"
+          },
+          "name": "Input text",
+          "orientation": "h",
+          "x": [
+            112.0,
+            109.0,
+            111.0,
+            111.0,
+            99.6,
+            99.6
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        },
+        {
+          "customdata": [
+            [
+              "gpt-image-1.5",
+              624.2
+            ],
+            [
+              "gpt-image-2",
+              497.2
+            ],
+            [
+              "gpt-image-2.5-flare",
+              499.2
+            ],
+            [
+              "gpt-image-2.5-sunburst",
+              499.2
+            ],
+            [
+              "MAI-Image-2.6",
+              1170.0
+            ],
+            [
+              "MAI-Image-2.6-Flash",
+              1170.0
+            ]
+          ],
+          "hovertemplate": "%{customdata[0]}<br>Input image: %{x:,.2f} tokens<br>Total: %{customdata[1]:,.2f} tokens<extra></extra>",
+          "marker": {
+            "color": "#38bdf8"
+          },
+          "name": "Input image",
+          "orientation": "h",
+          "x": [
+            38.8,
+            192.2,
+            192.2,
+            192.2,
+            46.6,
+            46.6
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        },
+        {
+          "customdata": [
+            [
+              "gpt-image-1.5",
+              624.2
+            ],
+            [
+              "gpt-image-2",
+              497.2
+            ],
+            [
+              "gpt-image-2.5-flare",
+              499.2
+            ],
+            [
+              "gpt-image-2.5-sunburst",
+              499.2
+            ],
+            [
+              "MAI-Image-2.6",
+              1170.0
+            ],
+            [
+              "MAI-Image-2.6-Flash",
+              1170.0
+            ]
+          ],
+          "hovertemplate": "%{customdata[0]}<br>Output total: %{x:,.2f} tokens<br>Total: %{customdata[1]:,.2f} tokens<extra></extra>",
+          "marker": {
+            "color": "#0f766e"
+          },
+          "name": "Output total",
+          "orientation": "h",
+          "x": [
+            473.4,
+            196.0,
+            196.0,
+            196.0,
+            1023.8,
+            1023.8
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 135,
+          "r": 65,
+          "t": 55,
+          "b": 65
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 430,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "title": {
+            "text": "Tokens per successful image"
+          },
+          "rangemode": "tozero"
+        },
+        "yaxis": {
+          "showgrid": false,
+          "fixedrange": true,
+          "autorange": "reversed"
+        },
+        "barmode": "stack"
+      }
+    }
+  },
+  {
+    "id": "usage-latency-chart",
+    "title": "Average response time",
+    "description": "Five successful requests per model. GPT low quality and MAI defaults differ; these are observed sample averages.",
+    "figure": {
+      "data": [
+        {
+          "cliponaxis": false,
+          "customdata": [
+            "gpt-image-1.5",
+            "gpt-image-2",
+            "gpt-image-2.5-flare",
+            "gpt-image-2.5-sunburst",
+            "MAI-Image-2.6",
+            "MAI-Image-2.6-Flash"
+          ],
+          "hovertemplate": "%{customdata}<br>Average: %{x:.2f} seconds<extra></extra>",
+          "marker": {
+            "color": [
+              "#2563eb",
+              "#3b82f6",
+              "#6366f1",
+              "#8b5cf6",
+              "#0f766e",
+              "#14b8a6"
+            ]
+          },
+          "orientation": "h",
+          "text": [
+            "12.80 s",
+            "21.77 s",
+            "18.10 s",
+            "27.10 s",
+            "28.24 s",
+            "13.77 s"
+          ],
+          "textposition": "outside",
+          "x": [
+            12.798,
+            21.772,
+            18.098000000000003,
+            27.098000000000003,
+            28.242,
+            13.772
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 135,
+          "r": 65,
+          "t": 55,
+          "b": 65
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 430,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "title": {
+            "text": "Seconds per successful image"
+          },
+          "range": [
+            0,
+            35.02008
+          ]
+        },
+        "yaxis": {
+          "showgrid": false,
+          "fixedrange": true,
+          "autorange": "reversed"
+        },
+        "showlegend": false
+      }
+    }
+  },
+  {
+    "id": "token-rate-chart",
+    "title": "Token rates by modality",
+    "description": "Missing rates have no bar. GPT uses public reference rates; both MAI models use the supplied $5 text-input / $33 image-output starting rates.",
+    "figure": {
+      "data": [
+        {
+          "customdata": [
+            "gpt-image-1.5",
+            "gpt-image-2",
+            "gpt-image-2.5-flare",
+            "gpt-image-2.5-sunburst",
+            "MAI-Image-2.6",
+            "MAI-Image-2.6-Flash"
+          ],
+          "hovertemplate": "%{customdata}<br>Input text: $%{x:.2f} per 1M tokens<extra></extra>",
+          "marker": {
+            "color": "#2563eb"
+          },
+          "name": "Input text",
+          "orientation": "h",
+          "x": [
+            5.0,
+            5.0,
+            5.0,
+            5.0,
+            5.0,
+            5.0
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        },
+        {
+          "customdata": [
+            "gpt-image-1.5",
+            "gpt-image-2",
+            "gpt-image-2.5-flare",
+            "gpt-image-2.5-sunburst",
+            "MAI-Image-2.6",
+            "MAI-Image-2.6-Flash"
+          ],
+          "hovertemplate": "%{customdata}<br>Input image: $%{x:.2f} per 1M tokens<extra></extra>",
+          "marker": {
+            "color": "#38bdf8"
+          },
+          "name": "Input image",
+          "orientation": "h",
+          "x": [
+            8.0,
+            8.0,
+            8.0,
+            8.0,
+            null,
+            null
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        },
+        {
+          "customdata": [
+            "gpt-image-1.5",
+            "gpt-image-2",
+            "gpt-image-2.5-flare",
+            "gpt-image-2.5-sunburst",
+            "MAI-Image-2.6",
+            "MAI-Image-2.6-Flash"
+          ],
+          "hovertemplate": "%{customdata}<br>Output text: $%{x:.2f} per 1M tokens<extra></extra>",
+          "marker": {
+            "color": "#f59e0b"
+          },
+          "name": "Output text",
+          "orientation": "h",
+          "x": [
+            10.0,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        },
+        {
+          "customdata": [
+            "gpt-image-1.5",
+            "gpt-image-2",
+            "gpt-image-2.5-flare",
+            "gpt-image-2.5-sunburst",
+            "MAI-Image-2.6",
+            "MAI-Image-2.6-Flash"
+          ],
+          "hovertemplate": "%{customdata}<br>Output image: $%{x:.2f} per 1M tokens<extra></extra>",
+          "marker": {
+            "color": "#0f766e"
+          },
+          "name": "Output image",
+          "orientation": "h",
+          "x": [
+            32.0,
+            30.0,
+            30.0,
+            30.0,
+            33.0,
+            33.0
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 135,
+          "r": 65,
+          "t": 55,
+          "b": 65
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 520,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "title": {
+            "text": "USD per one million tokens"
+          },
+          "tickprefix": "$",
+          "rangemode": "tozero"
+        },
+        "yaxis": {
+          "showgrid": false,
+          "fixedrange": true,
+          "autorange": "reversed"
+        },
+        "barmode": "group",
+        "bargap": 0.24
+      }
+    }
+  },
+  {
+    "id": "quality-price-chart",
+    "title": "Supplied cost by quality level",
+    "description": "Apidog values supplied by the user. The applicable model and pricing basis are unspecified; these are not applied to MAI.",
+    "figure": {
+      "data": [
+        {
+          "hovertemplate": "1024 \u00d7 1024<br>%{x}: $%{y:.5f}<extra></extra>",
+          "line": {
+            "color": "#2563eb",
+            "width": 3
+          },
+          "marker": {
+            "size": 9
+          },
+          "mode": "lines+markers",
+          "name": "1024 \u00d7 1024",
+          "x": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "y": [
+            0.00588,
+            0.01317,
+            0.05268,
+            0.09366,
+            0.21072
+          ],
+          "type": "scatter"
+        },
+        {
+          "hovertemplate": "1536 \u00d7 1024<br>%{x}: $%{y:.5f}<extra></extra>",
+          "line": {
+            "color": "#0f766e",
+            "width": 3
+          },
+          "marker": {
+            "size": 9
+          },
+          "mode": "lines+markers",
+          "name": "1536 \u00d7 1024",
+          "x": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "y": [
+            0.00474,
+            0.01029,
+            0.04116,
+            0.07377,
+            0.16464
+          ],
+          "type": "scatter"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 75,
+          "r": 30,
+          "t": 55,
+          "b": 65
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 430,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "title": {
+            "text": "Quality"
+          },
+          "type": "category"
+        },
+        "yaxis": {
+          "showgrid": true,
+          "fixedrange": true,
+          "title": {
+            "text": "USD per image"
+          },
+          "tickprefix": "$",
+          "rangemode": "tozero",
+          "gridcolor": "#e2e8f0"
+        }
+      }
+    }
+  },
+  {
+    "id": "average-cost-chart",
+    "title": "Average fully priced prompt",
+    "description": "Coverage differs: GPT includes 5/5 prompts; MAI includes 4/5 and excludes portrait edits. These averages use different prompt mixes.",
+    "figure": {
+      "data": [
+        {
+          "cliponaxis": false,
+          "customdata": [
+            [
+              "gpt-image-1.5",
+              5,
+              5
+            ],
+            [
+              "gpt-image-2",
+              5,
+              5
+            ],
+            [
+              "gpt-image-2.5-flare",
+              5,
+              5
+            ],
+            [
+              "gpt-image-2.5-sunburst",
+              5,
+              5
+            ],
+            [
+              "MAI-Image-2.6",
+              4,
+              5
+            ],
+            [
+              "MAI-Image-2.6-Flash",
+              4,
+              5
+            ]
+          ],
+          "hovertemplate": "%{customdata[0]}<br>$%{x:.6f} per priced prompt<br>%{customdata[1]} of %{customdata[2]} prompts priced<extra></extra>",
+          "marker": {
+            "color": [
+              "#2563eb",
+              "#3b82f6",
+              "#6366f1",
+              "#8b5cf6",
+              "#0f766e",
+              "#14b8a6"
+            ]
+          },
+          "orientation": "h",
+          "text": [
+            "$0.01159",
+            "$0.00796",
+            "$0.00797",
+            "$0.00797",
+            "$0.03426",
+            "$0.03426"
+          ],
+          "textposition": "outside",
+          "x": [
+            0.0115883999999999,
+            0.0079626,
+            0.0079726,
+            0.0079726,
+            0.03426075,
+            0.03426075
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 135,
+          "r": 65,
+          "t": 55,
+          "b": 65
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 430,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "title": {
+            "text": "USD per priced prompt"
+          },
+          "tickprefix": "$",
+          "range": [
+            0,
+            0.04385376
+          ]
+        },
+        "yaxis": {
+          "showgrid": false,
+          "fixedrange": true,
+          "autorange": "reversed"
+        },
+        "showlegend": false
+      }
+    }
+  },
+  {
+    "id": "workload-cost-chart",
+    "title": "Projected cost for 1,000 images",
+    "description": "Same five-prompt mix with equal weights. MAI full-workload costs remain unavailable, not zero.",
+    "figure": {
+      "data": [
+        {
+          "cliponaxis": false,
+          "customdata": [
+            "gpt-image-1.5",
+            "gpt-image-2",
+            "gpt-image-2.5-flare",
+            "gpt-image-2.5-sunburst",
+            "MAI-Image-2.6",
+            "MAI-Image-2.6-Flash"
+          ],
+          "hovertemplate": "%{customdata}<br>1,000 images: $%{x:.4f}<extra></extra>",
+          "marker": {
+            "color": [
+              "#2563eb",
+              "#3b82f6",
+              "#6366f1",
+              "#8b5cf6",
+              "#0f766e",
+              "#14b8a6"
+            ]
+          },
+          "orientation": "h",
+          "text": [
+            "$11.59",
+            "$7.96",
+            "$7.97",
+            "$7.97",
+            "",
+            ""
+          ],
+          "textposition": "outside",
+          "x": [
+            11.588399999999998,
+            7.9626,
+            7.9726,
+            7.9726,
+            null,
+            null
+          ],
+          "y": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "type": "bar"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "annotations": [
+          {
+            "font": {
+              "color": "#92400e",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "N/A: image-input rate",
+            "x": 0.15,
+            "xanchor": "left",
+            "y": "MAI 2.6"
+          },
+          {
+            "font": {
+              "color": "#92400e",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "N/A: image-input rate",
+            "x": 0.15,
+            "xanchor": "left",
+            "y": "MAI 2.6 Flash"
+          }
+        ],
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 135,
+          "r": 65,
+          "t": 55,
+          "b": 65
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 430,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "title": {
+            "text": "USD for 1,000 images"
+          },
+          "tickprefix": "$",
+          "range": [
+            0,
+            14.833151999999998
+          ]
+        },
+        "yaxis": {
+          "showgrid": false,
+          "fixedrange": true,
+          "autorange": "reversed",
+          "categoryorder": "array",
+          "categoryarray": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ]
+        },
+        "showlegend": false
+      }
+    }
+  },
+  {
+    "id": "prompt-cost-chart",
+    "title": "Cost by prompt and model",
+    "description": "Colored cells are complete estimates. MAI portrait cells have no cost color: $0.034374 is only the text/output subtotal, plus unpriced image input.",
+    "figure": {
+      "data": [
+        {
+          "colorbar": {
+            "thickness": 12,
+            "tickprefix": "$",
+            "title": {
+              "text": "USD"
+            }
+          },
+          "colorscale": [
+            [
+              0,
+              "#eff6ff"
+            ],
+            [
+              1,
+              "#1d4ed8"
+            ]
+          ],
+          "customdata": [
+            [
+              "gpt-image-1.5<br>Product photo<br>Complete estimate: $0.010494",
+              "gpt-image-2<br>Product photo<br>Complete estimate: $0.006400",
+              "gpt-image-2.5-flare<br>Product photo<br>Complete estimate: $0.006400",
+              "gpt-image-2.5-sunburst<br>Product photo<br>Complete estimate: $0.006400",
+              "MAI-Image-2.6<br>Product photo<br>Complete estimate: $0.034277",
+              "MAI-Image-2.6-Flash<br>Product photo<br>Complete estimate: $0.034277"
+            ],
+            [
+              "gpt-image-1.5<br>Poster / typography<br>Complete estimate: $0.012004",
+              "gpt-image-2<br>Poster / typography<br>Complete estimate: $0.006490",
+              "gpt-image-2.5-flare<br>Poster / typography<br>Complete estimate: $0.006490",
+              "gpt-image-2.5-sunburst<br>Poster / typography<br>Complete estimate: $0.006490",
+              "MAI-Image-2.6<br>Poster / typography<br>Complete estimate: $0.034367",
+              "MAI-Image-2.6-Flash<br>Poster / typography<br>Complete estimate: $0.034367"
+            ],
+            [
+              "gpt-image-1.5<br>Illustration<br>Complete estimate: $0.011599",
+              "gpt-image-2<br>Illustration<br>Complete estimate: $0.006405",
+              "gpt-image-2.5-flare<br>Illustration<br>Complete estimate: $0.006405",
+              "gpt-image-2.5-sunburst<br>Illustration<br>Complete estimate: $0.006405",
+              "MAI-Image-2.6<br>Illustration<br>Complete estimate: $0.034282",
+              "MAI-Image-2.6-Flash<br>Illustration<br>Complete estimate: $0.034282"
+            ],
+            [
+              "gpt-image-1.5<br>Portrait edit<br>Complete estimate: $0.012541",
+              "gpt-image-2<br>Portrait edit<br>Complete estimate: $0.014278",
+              "gpt-image-2.5-flare<br>Portrait edit<br>Complete estimate: $0.014328",
+              "gpt-image-2.5-sunburst<br>Portrait edit<br>Complete estimate: $0.014328",
+              "Total unavailable",
+              "Total unavailable"
+            ],
+            [
+              "gpt-image-1.5<br>Mascot<br>Complete estimate: $0.011304",
+              "gpt-image-2<br>Mascot<br>Complete estimate: $0.006240",
+              "gpt-image-2.5-flare<br>Mascot<br>Complete estimate: $0.006240",
+              "gpt-image-2.5-sunburst<br>Mascot<br>Complete estimate: $0.006240",
+              "MAI-Image-2.6<br>Mascot<br>Complete estimate: $0.034117",
+              "MAI-Image-2.6-Flash<br>Mascot<br>Complete estimate: $0.034117"
+            ]
+          ],
+          "hoverongaps": false,
+          "hovertemplate": "%{customdata}<extra></extra>",
+          "x": [
+            "GPT Image 1.5",
+            "GPT Image 2",
+            "GPT 2.5 Flare",
+            "GPT 2.5 Sunburst",
+            "MAI 2.6",
+            "MAI 2.6 Flash"
+          ],
+          "xgap": 3,
+          "y": [
+            "Product photo",
+            "Poster / typography",
+            "Illustration",
+            "Portrait edit",
+            "Mascot"
+          ],
+          "ygap": 3,
+          "z": [
+            [
+              0.010494,
+              0.0063999999999999,
+              0.0063999999999999,
+              0.0063999999999999,
+              0.034277,
+              0.034277
+            ],
+            [
+              0.012004,
+              0.00649,
+              0.00649,
+              0.00649,
+              0.034367,
+              0.034367
+            ],
+            [
+              0.011599,
+              0.006405,
+              0.006405,
+              0.006405,
+              0.034282,
+              0.034282
+            ],
+            [
+              0.012541,
+              0.014278,
+              0.014328,
+              0.014328,
+              null,
+              null
+            ],
+            [
+              0.011304,
+              0.00624,
+              0.00624,
+              0.00624,
+              0.034117,
+              0.034117
+            ]
+          ],
+          "zmin": 0,
+          "type": "heatmap"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "annotations": [
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.010494",
+            "x": "GPT Image 1.5",
+            "y": "Product photo"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006400",
+            "x": "GPT Image 2",
+            "y": "Product photo"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006400",
+            "x": "GPT 2.5 Flare",
+            "y": "Product photo"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006400",
+            "x": "GPT 2.5 Sunburst",
+            "y": "Product photo"
+          },
+          {
+            "font": {
+              "color": "white",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.034277",
+            "x": "MAI 2.6",
+            "y": "Product photo"
+          },
+          {
+            "font": {
+              "color": "white",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.034277",
+            "x": "MAI 2.6 Flash",
+            "y": "Product photo"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.012004",
+            "x": "GPT Image 1.5",
+            "y": "Poster / typography"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006490",
+            "x": "GPT Image 2",
+            "y": "Poster / typography"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006490",
+            "x": "GPT 2.5 Flare",
+            "y": "Poster / typography"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006490",
+            "x": "GPT 2.5 Sunburst",
+            "y": "Poster / typography"
+          },
+          {
+            "font": {
+              "color": "white",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.034367",
+            "x": "MAI 2.6",
+            "y": "Poster / typography"
+          },
+          {
+            "font": {
+              "color": "white",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.034367",
+            "x": "MAI 2.6 Flash",
+            "y": "Poster / typography"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.011599",
+            "x": "GPT Image 1.5",
+            "y": "Illustration"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006405",
+            "x": "GPT Image 2",
+            "y": "Illustration"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006405",
+            "x": "GPT 2.5 Flare",
+            "y": "Illustration"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006405",
+            "x": "GPT 2.5 Sunburst",
+            "y": "Illustration"
+          },
+          {
+            "font": {
+              "color": "white",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.034282",
+            "x": "MAI 2.6",
+            "y": "Illustration"
+          },
+          {
+            "font": {
+              "color": "white",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.034282",
+            "x": "MAI 2.6 Flash",
+            "y": "Illustration"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.012541",
+            "x": "GPT Image 1.5",
+            "y": "Portrait edit"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.014278",
+            "x": "GPT Image 2",
+            "y": "Portrait edit"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.014328",
+            "x": "GPT 2.5 Flare",
+            "y": "Portrait edit"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.014328",
+            "x": "GPT 2.5 Sunburst",
+            "y": "Portrait edit"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "Total N/A<br>Subtotal<br>$0.034374",
+            "x": "MAI 2.6",
+            "y": "Portrait edit"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "Total N/A<br>Subtotal<br>$0.034374",
+            "x": "MAI 2.6 Flash",
+            "y": "Portrait edit"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.011304",
+            "x": "GPT Image 1.5",
+            "y": "Mascot"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006240",
+            "x": "GPT Image 2",
+            "y": "Mascot"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006240",
+            "x": "GPT 2.5 Flare",
+            "y": "Mascot"
+          },
+          {
+            "font": {
+              "color": "#334155",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.006240",
+            "x": "GPT 2.5 Sunburst",
+            "y": "Mascot"
+          },
+          {
+            "font": {
+              "color": "white",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.034117",
+            "x": "MAI 2.6",
+            "y": "Mascot"
+          },
+          {
+            "font": {
+              "color": "white",
+              "size": 11
+            },
+            "showarrow": false,
+            "text": "$0.034117",
+            "x": "MAI 2.6 Flash",
+            "y": "Mascot"
+          }
+        ],
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 145,
+          "r": 55,
+          "t": 20,
+          "b": 80
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 430,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "side": "bottom",
+          "tickangle": -15
+        },
+        "yaxis": {
+          "showgrid": false,
+          "fixedrange": true,
+          "autorange": "reversed"
+        }
+      }
+    }
+  },
+  {
+    "id": "flare-quality-cost-chart",
+    "title": "Flare estimated cost by quality",
+    "description": "Same prompt and 1024 \u00d7 1024 PNG output. Each estimate includes text-input and image-output tokens.",
+    "figure": {
+      "data": [
+        {
+          "customdata": [
+            [
+              104,
+              196
+            ],
+            [
+              104,
+              439
+            ],
+            [
+              104,
+              1756
+            ],
+            [
+              104,
+              3122
+            ]
+          ],
+          "hovertemplate": "%{x}<br>Total estimate: $%{y:.6f}<br>Input text: %{customdata[0]} tokens<br>Image output: %{customdata[1]} tokens<extra></extra>",
+          "line": {
+            "color": "#2563eb",
+            "width": 3
+          },
+          "marker": {
+            "size": 10
+          },
+          "mode": "lines+markers",
+          "x": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "y": [
+            0.0063999999999999994,
+            0.013689999999999999,
+            0.0532,
+            0.09418
+          ],
+          "type": "scatter"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 75,
+          "r": 30,
+          "t": 25,
+          "b": 65
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 430,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "title": {
+            "text": "Quality"
+          },
+          "type": "category"
+        },
+        "yaxis": {
+          "showgrid": true,
+          "fixedrange": true,
+          "title": {
+            "text": "Estimated USD per image"
+          },
+          "tickprefix": "$",
+          "rangemode": "tozero",
+          "gridcolor": "#e2e8f0"
+        },
+        "showlegend": false
+      }
+    }
+  },
+  {
+    "id": "flare-quality-latency-chart",
+    "title": "Flare response time by quality",
+    "description": "One successful call per level, including network and authentication time; this is not a latency benchmark.",
+    "figure": {
+      "data": [
+        {
+          "cliponaxis": false,
+          "hovertemplate": "%{x}<br>Observed latency: %{y:.2f} seconds<extra></extra>",
+          "marker": {
+            "color": [
+              "#93c5fd",
+              "#60a5fa",
+              "#3b82f6",
+              "#1d4ed8"
+            ]
+          },
+          "text": [
+            "16.27 s",
+            "15.77 s",
+            "29.36 s",
+            "40.83 s"
+          ],
+          "textposition": "outside",
+          "x": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "y": [
+            16.27,
+            15.77,
+            29.36,
+            40.83
+          ],
+          "type": "bar"
+        }
+      ],
+      "layout": {
+        "template": {
+          "data": {
+            "scatter": [
+              {
+                "type": "scatter"
+              }
+            ]
+          }
+        },
+        "font": {
+          "family": "system-ui, sans-serif",
+          "size": 12,
+          "color": "#334155"
+        },
+        "margin": {
+          "l": 75,
+          "r": 30,
+          "t": 25,
+          "b": 65
+        },
+        "legend": {
+          "orientation": "h",
+          "y": 1.15,
+          "x": 0,
+          "itemclick": false,
+          "itemdoubleclick": false
+        },
+        "hoverlabel": {
+          "font": {
+            "color": "white",
+            "size": 13
+          },
+          "bgcolor": "#0f172a"
+        },
+        "autosize": true,
+        "height": 430,
+        "paper_bgcolor": "white",
+        "plot_bgcolor": "white",
+        "dragmode": false,
+        "xaxis": {
+          "showgrid": true,
+          "gridcolor": "#e2e8f0",
+          "zeroline": false,
+          "fixedrange": true,
+          "title": {
+            "text": "Quality"
+          }
+        },
+        "yaxis": {
+          "showgrid": true,
+          "fixedrange": true,
+          "title": {
+            "text": "Seconds"
+          },
+          "range": [
+            0,
+            48.995999999999995
+          ],
+          "gridcolor": "#e2e8f0"
+        },
+        "showlegend": false
+      }
+    }
+  }
+]

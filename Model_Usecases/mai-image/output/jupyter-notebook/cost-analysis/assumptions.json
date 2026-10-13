@@ -1,0 +1,23 @@
+{
+  "token_comparison_models": [
+    "gpt-image-1.5",
+    "gpt-image-2",
+    "gpt-image-2.5-flare",
+    "gpt-image-2.5-sunburst"
+  ],
+  "mai_policy": "Use user-supplied MAI-Image-2 starting rates for both MAI models: text input $5, image output $33 per million tokens. Price num_output_tokens as image output for estimates; preserve raw modality gaps. Image-input rate unspecified; keep partial edit subtotals separate from complete totals.",
+  "mai_output_tokens_as_image_output": true,
+  "all_model_cost_weighting": "Mean repeats per model/prompt/source, then equal prompt weights; provider settings differ. A priced-prompt average excludes unpriced prompts. Full workloads require every prompt to be priced.",
+  "price_basis": "OpenAI reference rates + user-supplied MAI-Image-2 starting rates (uncached inputs)",
+  "cache_policy": "All input tokens use uncached rates",
+  "volume_images": 1000,
+  "matched_prompt_groups": 5,
+  "weighting": "Average repeats per model/group, then equal weight for every matched group",
+  "input": "/mnt/c/repo/ai-foundry-craftkit/Model_Usecases/mai-image/output/jupyter-notebook/comparisons",
+  "load_audit": {
+    "files": 5,
+    "duplicates_skipped": 0,
+    "unrecognized_documents": 0,
+    "other_models_skipped": 0
+  }
+}

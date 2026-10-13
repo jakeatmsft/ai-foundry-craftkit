@@ -1,0 +1,7 @@
+model,prompts,priced_prompts,average_priced_prompt_usd,estimated_cost_usd,prompt_set_usd,projected_workload_usd
+gpt-image-1.5,5,5,0.011588399999999999,0.011588399999999999,0.057941999999999994,11.588399999999998
+gpt-image-2,5,5,0.0079626,0.0079626,0.039813,7.9626
+gpt-image-2.5-flare,5,5,0.0079726,0.0079726,0.039862999999999996,7.9726
+gpt-image-2.5-sunburst,5,5,0.0079726,0.0079726,0.039862999999999996,7.9726
+MAI-Image-2.6,5,4,0.03426075,,,
+MAI-Image-2.6-Flash,5,4,0.03426075,,,

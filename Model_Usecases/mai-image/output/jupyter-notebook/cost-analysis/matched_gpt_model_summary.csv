@@ -1,0 +1,7 @@
+model,saved_requests,successful_images,requests_with_usage,matched_prompts,priced_prompts,input_text,input_image,output_text,output_image,input_tokens,output_tokens,total_tokens,elapsed_seconds,input_text_usd,input_image_usd,output_text_usd,output_image_usd,estimated_cost_usd,prompt_set_usd,projected_workload_usd
+gpt-image-1.5,5,5,5,5,5,112.0,38.8,201.4,272.0,150.8,473.4,624.2,12.798,0.00056,0.0003104,0.002014,0.008704,0.0115884,0.057942,11.5884
+gpt-image-2,5,5,5,5,5,109.0,192.2,0.0,196.0,301.2,196.0,497.2,21.772,0.000545,0.0015376,0.0,0.00588,0.0079626,0.039813,7.9626
+gpt-image-2.5-flare,5,5,5,5,5,111.0,192.2,0.0,196.0,303.2,196.0,499.2,18.098000000000003,0.000555,0.0015376,0.0,0.00588,0.0079726,0.039862999999999996,7.9726
+gpt-image-2.5-sunburst,5,5,5,5,5,111.0,192.2,0.0,196.0,303.2,196.0,499.2,27.098000000000003,0.000555,0.0015376,0.0,0.00588,0.0079726,0.039862999999999996,7.9726
+MAI-Image-2.6,5,5,5,0,0,,,,,,,,,,,,,,,
+MAI-Image-2.6-Flash,5,5,5,0,0,,,,,,,,,,,,,,,

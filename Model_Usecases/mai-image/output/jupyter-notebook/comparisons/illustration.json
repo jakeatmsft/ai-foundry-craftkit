@@ -1,0 +1,259 @@
+{
+  "title": "Illustration and instruction following",
+  "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+  "reference": null,
+  "omitted_models": [],
+  "results": [
+    {
+      "model": "gpt-image-1.5",
+      "deployment": "gpt-image-1.5",
+      "scenario": "illustration",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-1.5",
+        "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:11:15.547573+00:00",
+      "elapsed_seconds": 12.09,
+      "request_id": "fe32a92d-7e29-4475-adab-a06969a5d7b8",
+      "usage": {
+        "input_tokens": 105,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 105
+        },
+        "output_tokens": 509,
+        "total_tokens": 614,
+        "output_tokens_details": {
+          "image_tokens": 272,
+          "text_tokens": 237
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/illustration_gpt-image-1.5_755a0a2d.png"
+    },
+    {
+      "model": "gpt-image-2",
+      "deployment": "gpt-image-2",
+      "scenario": "illustration",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2",
+        "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:11:27.869870+00:00",
+      "elapsed_seconds": 18.3,
+      "request_id": "d677b953-60f1-46ab-b0ad-306d1653b95f",
+      "usage": {
+        "input_tokens": 105,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 105
+        },
+        "output_tokens": 196,
+        "total_tokens": 301,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/illustration_gpt-image-2_956184e8.png"
+    },
+    {
+      "model": "gpt-image-2.5-flare",
+      "deployment": "gpt-image-2.5-flare",
+      "scenario": "illustration",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2.5-flare",
+        "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:11:46.312637+00:00",
+      "elapsed_seconds": 17.2,
+      "request_id": "eeac777c-2dad-4c50-8e18-54a9e2d12a62",
+      "usage": {
+        "input_tokens": 105,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 105
+        },
+        "output_tokens": 196,
+        "total_tokens": 301,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/illustration_gpt-image-2.5-flare_e0421352.png"
+    },
+    {
+      "model": "gpt-image-2.5-sunburst",
+      "deployment": "gpt-image-2.5-sunburst",
+      "scenario": "illustration",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "auto"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:12:03.653528+00:00",
+      "elapsed_seconds": 29.24,
+      "request_id": "7eebaae1-6b2f-4164-98e3-b0a89a0d1a66",
+      "usage": {
+        "input_tokens": 105,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 105
+        },
+        "output_tokens": 196,
+        "total_tokens": 301,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180954Z_b81778e3/illustration_gpt-image-2.5-sunburst_03e53dd4.png"
+    },
+    {
+      "model": "MAI-Image-2.6",
+      "deployment": "MAI-Image-2.6",
+      "provider": "mai",
+      "scenario": "illustration",
+      "operation": "generate",
+      "request": {
+        "model": "MAI-Image-2.6",
+        "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false,
+        "width": 1024,
+        "height": 1024
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+      "api_version": null,
+      "source_image": null,
+      "created_at": "2026-09-14T20:41:07.319423+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "8e943297-02b2-4e81-9374-061245a119f9",
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1024,
+        "num_input_text_tokens": 98,
+        "num_input_image_tokens": 0
+      },
+      "elapsed_seconds": 26.72,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/illustration_MAI-Image-2.6_3466bc09.png"
+    },
+    {
+      "model": "MAI-Image-2.6-Flash",
+      "deployment": "MAI-Image-2.6-Flash",
+      "provider": "mai",
+      "scenario": "illustration",
+      "operation": "generate",
+      "request": {
+        "model": "MAI-Image-2.6-Flash",
+        "prompt": "A charming editorial gouache illustration of a smiling pink axolotl astronaut taking a selfie on a tiny moon. Its face and external gills are visible inside a clear round helmet. It holds a small camera in its left hand and waves with its right hand. Show exactly three planets across the upper background, ordered from left to right: a small blue planet, a large orange ringed planet, a medium green planet. Warm paper texture, playful shapes, carefully composed negative space. No text.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false,
+        "width": 1024,
+        "height": 1024
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+      "api_version": null,
+      "source_image": null,
+      "created_at": "2026-09-14T20:41:34.709241+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "0defae8f-91e1-4682-8a3e-0d55953b275b",
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1024,
+        "num_input_text_tokens": 98,
+        "num_input_image_tokens": 0
+      },
+      "elapsed_seconds": 13.93,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/illustration_MAI-Image-2.6-Flash_36b003db.png"
+    }
+  ],
+  "prior_attempts": []
+}

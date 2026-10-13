@@ -1,0 +1,259 @@
+{
+  "title": "Transparent mascot",
+  "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+  "reference": null,
+  "omitted_models": [],
+  "results": [
+    {
+      "model": "gpt-image-1.5",
+      "deployment": "gpt-image-1.5",
+      "scenario": "transparent_mascot",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-1.5",
+        "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "transparent"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:05:10.826669+00:00",
+      "elapsed_seconds": 11.88,
+      "request_id": "33dca30e-edf3-4d5d-9648-4044a04fc96e",
+      "usage": {
+        "input_tokens": 72,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 72
+        },
+        "output_tokens": 496,
+        "total_tokens": 568,
+        "output_tokens_details": {
+          "image_tokens": 272,
+          "text_tokens": 224
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": true,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180426Z_246eafc6/live_smoke_transparency_gpt-image-1.5_65d0da03.png"
+    },
+    {
+      "model": "gpt-image-2",
+      "deployment": "gpt-image-2",
+      "scenario": "transparent_mascot",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2",
+        "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "transparent"
+      },
+      "endpoint": "https://wu3-oai.cognitiveservices.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:15:11.263024+00:00",
+      "elapsed_seconds": 30.44,
+      "request_id": "05a7c620-e64c-4a1d-a46f-7122bf72de68",
+      "usage": {
+        "input_tokens": 72,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 72
+        },
+        "output_tokens": 196,
+        "total_tokens": 268,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": true,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T181510Z_e79a4004/transparent_mascot_gpt-image-2_3f9e9218.png"
+    },
+    {
+      "model": "gpt-image-2.5-flare",
+      "deployment": "gpt-image-2.5-flare",
+      "scenario": "transparent_mascot",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2.5-flare",
+        "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "transparent"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:04:27.919007+00:00",
+      "elapsed_seconds": 17.25,
+      "request_id": "c5e96f53-1438-44f2-b381-2ac41ba97187",
+      "usage": {
+        "input_tokens": 72,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 72
+        },
+        "output_tokens": 196,
+        "total_tokens": 268,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": true,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180426Z_246eafc6/live_smoke_transparency_gpt-image-2.5-flare_7a407238.png"
+    },
+    {
+      "model": "gpt-image-2.5-sunburst",
+      "deployment": "gpt-image-2.5-sunburst",
+      "scenario": "transparent_mascot",
+      "operation": "generate",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+        "n": 1,
+        "size": "1024x1024",
+        "quality": "low",
+        "output_format": "png",
+        "background": "transparent"
+      },
+      "endpoint": "https://aikb-openai-dkds4s3eonm5o.openai.azure.com",
+      "api_version": "2025-04-01-preview",
+      "source_image": null,
+      "created_at": "2026-09-14T18:04:45.414952+00:00",
+      "elapsed_seconds": 25.13,
+      "request_id": "dca571e6-7931-4539-ad6b-883f498721aa",
+      "usage": {
+        "input_tokens": 72,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 72
+        },
+        "output_tokens": 196,
+        "total_tokens": 268,
+        "output_tokens_details": {
+          "image_tokens": 196,
+          "text_tokens": 0
+        }
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": true,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T180426Z_246eafc6/live_smoke_transparency_gpt-image-2.5-sunburst_94bad536.png"
+    },
+    {
+      "model": "MAI-Image-2.6",
+      "deployment": "MAI-Image-2.6",
+      "provider": "mai",
+      "scenario": "transparent_mascot",
+      "operation": "generate",
+      "request": {
+        "model": "MAI-Image-2.6",
+        "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false,
+        "width": 1024,
+        "height": 1024
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+      "api_version": null,
+      "source_image": null,
+      "created_at": "2026-09-14T20:42:19.893187+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "342c64a3-2e81-4d01-a950-0b88d7b525e6",
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1024,
+        "num_input_text_tokens": 65,
+        "num_input_image_tokens": 0
+      },
+      "elapsed_seconds": 31.97,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/transparent_mascot_MAI-Image-2.6_c99fefd0.png"
+    },
+    {
+      "model": "MAI-Image-2.6-Flash",
+      "deployment": "MAI-Image-2.6-Flash",
+      "provider": "mai",
+      "scenario": "transparent_mascot",
+      "operation": "generate",
+      "request": {
+        "model": "MAI-Image-2.6-Flash",
+        "prompt": "Create a single delightful 3D clay-style pink axolotl astronaut mascot, full body, wearing a small cream spacesuit with terracotta accents and a clear helmet. Friendly wave, visible external gills, clean silhouette, front three-quarter view. Isolated on a transparent background, no floor, no scenery, no text.",
+        "auto_aspect_ratio": false,
+        "web_grounding": false,
+        "width": 1024,
+        "height": 1024
+      },
+      "endpoint": "https://jacwang-foundryonly.services.ai.azure.com",
+      "api_url": "https://jacwang-foundryonly.services.ai.azure.com/mai/v1/images/generations",
+      "api_version": null,
+      "source_image": null,
+      "created_at": "2026-09-14T20:42:52.533344+00:00",
+      "capability_notes": "Model-default quality; no background parameter; transparency is prompt-only. Edits omit width/height; inspect returned dimensions.",
+      "request_id": "37e6f03f-26d8-4619-aad4-0e3905916656",
+      "response_fields": [
+        "created",
+        "data",
+        "model",
+        "size",
+        "usage"
+      ],
+      "usage": {
+        "num_output_tokens": 1024,
+        "num_input_text_tokens": 65,
+        "num_input_image_tokens": 0
+      },
+      "elapsed_seconds": 12.72,
+      "usage_note": "Reported by service",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "has_transparency": false,
+      "status": "ok",
+      "image_path": "outputs/gpt-image-showcase/20260914T203940Z_29cfc86e/transparent_mascot_MAI-Image-2.6-Flash_57c92e90.png"
+    }
+  ],
+  "prior_attempts": []
+}
