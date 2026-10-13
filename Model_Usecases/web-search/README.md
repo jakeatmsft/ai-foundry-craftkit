@@ -134,3 +134,18 @@ Some responses may also surface `sources` on output items. The demo aggregates t
 - Keep the `tools` list explicit so you can switch between plain generation and tool-augmented responses.
 - For reproducibility in demos, pass a fixed `model` (and optionally a `model_override` when comparing behaviors).
 - Use location bias and allowed domain filters to meet compliance or regional relevance requirements.
+
+## Test the blocked-domain limit
+
+The live integration tests cover both sides of the current 100-domain limit:
+
+- A request with exactly 100 `blocked_domains` must complete and include a web
+  search tool call.
+- A request with 200 `blocked_domains` must return HTTP 400 and identify the
+  domain-filter limit.
+
+After configuring `.env` and authenticating with `az login`, run:
+
+```bash
+python -m pytest -q tests/test_web_search_blocked_domains.py
+```
